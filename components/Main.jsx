@@ -9,9 +9,6 @@ const Main = () => {
   useEffect(() => {
     (async () => {
       const res = await axios.get('https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles')
-
-      console.log(res.data)
-
       setArticles(res.data)
     })()
   }, [])

@@ -1,15 +1,15 @@
 import React from 'react'
 import img from '../../static/code.jpg'
 
-const GeneralNew = () => {
+const GeneralNew = ({article}) => {
   return (
     <div className="GeneralNew">
       <div className="img">
-        <img src={img} alt=""/>
+        <img src={article.imgUrl} alt=""/>
       </div>
       <div className="articleDesc">
-        <h2 className="title">Title</h2>
-        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, obcaecati amet laborum quas id cumque officiis nam velit aspernatur illo.</span>
+        <h2 className="title">{article.title}</h2>
+        <span>{article.content}</span>
       </div>
     </div>
   )

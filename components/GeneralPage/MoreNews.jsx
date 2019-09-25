@@ -1,7 +1,7 @@
 import React from "react"
 import GeneralNew from './GeneralNews';
 
-const MoreNews = () => {
+const MoreNews = (props) => {
   return(
     <>
     <div className="moreNews">
@@ -9,8 +9,9 @@ const MoreNews = () => {
       <hr className="more-news-line"/>
     </div>
     <div className="generalNews">
-      <GeneralNew />
-      <GeneralNew />
+      {props.articles.map(article => 
+        <GeneralNew article={article} />       
+      )}
     </div>
     </>
   )
