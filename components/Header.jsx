@@ -4,19 +4,27 @@ import Link from "next/link";
 const Header = () => {
   return (
     <header>
-      <div class="wrapper">
-        <Link class="logo" target="_blank" href="/">
-          <h1 class="logo">Geek News</h1>
+      <div className="wrapper">
+        <Link href="/">
+          <a  className="logo">
+            <h1 className="logo">Geek News</h1>
+          </a>
         </Link>
         <div className="links">
-          <Link href="#" target="_blank">
-            Новости
+          <Link href="#">
+            <a>
+              Новости
+            </a>
           </Link>
-          <Link href="#" target="_blank">
-            Личный кабинет
+          <Link href="#">
+            <a>
+              Личный кабинет
+            </a>
           </Link>
-          <Link href="#" target="_blank">
-            Вход
+          <Link href="#">
+            <a>
+              Вход
+            </a>
           </Link>
         </div>
       </div>

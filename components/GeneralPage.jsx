@@ -3,7 +3,7 @@ import TopArticles from "./GeneralPage/TopArticles"
 import MoreNews from './GeneralPage/MoreNews';
 import axios from 'axios'
 
-const Main = () => {
+const GeneralPage = () => {
   const [articles, setArticles] = useState(null)
 
   useEffect(() => {
@@ -35,4 +35,4 @@ const Main = () => {
   );
 };
 
-export default Main
+export default GeneralPage

@@ -1,17 +1,21 @@
 import React from 'react'
 import img from '../../static/code.jpg'
+import Link from 'next/link'
 
-const GeneralNew = ({article}) => {
+const GeneralNew = ({ article }) => {
   return (
-    <div className="GeneralNew">
-      <div className="img">
-        <img src={article.imgUrl} alt=""/>
+    <Link href={`a/${article._id}`}>
+      <div className="GeneralNew">
+        <div className="img">
+          <img src={article.imgUrl} alt="" />
+        </div>
+        <div className="articleDesc">
+          <h2 className="title">{article.title}</h2>
+          <hr/>
+          <span>{article.content}</span>
+        </div>
       </div>
-      <div className="articleDesc">
-        <h2 className="title">{article.title}</h2>
-        <span>{article.content}</span>
-      </div>
-    </div>
+    </Link>
   )
 }
 

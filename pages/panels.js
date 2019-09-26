@@ -3,15 +3,14 @@ import '../static/style.scss'
 import Header from '../components/Header'
 import GeneralPage from '../components/GeneralPage'
 import Footer from './../components/Footer'
-import { Panels } from '../components/Panels';
-import { createMemoryHistory } from 'history';
+import { Panels } from '../components/Panels'
 
-const App = () => (
+const addArticlePanel = () => (
   <div>
     <Header />
-    <GeneralPage />
+    <Panels />
     <Footer />
   </div>
 )
 
-export default App
+export default addArticlePanel
