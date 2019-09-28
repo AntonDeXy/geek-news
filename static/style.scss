@@ -166,6 +166,12 @@ main {
       display: grid;
       grid-template-columns: 1fr auto
     }
+    input, select, textarea, button {
+      border: 2px solid black;
+      background-color: black;
+      color: white;
+      font-family: $font; 
+    }
   }
 }
 

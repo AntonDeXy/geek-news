@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Route } from "react-router-dom";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 export const Panels = () => {
+  const router = useRouter()
+
   return (
     <main className="panels">
       {/* <Route path='/panels/addArticle' /> */}
@@ -17,7 +20,7 @@ const AddArticlePanel = () => {
   const [category, setCategory] = useState(undefined);
   const [content, setContent] = useState(undefined);
 
-  const addArticle = (title, img, category, content) => {
+  const addArticle = async (title, img, category, content) => {
     // let article = {
     //   title: title,
     //   author: 'admin',
@@ -25,15 +28,20 @@ const AddArticlePanel = () => {
     //   content: content,
     //   imgUrl: img
     // }
-
-    axios.post(
+   
+    const res = await axios.post(
       "https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles",
       { title: "123" }
-    ).then(function (response) {
-      console.log(response);
-    })
-    debugger
-  };
+    ).then((response) => {
+      console.log(response)
+    }).catch(
+      function (error) {
+        console.log(error)
+      }
+    )
+
+    console.log(res)
+  }
 
   return (
     <div className="panel">
