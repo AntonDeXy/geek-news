@@ -91,7 +91,6 @@ const AddArticlePanel = () => {
           init={{
             height: 500,
             menubar: false,
-            // apiKey=c,
             plugins: [
               'advlist autolink lists link image charmap print preview anchor',
               'searchreplace visualblocks code fullscreen',
@@ -103,7 +102,7 @@ const AddArticlePanel = () => {
               bullist numlist outdent indent | removeformat | help'
           }}
           onChange={e => {
-            // setContent(e.currentTarget.value);
+            setContent(e.target.getContent());
             console.log(e.target.getContent());
           }}
         />

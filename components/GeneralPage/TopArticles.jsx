@@ -1,11 +1,15 @@
 import React from "react";
-import img from '../../static/code.jpg'
-import Link from 'next/link'
+import img from "../../static/code.jpg";
+import Link from "next/link";
 
 const TopArticles = () => {
   return (
-    <Link class="article-link" href="#" target="_blank"><img class="article" src={img} alt=""/></Link>
-  )
-}
+    <Link href="#">
+      <a className="article-link">
+        <img className="article" src={img} alt="" />
+      </a>
+    </Link>
+  );
+};
 
-export default TopArticles
+export default TopArticles;

@@ -9,9 +9,7 @@ import Head from './../../components/Head';
 
 const ArticlePage = (props) => {
   const router = useRouter()
-  // console.log(router.query._id)
   const id = router.query._id
-  // console.log(id)
   const [article, setArticle] = useState(null)
 
   useEffect(() => {

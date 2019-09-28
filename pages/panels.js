@@ -4,13 +4,15 @@ import Header from '../components/Header'
 import GeneralPage from '../components/GeneralPage'
 import Footer from './../components/Footer'
 import { Panels } from '../components/Panels'
+import Head from './../components/Head';
 
 const addArticlePanel = () => (
-  <div>
+  <>
+    <Head />
     <Header />
     <Panels />
     <Footer />
-  </div>
+  </>
 )
 
 export default addArticlePanel

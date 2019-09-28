@@ -8,5 +8,8 @@ module.exports = withImages(withSass({
     }
 
     return config
-  }
+  },
+  devIndicators: {
+    autoPrerender: false,
+  },
 }))

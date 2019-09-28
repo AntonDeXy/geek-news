@@ -6,37 +6,8 @@ import axios from 'axios'
 const GeneralPage = () => {
   const [articles, setArticles] = useState(null)
   const topArticles = [
-    {
-      id: 1,
-      urlImg: 'grgrgr',
-      title: 'rretertret'
-    },
-    {
-      id: 1,
-      urlImg: 'grgrgr',
-      title: 'rretertret'
-    },
-    {
-      id: 1,
-      urlImg: 'grgrgr',
-      title: 'rretertret'
-    },
-    {
-      id: 1,
-      urlImg: 'grgrgr',
-      title: 'rretertret'
-    },
-    {
-      id: 1,
-      urlImg: 'grgrgr',
-      title: 'rretertret'
-    },
-    {
-      id: 1,
-      urlImg: 'grgrgr',
-      title: 'rretertret'
-    },
-  ]
+    {id: 1,urlImg: "grgrgr",title: "rretertret"},{id: 2,urlImg: "grgrgr",title: "rretertret"},{id: 3,urlImg: "grgrgr",title: "rretertret"},{id: 4,urlImg: "grgrgr",title: "rretertret"},{id: 5,urlImg: "grgrgr",title: "rretertret"},{id: 6,urlImg: "grgrgr",title: "rretertret"},
+  ];
 
   useEffect(() => {
     (async () => {
@@ -47,8 +18,8 @@ const GeneralPage = () => {
 
   return (
     <main>
-      <div class="top-articles-block">
-        {topArticles.map(topArticle => (<TopArticles article={topArticle} />))}
+      <div className="top-articles-block">
+        {topArticles.map(topArticle => (<TopArticles key={topArticle.id} article={topArticle} />))}
       </div>
       {articles
         ? <MoreNews articles={articles} />

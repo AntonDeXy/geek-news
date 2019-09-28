@@ -7,12 +7,12 @@ import { Panels } from '../components/Panels';
 import Head from './../components/Head';
 
 const App = () => (
-  <div>
+  <>
     <Head title='General page' />
     <Header />
     <GeneralPage />
     <Footer />
-  </div>
+  </>
 )
 
 export default App

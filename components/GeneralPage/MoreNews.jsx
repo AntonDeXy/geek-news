@@ -11,7 +11,7 @@ const MoreNews = (props) => {
       </div>
       <div className="generalNews">
         {props.articles.map(article =>
-          <GeneralNew article={article} />
+          <GeneralNew key={article._id} article={article} />
         )}
       </div>
     </>
