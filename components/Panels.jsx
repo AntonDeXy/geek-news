@@ -16,10 +16,10 @@ export const Panels = () => {
 };
 
 const AddArticlePanel = () => {
-  const [title, setTitle] = useState(undefined);
-  const [img, setImg] = useState(undefined);
-  const [category, setCategory] = useState(undefined);
-  const [content, setContent] = useState(undefined);
+  const [title, setTitle] = useState(null);
+  const [img, setImg] = useState(null);
+  const [category, setCategory] = useState(null);
+  const [content, setContent] = useState(null);
 
   const addArticle = async (title, img, category, content) => {
     // let article = {
@@ -29,9 +29,9 @@ const AddArticlePanel = () => {
     //   content: content,
     //   imgUrl: img
     // }
-   
+  
     const res = await axios.post(
-      "https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles",
+      'https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles',
       { title: "123" }
     ).then((response) => {
       console.log(response)
@@ -52,11 +52,11 @@ const AddArticlePanel = () => {
         <input
           type="text"
           onChange={e => {
-            setTitle(e.currentTarget.value);
+            setTitle(e.target.value);
             console.log("changed");
           }}
           id="name"
-          value={title}
+          value={title ? title : ''}
           name="title"
         />
 
@@ -119,7 +119,7 @@ const AddArticlePanel = () => {
           rows="10"
         /> */}
 
-        <button onClick={addArticle} type="submit">
+        <button onClick={addArticle} type="button">
           Submit
         </button>
       </form>
