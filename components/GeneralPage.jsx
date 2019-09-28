@@ -48,7 +48,7 @@ const GeneralPage = () => {
   return (
     <main>
       <div class="top-articles-block">
-        {topArticles.map(topArticle => (<TopArticles />))}
+        {topArticles.map(topArticle => (<TopArticles article={topArticle} />))}
       </div>
       {articles
         ? <MoreNews articles={articles} />

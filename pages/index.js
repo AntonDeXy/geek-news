@@ -4,7 +4,6 @@ import Header from '../components/Header'
 import GeneralPage from '../components/GeneralPage'
 import Footer from './../components/Footer'
 import { Panels } from '../components/Panels';
-import { createMemoryHistory } from 'history';
 
 const App = () => (
   <div>
