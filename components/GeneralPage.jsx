@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import TopArticles from "./GeneralPage/TopArticles"
-import MoreNews from './GeneralPage/MoreNews';
+import MoreNews from './GeneralPage/MoreNews'
 import axios from 'axios'
 
 const GeneralPage = () => {

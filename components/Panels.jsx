@@ -9,39 +9,75 @@ export const Panels = () => {
 
   return (
     <main className="panels">
-      {/* <Route path='/panels/addArticle' /> */}
       <AddArticlePanel />
+      <RemoveArticle />
     </main>
   );
 };
 
-const AddArticlePanel = () => {
-  const [title, setTitle] = useState(null);
-  const [img, setImg] = useState(null);
-  const [category, setCategory] = useState(null);
-  const [content, setContent] = useState(null);
+const RemoveArticle = () => {
+  const [articleId, setArticleId] = useState(null)
 
-  const addArticle = async (title, img, category, content) => {
-    // let article = {
-    //   title: title,
-    //   author: 'admin',
-    //   category: category,
-    //   content: content,
-    //   imgUrl: img
-    // }
+  const remove = async () => {
+
+    const res = await axios.delete(
+      `https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles/${articleId}`,
+    ).then((response) => {
+      console.log(response)
+      if (response.status == 200) {
+        setarticleId(undefined)
+      }
+    }).catch(
+      function (error) {
+        console.log(error)
+      }
+    )
+  }
+
+  return (
+    <div className="panel">
+      <form className="wrapper addArticlePanel" action="">
+        <h3>Remove article</h3>
+        <span>Article id</span>
+        <input type="text" value={articleId} onChange={(e) => {setArticleId(e.currentTarget.value)} } />
+        <button type='button' onClick={remove}>Remove</button>
+      </form>
+    </div>
+  )
+}
+
+const AddArticlePanel = () => {
+  const [articleTitle, setArticleTitle] = useState(undefined);
+  const [img, setImg] = useState(undefined);
+  const [category, setCategory] = useState(undefined);
+  const [content, setContent] = useState(undefined);
+
+  const addArticle = async () => {
+    let article = {
+      articleTitle: articleTitle,
+      author: 'admin',
+      category: category,
+      content: content,
+      imgUrl: img
+    }
   
     const res = await axios.post(
       'https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles',
-      { title: "123" }
+      { title: articleTitle, imgUrl: img, category: category, content: content }
     ).then((response) => {
       console.log(response)
+      if (response.status == 200) {
+        setArticleTitle(undefined)
+        setImg(undefined)
+        setCategory(undefined)
+        setContent(undefined)
+      }
     }).catch(
       function (error) {
         console.log(error)
       }
     )
 
-    console.log(res)
   }
 
   return (
@@ -52,11 +88,11 @@ const AddArticlePanel = () => {
         <input
           type="text"
           onChange={e => {
-            setTitle(e.target.value);
+            setArticleTitle(e.target.value);
             console.log("changed");
           }}
           id="name"
-          value={title ? title : ''}
+          value={articleTitle ? articleTitle : ''}
           name="title"
         />
 
