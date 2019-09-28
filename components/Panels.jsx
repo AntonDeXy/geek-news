@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { Route } from "react-router-dom";
-import axios from "axios";
-import { useRouter } from "next/router";
+import React, { useState } from "react"
+import { Route } from "react-router-dom"
+import axios from "axios"
+import { useRouter } from "next/router"
+import { Editor } from '@tinymce/tinymce-react'
 
 export const Panels = () => {
   const router = useRouter()
@@ -85,7 +86,29 @@ const AddArticlePanel = () => {
         </select>
 
         <span>Description</span>
-        <textarea
+          <Editor
+          initialValue={content}
+          init={{
+            height: 500,
+            menubar: false,
+            // apiKey=c,
+            plugins: [
+              'advlist autolink lists link image charmap print preview anchor',
+              'searchreplace visualblocks code fullscreen',
+              'insertdatetime media table paste code help wordcount'
+            ],
+            toolbar:
+              'undo redo | formatselect | bold italic backcolor | \
+              alignleft aligncenter alignright alignjustify | \
+              bullist numlist outdent indent | removeformat | help'
+          }}
+          onChange={e => {
+            // setContent(e.currentTarget.value);
+            console.log(e.target.getContent());
+          }}
+        />
+
+        {/* <textarea
           onChange={e => {
             setContent(e.currentTarget.value);
             console.log("changed");
@@ -95,7 +118,7 @@ const AddArticlePanel = () => {
           id="content"
           cols="30"
           rows="10"
-        ></textarea>
+        /> */}
 
         <button onClick={addArticle} type="submit">
           Submit
