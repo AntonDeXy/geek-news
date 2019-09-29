@@ -19,14 +19,13 @@ const AddArticlePanel = () => {
 
     const res = await axios.post(
       'https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles',
-      { title: articleTitle, imgUrl: img, category: category, content: content }
+      { title: article.articleTitle, author: article.author, imgUrl: article.imgUrl, category: article.category, content: article.content }
     ).then((response) => {
       console.log(response)
       if (response.status == 200) {
-        setArticleTitle(undefined)
-        setImg(undefined)
-        setCategory(undefined)
-        setContent(undefined)
+        setArticleTitle('')
+        setImg('')
+        setContent('')
       }
     }).catch(
       function (error) {
@@ -93,6 +92,7 @@ const AddArticlePanel = () => {
               alignleft aligncenter alignright alignjustify | \
               bullist numlist outdent indent | removeformat | help'
           }}
+          value={content}
           onChange={e => {
             setContent(e.target.getContent());
             console.log(e.target.getContent());

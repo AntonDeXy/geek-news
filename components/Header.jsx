@@ -11,13 +11,6 @@ const Header = props => {
                 <h1 className="logo">Geek News</h1>
               </a>
             </Link>
-            <button
-              onClick={() => {
-                changeTheme();
-              }}
-            >
-              Change theme
-            </button>
             <div className="links">
               <Link href="#">
                 <a>Новости</a>
