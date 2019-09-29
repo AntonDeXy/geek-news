@@ -26,7 +26,7 @@ const GeneralPage = () => {
         : 'Loading...'
       }
     </main>
-  );
-};
+  )
+}
 
 export default GeneralPage
