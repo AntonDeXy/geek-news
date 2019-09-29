@@ -10,7 +10,7 @@ body {
 header {
   display: grid;
   color: white;
-  // background-color: $headerFooterBG;
+  background-color: $headerFooterBG;
   width: 100%;
   height: 10vh;
   justify-content: center;
@@ -31,7 +31,7 @@ header {
     .links {
       display: grid;
       text-align: right;
-      grid-template-columns: repeat(3, auto);
+      grid-template-columns: repeat(4, auto);
       text-align: right;
       a{
         align-self: center;

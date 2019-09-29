@@ -7,11 +7,10 @@ import { Panels } from '../components/Panels';
 import Head from './../components/Head';
 
 const App = () => {
-  const [theme, setTheme] = useState('dark')
   return (
     <>
     <Head title='General page' />
-    <Header theme={theme} setTheme={setTheme} />
+    <Header />
     <GeneralPage />
     <Footer />
     
