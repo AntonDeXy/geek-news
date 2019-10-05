@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import '../../static/style.scss'
+import '../../static/style/style.scss'
 import Article from '../../components/Article'
 import { useRouter } from 'next/router'
 import axios from 'axios'

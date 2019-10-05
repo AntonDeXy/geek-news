@@ -1,14 +1,15 @@
 import React from 'react'
 import ReactHtmlParser from 'react-html-parser'
 import Moment from 'react-moment'
+import Loader from './common/Loader';
 
-const Article = ({article}) => {
+const Article = ({ article }) => {
   if (article) {
     return (
       <main>
         <div className="article">
           <div className="img">
-            <img src={article.imgUrl} alt=""/>
+            <img src={article.imgUrl} alt="" />
           </div>
           <div className="articleInfo">
             <h1>{article.title}</h1>
@@ -23,14 +24,18 @@ const Article = ({article}) => {
                 category: {article.category}
               </span>
             </div>
-            <span>{ ReactHtmlParser(article.content) }</span>
+            <span>{ReactHtmlParser(article.content)}</span>
           </div>
         </div>
       </main>
     )
   }
-  return <div>Loading</div>
- 
+  return (
+    <main>
+      <Loader />
+    </main>
+  )
+
 }
 
 export default Article
