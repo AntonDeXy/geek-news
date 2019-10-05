@@ -58,7 +58,7 @@ const RemoveArticle = (props) => {
 
   return (
     <main className="panels">
-      <div className="panel">
+      <div className="panel remove-panel">
         <form className="wrapper removeArticlePanel" action="">
           <h3>Remove article</h3>
           <span>Article id</span>

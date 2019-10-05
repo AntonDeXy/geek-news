@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import axios from "axios"
 import { Editor } from "@tinymce/tinymce-react"
+import Link from 'next/link';
 
 const AddArticlePanel = () => {
   const [articleTitle, setArticleTitle] = useState(undefined)
@@ -43,6 +44,23 @@ const AddArticlePanel = () => {
 
   return (
     <main className="panels">
+      <div className="otherPanels">
+        <Link href="/panels/add-article">
+          <a>
+            Add article
+          </a>
+        </Link>
+        <Link href="/panels/update-article">
+          <a>
+            Update article
+          </a>
+        </Link>
+        <Link href="/panels/remove-article">
+          <a>
+            Remove article
+          </a>
+        </Link>
+      </div>
       <div className="panel">
         <form className="wrapper addArticlePanel" action="">
           <h3>Add article</h3>
@@ -99,7 +117,6 @@ const AddArticlePanel = () => {
               alignleft aligncenter alignright alignjustify | \
               bullist numlist outdent indent | removeformat | help"
             }}
-            value={content}
             onChange={e => {
               setContent(e.target.getContent())
               console.log(e.target.getContent())
