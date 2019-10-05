@@ -1,17 +1,17 @@
 import React, { useState } from "react"
-import RemoveArticle from '../../components/Panels/RemoveArticle'
 import '../../static/style/style.scss'
+import Head from '../../components/Head'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import Head from '../../components/Head'
+import UpdateArticlePanel from './../../components/Panels/UpdateArticle'
 
 const addArticlePanel = () => {
   return (
     <>
-      <Head />
-      <Header/>
-      <RemoveArticle />
-      <Footer/>
+      <Head/>
+      <Header />
+      <UpdateArticlePanel />
+      <Footer />
     </>
   )
 }

@@ -45,11 +45,6 @@ const AddArticlePanel = () => {
   return (
     <main className="panels">
       <div className="otherPanels">
-        <Link href="/panels/add-article">
-          <a>
-            Add article
-          </a>
-        </Link>
         <Link href="/panels/update-article">
           <a>
             Update article
