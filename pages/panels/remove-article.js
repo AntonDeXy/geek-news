@@ -9,7 +9,6 @@ import Footer from '../../components/Footer'
 import Head from '../../components/Head'
 
 const addArticlePanel = () => {
-  // const router = useRouter()
   return (
     <>
       <Head />

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 import Moment from 'react-moment'
 import CardOnRemoveArticle from './cardsOnRemoveArticle';
+import Loader from './../common/Loader';
 
 const RemoveArticle = (props) => {
   const [articleId, setArticleId] = useState(undefined)
@@ -9,12 +10,13 @@ const RemoveArticle = (props) => {
   const [articleForRemove, setArticleForRemove] = useState(undefined)
   
   useEffect(() => {
-    (async () => {
-      const res = await axios.get(
-        `https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles`
-      )
-      setArticles(res.data)
-    })()
+    // (async () => {
+    //   const res = await axios.get(
+    //     `https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles`
+    //   )
+    //   setArticles(res.data)
+    // })()
+    getArticles()
   }, [])
   
   const getArticle = id => {
@@ -26,6 +28,15 @@ const RemoveArticle = (props) => {
     })()
   }
 
+  const getArticles = () => {
+    (async () => {
+      const res = await axios.get(
+        `https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles`
+      )
+      setArticles(res.data)
+    })()
+  }
+
   const remove = async () => {
     const res = await axios
       .delete(
@@ -34,7 +45,10 @@ const RemoveArticle = (props) => {
       .then(response => {
         console.log(response)
         if (response.status == 200) {
-          setarticleId(undefined)
+          debugger
+          setArticleId(undefined)
+          getArticles()
+          setArticleForRemove(undefined)
         }
       })
       .catch(function (error) {
@@ -56,9 +70,8 @@ const RemoveArticle = (props) => {
               getArticle(e.currentTarget.value)
             }}
           />
-        </form>
-        {articleForRemove && (
-          <div>
+          {articleForRemove && (
+          <div className='articleForRemove'>
             <div>
               <span>ID: </span>
               <span>{articleForRemove._id}</span>
@@ -77,14 +90,16 @@ const RemoveArticle = (props) => {
             </div>
           </div>
         )}
+        </form>
         <div className='allArticles'>
           <h2>Articles</h2>
-          {articles &&
-            <div className="articles">
+          {articles 
+          ? <div className="articles">
               {articles.map(article => 
-                <CardOnRemoveArticle {...article} setArticleId={setArticleId}/>                
+                <CardOnRemoveArticle key={article._id} articleId={articleId} {...article} getArticle={getArticle} setArticleId={setArticleId}/>                
               )}
             </div>
+            : <Loader />
           }
         </div>
         <button type="button" onClick={remove}>
