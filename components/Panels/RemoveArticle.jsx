@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import Moment from 'react-moment'
-import CardOnRemoveArticle from './cardsOnRemoveArticle';
-import Loader from './../common/Loader';
+import CardOnRemoveArticle from './cardsOnRemoveArticle'
+import Loader from './../common/Loader'
+import Link from 'next/link'
 
 const RemoveArticle = (props) => {
   const [articleId, setArticleId] = useState(undefined)
@@ -10,12 +11,6 @@ const RemoveArticle = (props) => {
   const [articleForRemove, setArticleForRemove] = useState(undefined)
   
   useEffect(() => {
-    // (async () => {
-    //   const res = await axios.get(
-    //     `https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles`
-    //   )
-    //   setArticles(res.data)
-    // })()
     getArticles()
   }, [])
   
@@ -58,18 +53,33 @@ const RemoveArticle = (props) => {
 
   return (
     <main className="panels">
+      <div className="otherPanels">
+        <Link href="/panels/add-article">
+          <a>
+            Add article
+          </a>
+        </Link>
+        <Link href="/panels/update-article">
+          <a>
+            Update article
+          </a>
+        </Link>
+      </div>
       <div className="panel remove-panel">
         <form className="wrapper removeArticlePanel" action="">
           <h3>Remove article</h3>
-          <span>Article id</span>
-          <input
-            type="text"
-            value={articleId}
-            onChange={e => {
-              setArticleId(e.currentTarget.value)
-              getArticle(e.currentTarget.value)
-            }}
-          />
+          <div>
+            <span>Article id</span>
+            <input
+              type="text"
+              value={articleId}
+              onChange={e => {
+                setArticleId(e.currentTarget.value)
+                getArticle(e.currentTarget.value)
+              }}
+            />
+          </div>
+          
           {articleForRemove && (
           <div className='articleForRemove'>
             <div>
