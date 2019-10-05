@@ -1,11 +1,22 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import axios from "axios"
 import Moment from 'react-moment'
+import CardOnRemoveArticle from './cardsOnRemoveArticle';
 
-const RemoveArticle = () => {
-  const [articleId, setArticleId] = useState(null)
+const RemoveArticle = (props) => {
+  const [articleId, setArticleId] = useState(undefined)
+  const [articles, setArticles] = useState(undefined)
   const [articleForRemove, setArticleForRemove] = useState(undefined)
-
+  
+  useEffect(() => {
+    (async () => {
+      const res = await axios.get(
+        `https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles`
+      )
+      setArticles(res.data)
+    })()
+  }, [])
+  
   const getArticle = id => {
     (async () => {
       const res = await axios.get(
@@ -14,6 +25,7 @@ const RemoveArticle = () => {
       setArticleForRemove(res.data)
     })()
   }
+
   const remove = async () => {
     const res = await axios
       .delete(
@@ -25,7 +37,7 @@ const RemoveArticle = () => {
           setarticleId(undefined)
         }
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error)
       })
   }
@@ -44,9 +56,6 @@ const RemoveArticle = () => {
               getArticle(e.currentTarget.value)
             }}
           />
-          <button type="button" onClick={remove}>
-            Remove
-          </button>
         </form>
         {articleForRemove && (
           <div>
@@ -68,6 +77,19 @@ const RemoveArticle = () => {
             </div>
           </div>
         )}
+        <div className='allArticles'>
+          <h2>Articles</h2>
+          {articles &&
+            <div className="articles">
+              {articles.map(article => 
+                <CardOnRemoveArticle {...article} setArticleId={setArticleId}/>                
+              )}
+            </div>
+          }
+        </div>
+        <button type="button" onClick={remove}>
+          Remove
+        </button>
       </div>
     </main>
   )

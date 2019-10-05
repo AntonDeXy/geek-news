@@ -143,7 +143,7 @@ main {
     background-color: rgba(53, 53, 53, 0.7);
     width: auto;
     grid-row: 2;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto 300px;
     gap: 10px; 
     display: grid;
     padding: 10px;
@@ -192,14 +192,53 @@ main {
         grid-column: 1/3;
       }
     }
-    span {
+    span, h4 {
       color: white;
       font-family: $font;
     }
-    input, select, textarea, button {
+    input, select, textarea {
       border: 2px solid black;
       background-color: black;
       color: white;
+      font-family: $font; 
+    }
+    .allArticles {
+      display: grid;
+      gap: 5px;
+      h2 {
+        margin: 0;
+        font-size: 23px;
+        font-family: $font;
+        font-size: 400;
+        border-bottom: 2px solid white;
+      }
+      .articles {
+        display: grid;
+        height: 290px;
+        overflow-y: auto;
+        gap: 10px; 
+        max-width: 100%;
+        grid-template-columns: auto auto;
+        // overflow: hidden;
+        .card {
+          background-color: rgba(0, 0, 0, 0.3);
+          padding: 5px;
+          max-width: 100%;          
+          img {
+            width: 100%;
+          }
+          h4 {
+            margin: 0;
+          }
+        }
+      }      
+    }
+    button {
+      border: 2px solid black;
+      background-color: black;
+      color: white;
+      grid-column: 1/3;
+      padding: 5px;
       font-family: $font; 
     }
   }
