@@ -289,33 +289,3 @@ main {
   color: white;
   text-decoration: none;
 }
-
-footer {
-  position: relative;
-  top: 0px;
-  width: 100%;
-  font-size: 20px;
-  height: 10vh;
-  display: grid;
-  background-color: $headerFooterBG;
-  font-family: $font2;
-  .wrapper{
-    justify-self: center;
-    align-items: center;
-    color: white;
-    width: 90vw;
-    display: grid;
-    grid-template-columns: 50% auto;
-    img {
-      height: 20px;
-    }
-    a {
-      color: white;
-      text-decoration: none;
-    }
-    .madeWith {
-      display: grid;
-      justify-content: right;
-    }
-  }
-}
