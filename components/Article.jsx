@@ -2,18 +2,19 @@ import React from 'react'
 import ReactHtmlParser from 'react-html-parser'
 import Moment from 'react-moment'
 import Loader from './common/Loader';
+import { ArticleSt, Img, ArticleInfo, OtherInf, MainSt } from './elements/Main-styled';
 
 const Article = ({ article }) => {
   if (article) {
     return (
-      <main>
-        <div className="article">
+      <MainSt>
+        <ArticleSt>
           <div className="img">
-            <img src={article.imgUrl} alt="" />
+            <Img src={article.imgUrl} alt="" />
           </div>
-          <div className="articleInfo">
+          <ArticleInfo>
             <h1>{article.title}</h1>
-            <div className='otherInf'>
+            <OtherInf>
               <span>
                 author: {article.author}
               </span>
@@ -23,11 +24,11 @@ const Article = ({ article }) => {
               <span>
                 category: {article.category}
               </span>
-            </div>
+            </OtherInf>
             <span>{ReactHtmlParser(article.content)}</span>
-          </div>
-        </div>
-      </main>
+          </ArticleInfo>
+        </ArticleSt>
+      </MainSt>
     )
   }
   return (

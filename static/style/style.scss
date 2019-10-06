@@ -6,94 +6,10 @@ $headerFooterBG: #383838;
 body, h1 {
   margin: 0;
 }
-
-main {
-  display: grid;
-  padding: 15px 0;
-  background-color: #1E1E1E;
-  min-height: 80vh;
-  .top-articles-block {
-    display: grid;
-    justify-self: center;
-    width: 95%;
-    grid-template-columns: repeat(5, auto);
-    gap: 10px;
-    img {
-      width: 100%;
-    }
-  }
-  .moreNews {
-    justify-self: center;
-    display: inline-block;
-    width: auto;
-    text-align: center;
-    color: white;
-    font-family: $font2;
-  }
-  .generalNews {
-    justify-self: center;
-    width: 85%;
-    display: grid;
-    gap: 10px;
-    grid-template-rows: 1fr;
-    .GeneralNew {
-      display: grid;
-      grid-template-columns: 20% auto;
-      column-gap: 20px;
-      .img {
-        img {
-          width: 100%;
-        }
-      }
-      .articleDesc {
-        background-color: #393939;
-        padding: 10px;
-        h2 {
-          margin: 0;
-          font-family: $font2;
-          color: white;
-          margin-left: 10px;
-        }
-        hr {
-          height: 2px;
-          background-color: white;
-        }
-        span {
-          color: white;
-          font-family: $font3;
-          font-size: 14px;
-          margin-left: 10px; 
-        }
-      }
-    }
-    .GeneralNew:nth-child(even) {
-      grid-template-columns: auto 20%;
-      .img {
-        order: 2;
-      }
-    }
-  }
-  .article {
-    width: 90%;
-    justify-self: center;
-    display: grid;
-    gap: 20px;
-    grid-template-columns: 25% auto;
-    .img {
-      img {
-        width: 100%;
-      }
-    }
-    .articleInfo {
-      color: white;
-      font-family: $font;
-      .otherInf {
-        margin-bottom: 10px;
-        span {
-          display: block;
-        }
-      }
-    }
+.GeneralNew:nth-child(even) {
+  grid-template-columns: auto 20%;
+  .img {
+    order: 2;
   }
 }
 
@@ -283,9 +199,4 @@ main {
   display: flex;
   flex-direction: row;
   justify-content: space-around
-}
-
-.article-link {
-  color: white;
-  text-decoration: none;
 }

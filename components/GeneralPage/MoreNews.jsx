@@ -1,19 +1,20 @@
 import React from "react"
 import GeneralNew from './GeneralNews';
 import Link from "next/link";
+import { MoreNewsSt, GeneralNews } from '../elements/Main-styled';
 
 const MoreNews = (props) => {
   return (
     <>
-      <div className="moreNews">
+      <MoreNewsSt>
         <h3>Больше новостей</h3>
         <hr className="more-news-line" />
-      </div>
-      <div className="generalNews">
+      </MoreNewsSt>
+      <GeneralNews>
         {props.articles.map(article =>
           <GeneralNew key={article._id} article={article} />
         )}
-      </div>
+      </GeneralNews>
     </>
   )
 }
