@@ -6,7 +6,7 @@ import { GeneralNewSt, Img, ArticleDesc, HR, H2, Span } from "../elements/Main-s
 import Loader from '../common/Loader';
 
 const GeneralNew = ({ article }) => {
-  if (!article.content){
+  if (!article){
     return(
       <Loader />
     )

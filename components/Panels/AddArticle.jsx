@@ -11,7 +11,7 @@ const AddArticlePanel = () => {
 
   const addArticle = async () => {
     let article = {
-      articleTitle: articleTitle,
+      title: articleTitle,
       author: "admin",
       category: category,
       content: content,
@@ -21,13 +21,7 @@ const AddArticlePanel = () => {
     const res = await axios
       .post(
         "https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles",
-        {
-          title: article.articleTitle,
-          author: article.author,
-          imgUrl: article.imgUrl,
-          category: article.category,
-          content: article.content
-        }
+        {article}
       )
       .then(response => {
         console.log(response)
