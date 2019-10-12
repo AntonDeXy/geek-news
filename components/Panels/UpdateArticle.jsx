@@ -7,10 +7,10 @@ import Loader from './../common/Loader';
 import CardOnRemoveArticle from './cardsOnRemoveArticle';
 
 const UpdateArticlePanel = () => {
-  const [articleTitle, setArticleTitle] = useState(undefined);
-  const [img, setImg] = useState(undefined);
+  const [articleTitle, setArticleTitle] = useState('');
+  const [img, setImg] = useState('');
   const [category, setCategory] = useState(undefined);
-  const [content, setContent] = useState(undefined);
+  const [content, setContent] = useState('');
 
   const [articleId, setArticleId] = useState(undefined)
   const [articleForUpdate, setArticleForUpdate] = useState(undefined)
@@ -20,36 +20,31 @@ const UpdateArticlePanel = () => {
     getArticles()
   }, [])
 
-  const addArticle = async () => {
+  const editArticle = async () => {
     let article = {
-      articleTitle: articleTitle,
+      title: articleTitle,
       author: "admin",
       category: category,
       content: content,
       imgUrl: img
-    };
+    }
 
     const res = await axios
-      .post(
-        "https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles",
-        {
-          title: article.articleTitle,
-          author: article.author,
-          imgUrl: article.imgUrl,
-          category: article.category,
-          content: article.content
-        }
+      .put(
+        `https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles/${articleId}`,
+        { article }
       )
       .then(response => {
         console.log(response);
         if (response.status == 200) {
-          setArticleTitle("");
-          setImg("");
-          setContent("");
+          setArticleTitle("")
+          setImg("")
+          setContent("")
+          setArticleForUpdate({content: ''})
         }
       })
       .catch(function(error) {
-        console.log(error);
+        console.log(error)
       });
   };
 
@@ -58,6 +53,12 @@ const UpdateArticlePanel = () => {
       const res = await axios.get(
         `https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles/${articleId}`
       )
+
+      setArticleTitle(res.data.title)
+      setImg(res.data.imgUrl)
+      setCategory(res.data.category)
+      setContent(res.data.content)
+
       setArticleForUpdate(res.data)
     })()
   }
@@ -103,7 +104,7 @@ const UpdateArticlePanel = () => {
               console.log("changed");
             }}
             id="name"
-            value={articleForUpdate ? articleForUpdate.title : ''}
+            value={articleForUpdate ? articleTitle : ''}
             name="title"
           />
 
@@ -115,7 +116,7 @@ const UpdateArticlePanel = () => {
               console.log("changed");
             }}
             id="img"
-            value={articleForUpdate ? articleForUpdate.imgUrl : ''}
+            value={articleForUpdate ? img : ''}
             name="img"
           />
 
@@ -126,7 +127,7 @@ const UpdateArticlePanel = () => {
               setCategory(e.currentTarget.value);
               console.log("changed");
             }}
-            value={articleForUpdate && articleForUpdate.category }
+            value={articleForUpdate && category }
             id="category"
           >
             <option value="it">It</option>
@@ -151,11 +152,10 @@ const UpdateArticlePanel = () => {
             }}
             onChange={e => {
               setContent(e.target.getContent());
-              console.log(e.target.getContent());
             }}
             value={articleForUpdate ? articleForUpdate.content : ''}
           />
-          <button onClick={addArticle} type="button">
+          <button onClick={editArticle} type="button">
             Submit
           </button>
         </form>
