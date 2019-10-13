@@ -7,11 +7,13 @@ import Loader from './../common/Loader';
 import CardOnRemoveArticle from './cardsOnRemoveArticle';
 
 const UpdateArticlePanel = () => {
-  const [articleTitle, setArticleTitle] = useState('');
-  const [img, setImg] = useState('');
-  const [category, setCategory] = useState(undefined);
-  const [content, setContent] = useState('');
+  // const [articleTitle, setArticleTitle] = useState('');
+  // const [img, setImg] = useState('');
+  // const [category, setCategory] = useState(undefined);
+  // const [content, setContent] = useState('');
 
+
+  const [article, setArticle] = useState(null)
   const [articleId, setArticleId] = useState(undefined)
   const [articleForUpdate, setArticleForUpdate] = useState(undefined)
   const [articles, setArticles] = useState(undefined)
@@ -20,15 +22,8 @@ const UpdateArticlePanel = () => {
     getArticles()
   }, [])
 
-  const editArticle = async () => {
-    let article = {
-      title: articleTitle,
-      author: "admin",
-      category: category,
-      content: content,
-      imgUrl: img
-    }
 
+  const editArticle = async () => {
     const res = await axios
       .put(
         `https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles/${articleId}`,
@@ -37,10 +32,9 @@ const UpdateArticlePanel = () => {
       .then(response => {
         console.log(response);
         if (response.status == 200) {
-          setArticleTitle("")
-          setImg("")
-          setContent("")
-          setArticleForUpdate({content: ''})
+          setArticleId('')
+          setArticle(null)
+          setArticleForUpdate(null)
         }
       })
       .catch(function(error) {
@@ -54,11 +48,11 @@ const UpdateArticlePanel = () => {
         `https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles/${articleId}`
       )
 
-      setArticleTitle(res.data.title)
-      setImg(res.data.imgUrl)
-      setCategory(res.data.category)
-      setContent(res.data.content)
-
+      setArticle({title: res.data.title,
+        imgUrl: res.data.imgUrl,
+        category: res.data.category,
+        content: res.data.content}
+      )
       setArticleForUpdate(res.data)
     })()
   }
@@ -100,11 +94,11 @@ const UpdateArticlePanel = () => {
           <input
             type="text"
             onChange={e => {
-              setArticleTitle(e.target.value);
+              setArticle( {...article, title: e.target.value});
               console.log("changed");
             }}
             id="name"
-            value={articleForUpdate ? articleTitle : ''}
+            value={article ? article.title : ''}
             name="title"
           />
 
@@ -112,11 +106,11 @@ const UpdateArticlePanel = () => {
           <input
             type="text"
             onChange={e => {
-              setImg(e.currentTarget.value);
+              setArticle( {...article, imgUrl: e.currentTarget.value});
               console.log("changed");
             }}
             id="img"
-            value={articleForUpdate ? img : ''}
+            value={article ? article.imgUrl : ''}
             name="img"
           />
 
@@ -124,10 +118,10 @@ const UpdateArticlePanel = () => {
           <select
             name=""
             onChange={e => {
-              setCategory(e.currentTarget.value);
+              setArticle( {...article, category: e.currentTarget.value});
               console.log("changed");
             }}
-            value={articleForUpdate && category }
+            value={articleForUpdate && article && article.category }
             id="category"
           >
             <option value="it">It</option>
@@ -136,7 +130,7 @@ const UpdateArticlePanel = () => {
 
           <span>Description</span>
           <Editor
-            initialValue={content}
+            initialValue={articleForUpdate ? articleForUpdate.content : '' }
             init={{
               height: 500,
               menubar: false,
@@ -151,7 +145,7 @@ const UpdateArticlePanel = () => {
               bullist numlist outdent indent | removeformat | help"
             }}
             onChange={e => {
-              setContent(e.target.getContent());
+              setArticle( {...article, content: e.target.getContent() });
             }}
             value={articleForUpdate ? articleForUpdate.content : ''}
           />

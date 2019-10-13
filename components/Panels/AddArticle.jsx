@@ -4,19 +4,15 @@ import { Editor } from "@tinymce/tinymce-react"
 import Link from 'next/link';
 
 const AddArticlePanel = () => {
-  const [articleTitle, setArticleTitle] = useState(undefined)
-  const [img, setImg] = useState(undefined)
-  const [category, setCategory] = useState(undefined)
-  const [content, setContent] = useState(undefined)
+  const [article, setArticle] = useState({})
+
+  // const [articleTitle, setArticleTitle] = useState(undefined)
+  // const [img, setImg] = useState(undefined)
+  // const [category, setCategory] = useState(undefined)
+  // const [content, setContent] = useState(undefined)
 
   const addArticle = async () => {
-    let article = {
-      title: articleTitle,
-      author: "admin",
-      category: category,
-      content: content,
-      imgUrl: img
-    }
+    setArticle( {author: 'admin'})
 
     const res = await axios
       .post(
@@ -26,9 +22,7 @@ const AddArticlePanel = () => {
       .then(response => {
         console.log(response)
         if (response.status == 200) {
-          setArticleTitle("")
-          setImg("")
-          setContent("")
+          setArticle(null)
         }
       })
       .catch(function(error) {
@@ -57,11 +51,10 @@ const AddArticlePanel = () => {
           <input
             type="text"
             onChange={e => {
-              setArticleTitle(e.target.value)
-              console.log("changed")
+              setArticle( { ...article, title: e.target.value} )
             }}
             id="name"
-            value={articleTitle ? articleTitle : ""}
+            value={article.title ? article.title : ''}
             name="title"
           />
 
@@ -69,11 +62,10 @@ const AddArticlePanel = () => {
           <input
             type="text"
             onChange={e => {
-              setImg(e.currentTarget.value)
-              console.log("changed")
+              setArticle( {...article, imgUrl: e.currentTarget.value} )
             }}
             id="img"
-            value={img}
+            value={ article.imgUrl ? article.imgUrl : '' }
             name="img"
           />
 
@@ -81,8 +73,7 @@ const AddArticlePanel = () => {
           <select
             name=""
             onChange={e => {
-              setCategory(e.currentTarget.value)
-              console.log("changed")
+              setArticle( {...article, category: e.currentTarget.value} )
             }}
             id="category"
           >
@@ -92,7 +83,7 @@ const AddArticlePanel = () => {
 
           <span>Description</span>
           <Editor
-            initialValue={content}
+            initialValue={''}
             init={{
               height: 500,
               menubar: false,
@@ -107,8 +98,7 @@ const AddArticlePanel = () => {
               bullist numlist outdent indent | removeformat | help"
             }}
             onChange={e => {
-              setContent(e.target.getContent())
-              console.log(e.target.getContent())
+              setArticle( {...article, content: e.target.getContent()} )
             }}
           />
           <button onClick={addArticle} type="button">
