@@ -4,6 +4,7 @@ import Moment from 'react-moment'
 import CardOnRemoveArticle from './cardsOnRemoveArticle'
 import Loader from './../common/Loader'
 import Link from 'next/link'
+import { get, removeArt } from '../../static/functions';
 
 const RemoveArticle = (props) => {
   const [articleId, setArticleId] = useState(undefined)
@@ -11,44 +12,31 @@ const RemoveArticle = (props) => {
   const [articleForRemove, setArticleForRemove] = useState(undefined)
   
   useEffect(() => {
-    getArticles()
+    get(
+      'articles', '' , (res) => {setArticles(res)}
+    )
   }, [])
-  
-  const getArticle = id => {
-    (async () => {
-      const res = await axios.get(
-        `https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles/${id}`
-      )
-      setArticleForRemove(res.data)
-    })()
-  }
 
-  const getArticles = () => {
-    (async () => {
-      const res = await axios.get(
-        `https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles`
-      )
-      setArticles(res.data)
-    })()
+
+  const getArticleById = (articleId) => {
+    get(
+      'articles', articleId,
+      (res) => {
+        setArticleForRemove(res)
+      }
+    )
   }
 
   const remove = async () => {
-    const res = await axios
-      .delete(
-        `https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles/${articleId}`
-      )
-      .then(response => {
-        console.log(response)
-        if (response.status == 200) {
-          debugger
-          setArticleId(undefined)
-          getArticles()
-          setArticleForRemove(undefined)
-        }
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+    removeArt(
+      'articles', articleId, () => {
+        setArticleId(undefined)
+        get(
+          'articles', '' , (res) => {setArticles(res)}
+        )
+        setArticleForRemove(undefined)
+      }
+    )
   }
 
   return (
@@ -75,7 +63,7 @@ const RemoveArticle = (props) => {
               value={articleId}
               onChange={e => {
                 setArticleId(e.currentTarget.value)
-                getArticle(e.currentTarget.value)
+                getArticleById(e.currentTarget.value)
               }}
             />
           </div>
@@ -106,7 +94,7 @@ const RemoveArticle = (props) => {
           {articles 
           ? <div className="articles">
               {articles.map(article => 
-                <CardOnRemoveArticle key={article._id} articleId={articleId} {...article} getArticle={getArticle} setArticleId={setArticleId}/>                
+                <CardOnRemoveArticle key={article._id} articleId={articleId} {...article} getArticle={getArticleById} setArticleId={setArticleId}/>                
               )}
             </div>
             : <Loader />
