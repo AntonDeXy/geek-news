@@ -1,27 +1,21 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Editor } from "@tinymce/tinymce-react";
-import Link from "next/link";
+import React, { useState, useEffect } from "react"
+import axios from "axios"
+import { Editor } from "@tinymce/tinymce-react"
+import Link from "next/link"
 import Moment from 'react-moment'
-import Loader from './../common/Loader';
-import CardOnRemoveArticle from './cardsOnRemoveArticle';
+import Loader from './../common/Loader'
+import CardOnRemoveArticle from './cardsOnRemoveArticle'
+import { get } from '../../static/functions'
 
 const UpdateArticlePanel = () => {
-  // const [articleTitle, setArticleTitle] = useState('');
-  // const [img, setImg] = useState('');
-  // const [category, setCategory] = useState(undefined);
-  // const [content, setContent] = useState('');
-
-
   const [article, setArticle] = useState(null)
   const [articleId, setArticleId] = useState(undefined)
   const [articleForUpdate, setArticleForUpdate] = useState(undefined)
   const [articles, setArticles] = useState(undefined)
 
-  useEffect(() => {
-    getArticles()
-  }, [])
-
+  // useEffect(() => {
+  //   getArticles()
+  // }, [])
 
   const editArticle = async () => {
     const res = await axios
@@ -30,41 +24,43 @@ const UpdateArticlePanel = () => {
         { article }
       )
       .then(response => {
-        console.log(response);
         if (response.status == 200) {
           setArticleId('')
           setArticle(null)
           setArticleForUpdate(null)
         }
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error)
       });
   };
 
-  const getArticle = articleId => {
-    (async () => {
-      const res = await axios.get(
-        `https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles/${articleId}`
-      )
-
-      setArticle({title: res.data.title,
-        imgUrl: res.data.imgUrl,
-        category: res.data.category,
-        content: res.data.content}
-      )
-      setArticleForUpdate(res.data)
-    })()
+  const getArticleById = (articleId) => {
+    get(
+      'articles', articleId,
+      (res) => {
+        setArticle({
+          title: res.title,
+          imgUrl: res.imgUrl,
+          category: res.category,
+          content: res.content
+        }
+        )
+      },
+      (res) => {
+        setArticleForUpdate(res)
+      }
+    )
   }
 
-  const getArticles = () => {
-    (async () => {
-      const res = await axios.get(
-        `https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles`
-      )
-      setArticles(res.data)
-    })()
-  }
+  // const getArticles = () => {
+  //   (async () => {
+  //     const res = await axios.get(
+  //       `https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles`
+  //     )
+  //     setArticles(res.data)
+  //   })()
+  // }
   return (
     <main className="panels">
       <div className="otherPanels">
@@ -77,7 +73,7 @@ const UpdateArticlePanel = () => {
       </div>
       <div className="panel update-panel">
 
-       {/* in future add panel with articles like as in remove article page, but on row */}
+        {/* in future add panel with articles like as in remove article page, but on row */}
 
         <form className="wrapper addArticlePanel" action="">
           <h3>Update article</h3>
@@ -86,16 +82,15 @@ const UpdateArticlePanel = () => {
             type="text"
             value={articleId}
             onChange={e => {
-              setArticleId(e.currentTarget.value);
-              getArticle(e.currentTarget.value);
+              setArticleId(e.currentTarget.value)
+              getArticleById(e.currentTarget.value)
             }}
           />
           <span>Title</span>
           <input
             type="text"
             onChange={e => {
-              setArticle( {...article, title: e.target.value});
-              console.log("changed");
+              setArticle({ ...article, title: e.target.value });
             }}
             id="name"
             value={article ? article.title : ''}
@@ -106,8 +101,7 @@ const UpdateArticlePanel = () => {
           <input
             type="text"
             onChange={e => {
-              setArticle( {...article, imgUrl: e.currentTarget.value});
-              console.log("changed");
+              setArticle({ ...article, imgUrl: e.currentTarget.value });
             }}
             id="img"
             value={article ? article.imgUrl : ''}
@@ -118,10 +112,9 @@ const UpdateArticlePanel = () => {
           <select
             name=""
             onChange={e => {
-              setArticle( {...article, category: e.currentTarget.value});
-              console.log("changed");
+              setArticle({ ...article, category: e.currentTarget.value })
             }}
-            value={articleForUpdate && article && article.category }
+            value={articleForUpdate && article && article.category}
             id="category"
           >
             <option value="it">It</option>
@@ -130,7 +123,7 @@ const UpdateArticlePanel = () => {
 
           <span>Description</span>
           <Editor
-            initialValue={articleForUpdate ? articleForUpdate.content : '' }
+            initialValue={articleForUpdate ? articleForUpdate.content : ''}
             init={{
               height: 500,
               menubar: false,
@@ -145,7 +138,7 @@ const UpdateArticlePanel = () => {
               bullist numlist outdent indent | removeformat | help"
             }}
             onChange={e => {
-              setArticle( {...article, content: e.target.getContent() });
+              setArticle({ ...article, content: e.target.getContent() });
             }}
             value={articleForUpdate ? articleForUpdate.content : ''}
           />
@@ -155,7 +148,7 @@ const UpdateArticlePanel = () => {
         </form>
       </div>
     </main>
-  );
-};
+  )
+}
 
-export default UpdateArticlePanel;
+export default UpdateArticlePanel

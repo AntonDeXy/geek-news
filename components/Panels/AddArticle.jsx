@@ -6,11 +6,6 @@ import Link from 'next/link';
 const AddArticlePanel = () => {
   const [article, setArticle] = useState({})
 
-  // const [articleTitle, setArticleTitle] = useState(undefined)
-  // const [img, setImg] = useState(undefined)
-  // const [category, setCategory] = useState(undefined)
-  // const [content, setContent] = useState(undefined)
-
   const addArticle = async () => {
     setArticle( {author: 'admin'})
 
