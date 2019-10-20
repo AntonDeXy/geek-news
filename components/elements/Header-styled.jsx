@@ -5,10 +5,15 @@ export const HeaderSt = styled.header`
   color: white;
   background-color: #383838;
   width: 100%;
-  height: 10vh;
+  min-height: 10vh;
   justify-content: center;
 `
 export const WrapperSt = styled.div `
+  @media (max-width: 768px) {
+    .logo {
+      font-size: 25px;
+    }
+  }
   display: grid;
   width: 90vw;
   grid-template-columns: auto 20%;
@@ -23,11 +28,4 @@ export const A = styled.a `
   text-decoration: none;
   color: white;
   font-family: 'Squada One', cursive;
-`
-
-export const Links = styled.div `
-  display: grid;
-  text-align: right;
-  grid-template-columns: repeat(4, auto);
-  text-align: right;
 `
