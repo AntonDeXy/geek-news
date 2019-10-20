@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { get, removeArt } from '../../static/functions';
 
 const RemoveArticle = (props) => {
-  const [articleId, setArticleId] = useState(undefined)
+  const [articleId, setArticleId] = useState('')
   const [articles, setArticles] = useState(undefined)
   const [articleForRemove, setArticleForRemove] = useState(undefined)
   
@@ -30,7 +30,7 @@ const RemoveArticle = (props) => {
   const remove = async () => {
     removeArt(
       'articles', articleId, () => {
-        setArticleId(undefined)
+        setArticleId('')
         get(
           'articles', '' , (res) => {setArticles(res)}
         )

@@ -15,21 +15,18 @@ export const get = (type, articleId, success, func2) => {
 }
 
 export const edit = (article, type, articleId, success) => {
-  debugger
-  (async () => {
-    const url = `${baseUrl}${type}/${articleId}`
+  const url = `${baseUrl}${type}/${articleId}`
 
-    await axios
-      .put(url, { article })
-      .then(response => {
-        if (response.status == 200) {
-          success()
-        }
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-  })()
+  axios
+    .put(url, { article })
+    .then(response => {
+      if (response.status == 200) {
+        success()
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
 }
 
 export const removeArt = (type, articleId, success) => {

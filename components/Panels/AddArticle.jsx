@@ -49,7 +49,7 @@ const AddArticlePanel = () => {
               setArticle( { ...article, title: e.target.value} )
             }}
             id="name"
-            value={article.title ? article.title : ''}
+            value={article ? article.title : ''}
             name="title"
           />
 
@@ -60,7 +60,7 @@ const AddArticlePanel = () => {
               setArticle( {...article, imgUrl: e.currentTarget.value} )
             }}
             id="img"
-            value={ article.imgUrl ? article.imgUrl : '' }
+            value={ article ? article.imgUrl : '' }
             name="img"
           />
 
