@@ -5,7 +5,7 @@ import Link from "next/link"
 import Moment from 'react-moment'
 import Loader from './../common/Loader'
 import CardOnRemoveArticle from './cardsOnRemoveArticle'
-import { get } from '../../static/functions'
+import { get, edit } from '../../static/functions'
 
 const UpdateArticlePanel = () => {
   const [article, setArticle] = useState(null)
@@ -14,26 +14,20 @@ const UpdateArticlePanel = () => {
   const [articles, setArticles] = useState(undefined)
 
   // useEffect(() => {
-  //   getArticles()
+    // get(
+    //   'articles', , (res) => {setArticles(res)}
+    // )
   // }, [])
 
-  const editArticle = async () => {
-    const res = await axios
-      .put(
-        `https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles/${articleId}`,
-        { article }
-      )
-      .then(response => {
-        if (response.status == 200) {
-          setArticleId('')
-          setArticle(null)
-          setArticleForUpdate(null)
-        }
-      })
-      .catch(function (error) {
-        console.log(error)
-      });
-  };
+  const editArticle = () => {
+    edit(article, 'articles', articleId,
+      () => {
+        setArticleId('')
+        setArticle(null)
+        setArticleForUpdate(null)
+      }
+    )
+  }
 
   const getArticleById = (articleId) => {
     get(
@@ -53,14 +47,6 @@ const UpdateArticlePanel = () => {
     )
   }
 
-  // const getArticles = () => {
-  //   (async () => {
-  //     const res = await axios.get(
-  //       `https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles`
-  //     )
-  //     setArticles(res.data)
-  //   })()
-  // }
   return (
     <main className="panels">
       <div className="otherPanels">
