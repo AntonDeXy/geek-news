@@ -5,7 +5,6 @@ const baseUrl = `https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp
 export const get = (type, articleId, success, func2) => {
   (async () => {
     const url = `${baseUrl}${type}/${articleId}`
-    console.log(url)
     const res = await axios.get(
       url
     )
@@ -15,11 +14,13 @@ export const get = (type, articleId, success, func2) => {
 }
 
 export const edit = (article, type, articleId, success) => {
-  const url = `${baseUrl}${type}/${articleId}`
+  debugger
 
+  const url = `${baseUrl}${type}/${articleId}`
   axios
     .put(url, { article })
     .then(response => {
+      console.log(response)
       if (response.status == 200) {
         success()
       }

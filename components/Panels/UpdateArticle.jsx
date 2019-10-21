@@ -20,6 +20,7 @@ const UpdateArticlePanel = () => {
   // }, [])
 
   const editArticle = () => {
+    console.log(article)
     edit(article, 'articles', articleId,
       () => {
         setArticleId('')

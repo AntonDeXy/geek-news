@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 export const MainSt = styled.main `
   display: grid;
   padding: 15px 0;
+  width: 100%;
   background-color: #1E1E1E;
   min-height: 80vh;
 `
