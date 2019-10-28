@@ -3,7 +3,7 @@ import TopArticles from "./GeneralPage/TopArticles"
 import MoreNews from './GeneralPage/MoreNews'
 import axios from 'axios'
 import Loader from './common/Loader';
-import { MainSt, TopArticlesBlockSt } from './elements/Main-styled';
+import { MainGeneralPageSt, TopArticlesBlockSt } from './elements/Main-styled';
 
 const GeneralPage = () => {
   const [articles, setArticles] = useState(null)
@@ -19,7 +19,7 @@ const GeneralPage = () => {
   }, [])
 
   return (
-    <MainSt>
+    <MainGeneralPageSt>
       <TopArticlesBlockSt>
         {topArticles.map(topArticle => (<TopArticles key={topArticle.id} article={topArticle} />))}
       </TopArticlesBlockSt>
@@ -27,7 +27,7 @@ const GeneralPage = () => {
         ? <MoreNews articles={articles} />
         : <Loader />
       }
-    </MainSt>
+    </MainGeneralPageSt>
   )
 }
 

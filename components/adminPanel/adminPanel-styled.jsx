@@ -23,5 +23,10 @@ export const AdmCardSt = styled.div`
 ` 
 
 export const EditPanel = styled.div`
-  
+  background-color: grey;
+  position: absolute;
+  justify-self: center;
+  align-self: center;
+  width: 80%;
+  height: 80%;
 `

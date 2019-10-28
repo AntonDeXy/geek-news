@@ -1,38 +1,56 @@
 import React, { useState, useEffect } from 'react'
-import { MainSt } from '../elements/Main-styled';
-import { AdminPanelSt } from './adminPanel-styled';
-import { get, edit } from '../../static/functions';
-import AdmPanelsCard from './admPanelCard';
-import EditArticle from './modal/editArticle';
+import { MainSt, AddArticleSt } from '../elements/Main-styled'
+import { AdminPanelSt } from './adminPanel-styled'
+import { get, edit } from '../../static/functions'
+import AdmPanelsCard from './admPanelCard'
+import EditArticle from './modal/editArticle'
+
+import tempImg from '../../static/code.jpg'
 
 const AdminPanel = () => {
   const [articles, setArticles] = useState([])
-  // const [isEdit, setIsEdit] = useState(false)
+  const [editMode, setEditMode] = useState(false)
   const [activeArticleId, setActiveArticleId] = useState('')
   const [activeArticle, setActiveArticle] = useState(undefined)
 
   useEffect(() => {
-    get(
-      'articles', '', (res) => { setArticles(res) }
-    )
+    // get(
+    //   'articles', '', (res) => { setArticles(res) }
+    // )
+    const tempArt = [
+      {
+        id: 1,
+        title: "title",
+        author: "admin",
+        content: 'text',
+        imgUrl: tempImg
+      },
+      {
+        id: 2,
+        title: "title",
+        author: "admin",
+        content: 'text',
+        imgUrl: tempImg
+      }
+    ]
+    setArticles(tempArt)
   }, [])
 
-  const updateArticle = (id) => {
-    // open modal
-    // isEdit?
+  const createNewArticle = () => {
+    setEditMode(true) 
   }
 
   const activeEditMode = (id) => {
     setActiveArticleId(id)
+    setEditMode(true) 
     setActiveArticle(articles.filter(e => e._id === id))
   }
 
   const newArticleData = (data) => {
-    debugger
-  
     edit(data, 'articles', activeArticleId,
     () => {
       setActiveArticle(undefined)
+      setEditMode(false) 
       setActiveArticleId(undefined)
       get(
         'articles', '', (res) => { setArticles(res) }
@@ -41,7 +59,8 @@ const AdminPanel = () => {
   }
   return (
     <MainSt>
-      {activeArticle && <EditArticle setEditedArticleData={(data) => {newArticleData(data)}} article={activeArticle[0]} />}
+      <AddArticle createNewArticle={createNewArticle} />
+      {editMode && <EditArticle setEditedArticleData={(data) => {newArticleData(data)}} article={activeArticle && activeArticle[0]} />}
       {articles ?
         <AdminPanelSt>
           {articles.map((e) =>
@@ -51,6 +70,14 @@ const AdminPanel = () => {
         : 'loading'
       }
     </MainSt>
+  )
+}
+
+const AddArticle = (props) => {
+  return (
+    <AddArticleSt>
+      <span onClick={ () => (props.createNewArticle())}>Add article</span>
+    </AddArticleSt>
   )
 }
 

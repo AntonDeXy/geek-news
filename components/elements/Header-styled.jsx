@@ -9,6 +9,9 @@ export const HeaderSt = styled.header`
   justify-content: center;
 `
 export const WrapperSt = styled.div `
+  @media (max-width: 1500px) {
+    grid-template-columns: auto 35%;
+  }
   @media (max-width: 768px) {
     .logo {
       font-size: 25px;

@@ -30,6 +30,7 @@ const Header = props => {
     @media (max-width: 768px) {
       display: block !important;
     }
+    justify-self: right;
     display: none;
     width: 40px;
   `

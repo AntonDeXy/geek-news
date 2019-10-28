@@ -8,16 +8,18 @@ const EditArticle = (props) => {
   const [articleId, setArticleId] = useState(undefined)
   const [articleForUpdate, setArticleForUpdate] = useState(undefined)
   const [articles, setArticles] = useState(undefined)
-  console.log(article)
   return (
     <EditPanel>
-      {/* <form className="wrapper addArticlePanel" action=""> */}
         <h3>Update article</h3>
-        <span>Article id</span>
-        <input
-          type="text"
-          value={article._id}
-        />
+        {article &&
+          <>
+          <span>Article id</span>
+          <input
+            type="text"
+            value={article._id}
+          />
+          </>
+        }
         <span>Title</span>
         <input
           type="text"
@@ -72,12 +74,10 @@ const EditArticle = (props) => {
           onChange={e => {
             setArticle({ ...article, content: e.target.getContent() });
           }}
-          // value={article ? article.content : ''}
         />
         <button onClick={() => {setArticle(delete article._id);props.setEditedArticleData(article)}} type="button">
           Submit
         </button>
-      {/* </form> */}
     </EditPanel>
   )
 }

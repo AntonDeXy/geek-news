@@ -3,15 +3,36 @@ import styled from '@emotion/styled'
 export const MainSt = styled.main `
   display: grid;
   padding: 15px 0;
+  grid-template-rows: 50px auto;
   width: 100%;
   background-color: #1E1E1E;
   min-height: 80vh;
 `
+
+export const MainGeneralPageSt = styled.main `
+  display: grid;
+  padding: 15px 0;
+  grid-template-rows: auto auto;
+  width: 100%;
+  background-color: #1E1E1E;
+  min-height: 80vh;
+`
+
 export const TopArticlesBlockSt = styled.div `
+  @media(max-width: 1200px) {
+    grid-template-columns: repeat(3, auto) !important;
+  }
+  @media(max-width: 768px) {
+    grid-template-columns: repeat(2, auto) !important;
+  }
+  @media(max-width: 540px) {
+    grid-template-columns: auto !important;
+  }
   display: grid;
   justify-self: center;
   width: 95%;
-  grid-template-columns: repeat(5, auto);
+  height: auto;
+  grid-template-columns: repeat(6, auto);
   gap: 10px;
 `
 export const Img = styled.img `
@@ -86,5 +107,16 @@ export const OtherInf = styled.div `
     display: block
   }
 `
-
-
+export const AddArticleSt = styled.div `
+  width: 90%;
+  justify-self: center;
+  text-align: right;
+  color: white;
+  font-family: 'Fira Sans Condensed', sans-serif;
+  span {
+    transition: all.6s ease;
+  }
+  span:hover {
+    color: red;
+  }
+`
