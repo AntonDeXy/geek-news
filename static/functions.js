@@ -30,6 +30,23 @@ export const edit = (article, type, articleId, success) => {
     })
 }
 
+export const create = (article, type, success) => {
+  debugger
+
+  const url = `${baseUrl}${type}`
+  axios
+    .post(url, { article })
+    .then(response => {
+      console.log(response)
+      if (response.status == 200) {
+        success()
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+}
+
 export const removeArt = (type, articleId, success) => {
   const url = `${baseUrl}${type}/${articleId}`
 

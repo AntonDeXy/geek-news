@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { MainSt, AddArticleSt } from '../elements/Main-styled'
 import { AdminPanelSt } from './adminPanel-styled'
-import { get, edit } from '../../static/functions'
+import { get, edit, create, removeArt } from '../../static/functions'
 import AdmPanelsCard from './admPanelCard'
 import EditArticle from './modal/editArticle'
 
@@ -65,14 +65,43 @@ const AdminPanel = () => {
       )
     })
   }
+
+  const deleteArticle = (id) => {
+    removeArt('articles', id,
+    () => {
+      get(
+        'articles', '', (res) => { setArticles(res) }
+      )
+    })
+  }
+  const createArticle = (data) => {
+    create(data, 'articles',
+    () => {
+      setActiveArticle(undefined)
+      setEditMode(false) 
+      setActiveArticleId(undefined)
+      get(
+        'articles', '', (res) => { setArticles(res) }
+      )
+    })
+  }
+
+  const setEditedArticleData = (data) => {
+    if (type == 'Create') {
+      createArticle(data)
+    } else {
+      newArticleData(data)
+    }
+  }
+
   return (
     <MainSt>
       <AddArticle setType={setType} createNewArticle={createNewArticle} />
-      {editMode && <EditArticle disableEditMode={disableEditMode} type={type} setEditedArticleData={(data) => {newArticleData(data)}} article={activeArticle && activeArticle[0]} />}
+      {editMode && <EditArticle disableEditMode={disableEditMode} type={type} setEditedArticleData={setEditedArticleData} article={activeArticle && activeArticle[0]} />}
       {articles ?
         <AdminPanelSt>
           {articles.map((e) =>
-            <AdmPanelsCard activeEditMode={activeEditMode}  {...e} />
+            <AdmPanelsCard deleteArticle={deleteArticle} activeEditMode={activeEditMode}  {...e} />
           )}
         </AdminPanelSt>
         : 'loading'

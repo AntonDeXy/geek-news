@@ -18,7 +18,7 @@ const EditArticle = (props) => {
         <img onClick={() => {props.disableEditMode()}} src={cross} alt=""/>
         <div>
 
-        {article &&
+        {article && article._id &&
           <>
           <span>Article id</span>
           <input

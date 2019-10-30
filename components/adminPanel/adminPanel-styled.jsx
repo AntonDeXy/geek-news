@@ -13,12 +13,36 @@ export const AdminPanelSt = styled.div`
 
 export const AdmCardSt = styled.div`
   background-color: #383838;
-  width: 100%;
+  max-width: 100%;
   display: grid;
-  grid-template-columns: 15% 17% 10% 18% 35% 5%;
+  grid-template-columns: 23% 17% 10% 10% 25% 15%;
   gap: 15px;
-  img {
+  max-height: 250px;
+  .thumbnail {
+    max-height: 100%;
+    max-width: 100%;
+  }
+  .desc {
+    max-height: 250px;
     width: 100%;
+    overflow-y: scroll;
+  }
+  h2 {
+    margin: 0;
+  }
+  .buttons {
+    justify-content: left;
+    display: grid;
+    width: 100%;
+    gap: 15px;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(2, 40px);
+    img {
+      /* width: 50%; */
+      max-height: 100%;
+      max-width: 100%;
+      /* width: 50%; */
+    }
   }
 ` 
 
