@@ -12,38 +12,46 @@ const AdminPanel = () => {
   const [editMode, setEditMode] = useState(false)
   const [activeArticleId, setActiveArticleId] = useState('')
   const [activeArticle, setActiveArticle] = useState(undefined)
+  const [type, setType] = useState('')
 
   useEffect(() => {
-    // get(
-    //   'articles', '', (res) => { setArticles(res) }
-    // )
-    const tempArt = [
-      {
-        id: 1,
-        title: "title",
-        author: "admin",
-        content: 'text',
-        imgUrl: tempImg
-      },
-      {
-        id: 2,
-        title: "title",
-        author: "admin",
-        content: 'text',
-        imgUrl: tempImg
-      }
-    ]
-    setArticles(tempArt)
+    get(
+      'articles', '', (res) => { setArticles(res) }
+    )
+    // const tempArt = [
+    //   {
+    //     id: 1,
+    //     title: "title",
+    //     author: "admin",
+    //     content: 'text',
+    //     imgUrl: tempImg
+    //   },
+    //   {
+    //     id: 2,
+    //     title: "title",
+    //     author: "admin",
+    //     content: 'text',
+    //     imgUrl: tempImg
+    //   }
+    // ]
+    // setArticles(tempArt)
   }, [])
-
+  
   const createNewArticle = () => {
     setEditMode(true) 
   }
 
   const activeEditMode = (id) => {
     setActiveArticleId(id)
+    setType('Update')
     setEditMode(true) 
     setActiveArticle(articles.filter(e => e._id === id))
+  }
+
+  const disableEditMode = () => {
+    setActiveArticle(undefined)
+    setEditMode(false) 
+    setActiveArticleId(undefined)
   }
 
   const newArticleData = (data) => {
@@ -59,8 +67,8 @@ const AdminPanel = () => {
   }
   return (
     <MainSt>
-      <AddArticle createNewArticle={createNewArticle} />
-      {editMode && <EditArticle setEditedArticleData={(data) => {newArticleData(data)}} article={activeArticle && activeArticle[0]} />}
+      <AddArticle setType={setType} createNewArticle={createNewArticle} />
+      {editMode && <EditArticle disableEditMode={disableEditMode} type={type} setEditedArticleData={(data) => {newArticleData(data)}} article={activeArticle && activeArticle[0]} />}
       {articles ?
         <AdminPanelSt>
           {articles.map((e) =>
@@ -76,7 +84,7 @@ const AdminPanel = () => {
 const AddArticle = (props) => {
   return (
     <AddArticleSt>
-      <span onClick={ () => (props.createNewArticle())}>Add article</span>
+      <span onClick={ () => {props.createNewArticle(); props.setType('Create')}}>Add article</span>
     </AddArticleSt>
   )
 }

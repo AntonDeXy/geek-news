@@ -2,15 +2,22 @@ import React, { useState, useEffect } from "react"
 import { Editor } from "@tinymce/tinymce-react"
 import Moment from 'react-moment'
 import { EditPanel } from '../adminPanel-styled';
+import cross from '../../../static/icons/times-solid.svg'
 
 const EditArticle = (props) => {
   const [article, setArticle] = useState(props.article)
   const [articleId, setArticleId] = useState(undefined)
   const [articleForUpdate, setArticleForUpdate] = useState(undefined)
   const [articles, setArticles] = useState(undefined)
+  
   return (
-    <EditPanel>
-        <h3>Update article</h3>
+    <EditPanel
+    // onBlur={() => {props.disableEditMode()}}
+    >
+        <h3> {props.type} article</h3>
+        <img onClick={() => {props.disableEditMode()}} src={cross} alt=""/>
+        <div>
+
         {article &&
           <>
           <span>Article id</span>
@@ -78,6 +85,8 @@ const EditArticle = (props) => {
         <button onClick={() => {setArticle(delete article._id);props.setEditedArticleData(article)}} type="button">
           Submit
         </button>
+        </div>
+
     </EditPanel>
   )
 }

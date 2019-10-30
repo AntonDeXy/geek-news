@@ -23,10 +23,16 @@ export const AdmCardSt = styled.div`
 ` 
 
 export const EditPanel = styled.div`
+  padding: 15px;
+  display: grid;
   background-color: grey;
   position: absolute;
   justify-self: center;
   align-self: center;
   width: 80%;
   height: 80%;
+  grid-template-columns: auto 30px;
+  img {
+    width: 100%;
+  }
 `
