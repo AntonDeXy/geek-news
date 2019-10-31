@@ -54,9 +54,32 @@ export const EditPanel = styled.div`
   justify-self: center;
   align-self: center;
   width: 80%;
-  height: 80%;
+  max-height: 70%;
   grid-template-columns: auto 30px;
+  background-color: rgba(53, 53, 53, 1);
+  color: white;
+  border-radius: 10px;
+  font-family: 'Fira Sans Condensed', sans-serif; 
   img {
     width: 100%;
+  }
+  .wrapper {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    grid-column: 1/3;
+    span {
+      align-items: center;
+      display: grid;
+    }
+    input, select, button {
+      border: 2px solid black;
+      background-color: black;
+      color: white;
+    }
+    button {
+      height: 30px;
+      grid-column: 2;
+    }
   }
 `

@@ -9,22 +9,22 @@ const EditArticle = (props) => {
   const [articleId, setArticleId] = useState(undefined)
   const [articleForUpdate, setArticleForUpdate] = useState(undefined)
   const [articles, setArticles] = useState(undefined)
-  
+
   return (
     <EditPanel
     // onBlur={() => {props.disableEditMode()}}
     >
-        <h3> {props.type} article</h3>
-        <img onClick={() => {props.disableEditMode()}} src={cross} alt=""/>
-        <div>
+      <h3> {props.type} article</h3>
+      <img onClick={() => { props.disableEditMode() }} src={cross} alt="" />
+      <div className='wrapper'>
 
         {article && article._id &&
           <>
-          <span>Article id</span>
-          <input
-            type="text"
-            value={article._id}
-          />
+            <span>Article id</span>
+            <input
+              type="text"
+              value={article._id}
+            />
           </>
         }
         <span>Title</span>
@@ -66,7 +66,7 @@ const EditArticle = (props) => {
         <Editor
           initialValue={article ? article.content : ''}
           init={{
-            height: 500,
+            height: 400,
             menubar: false,
             plugins: [
               "advlist autolink lists link image charmap print preview anchor",
@@ -82,11 +82,10 @@ const EditArticle = (props) => {
             setArticle({ ...article, content: e.target.getContent() });
           }}
         />
-        <button onClick={() => {setArticle(delete article._id);props.setEditedArticleData(article)}} type="button">
+        <button onClick={() => { setArticle(delete article._id); props.setEditedArticleData(article) }} type="button">
           Submit
         </button>
-        </div>
-
+      </div>
     </EditPanel>
   )
 }
