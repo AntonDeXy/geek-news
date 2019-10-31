@@ -25,7 +25,7 @@ const Article = ({ article }) => {
                 category: {article.category}
               </span>
             </OtherInf>
-            <span>{ReactHtmlParser(article.content)}</span>
+            <div>{ReactHtmlParser(article.content)}</div>
           </ArticleInfo>
         </ArticleSt>
       </MainSt>
@@ -36,7 +36,6 @@ const Article = ({ article }) => {
       <Loader />
     </main>
   )
-
 }
 
 export default Article

@@ -3,7 +3,6 @@ import styled from '@emotion/styled'
 export const MainSt = styled.main `
   display: grid;
   padding: 15px 0;
-  grid-template-rows: 50px auto;
   width: 100%;
   background-color: #1E1E1E;
   min-height: 80vh;
@@ -37,6 +36,10 @@ export const TopArticlesBlockSt = styled.div `
 `
 export const Img = styled.img `
   width: 100%;
+  color: white;
+  display: grid;
+  align-content: center;
+  justify-content: center;
 `
 export const ArticleLink = styled.a `
   color: white;
@@ -57,17 +60,36 @@ export const GeneralNews = styled.div `
   display: grid;
   gap: 10px;
   grid-template-rows: 1fr;
+  .readMore {
+    display: inline-block;
+    color: white;
+    background-color: red;
+    position: relative;
+    bottom: 30px;
+    left: 89%;
+    width: 100px;
+    text-align: center;
+  }
+  .readMore:hover {
+    cursor: pointer;
+  }
 `
 
 export const GeneralNewSt = styled.div `
   display: grid;
-  grid-template-columns: 20% auto;
+  grid-template-columns: 25% auto;
   column-gap: 20px;
+  /* max-height: 200px; */
+  overflow: hidden;
+  .img {
+    display: grid;
+    background-color: #312f2f;
+  }
 `
-
 export const ArticleDesc = styled.div `
   background-color: #393939;
   padding: 10px;
+  /* overflow-y: scroll; */
 `
 
 export const H2 = styled.h2 `
@@ -86,6 +108,9 @@ export const Span = styled.span `
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   margin-left: 10px; 
+  display: block;
+  overflow-y: scroll;
+  max-height: 180px;
 `
 
 export const ArticleSt = styled.div `
@@ -99,6 +124,9 @@ export const ArticleSt = styled.div `
 export const ArticleInfo = styled.div `
   color: white;
   font-family: 'Fira Sans Condensed', sans-serif;
+  div {
+    /* height: 100%; */
+  }
 `
 
 export const OtherInf = styled.div `

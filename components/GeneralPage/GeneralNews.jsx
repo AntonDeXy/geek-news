@@ -15,12 +15,13 @@ const GeneralNew = ({ article }) => {
     <Link href={`a/${article._id}`}>
       <GeneralNewSt className="GeneralNew">
         <div className='img'>
-          <Img src={article.imgUrl} alt="" />
+          <Img src={article.imgUrl} alt="img not found" />
         </div>
         <ArticleDesc>
           <H2>{article.title}</H2>
           <HR />
           <Span>{ ReactHtmlParser(article.content) }</Span>
+          <button href={`a/${article._id}`}>Read more</button>
         </ArticleDesc>
       </GeneralNewSt>
     </Link>

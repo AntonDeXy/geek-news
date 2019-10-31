@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 
 export const FooterSt = styled.footer `
-  position: relative;
-  top: 0px;
+  /* position: relative; */
+  /* top: 0px; */
   width: 100%;
   font-size: 20px;
   height: 10vh;
