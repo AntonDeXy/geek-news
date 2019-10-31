@@ -32,9 +32,9 @@ const Article = ({ article }) => {
     )
   }
   return (
-    <main>
+    <MainSt>
       <Loader />
-    </main>
+    </MainSt>
   )
 }
 
