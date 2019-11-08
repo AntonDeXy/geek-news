@@ -1,13 +1,13 @@
 import axios from 'axios'
 
-const baseUrl = `https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/`
+const baseUrl = `https://cors-anywhere.herokuapp.com/geek-news-back.herokuapp.com/`
+// const baseUrl = `https://localhost:5000`
 
 export const get = (type, articleId, success, func2) => {
   (async () => {
     const url = `${baseUrl}${type}/${articleId}`
-    const res = await axios.get(
-      url
-    )
+    console.log(url)
+    const res = await axios.get(url)
     success(res.data)
     func2 && func2(res.data)
   })()
@@ -61,4 +61,17 @@ export const removeArt = (type, articleId, success) => {
     .catch(function (error) {
       console.log(error)
     })
+}
+
+export const postPhoto = (type, file, success) => {
+  const url = `${baseUrl}${type}`
+  
+  axios
+    .post(url, file)
+    .then(res => {
+      debugger
+      console.log(res)
+      success(res)
+    })
+    
 }
