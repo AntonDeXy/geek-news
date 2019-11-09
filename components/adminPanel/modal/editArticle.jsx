@@ -1,19 +1,34 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { Editor } from "@tinymce/tinymce-react"
 import Moment from 'react-moment'
 import { EditPanel } from '../adminPanel-styled';
 import cross from '../../../static/icons/times-solid.svg'
+import { postPhoto } from '../../../static/functions';
+import ImgLoader from './temp';
 
 const EditArticle = (props) => {
   const [article, setArticle] = useState(props.article)
   const [articleId, setArticleId] = useState(undefined)
   const [articleForUpdate, setArticleForUpdate] = useState(undefined)
   const [articles, setArticles] = useState(undefined)
+  const [imgUrl, setImgUrl] = useState(undefined)
+  const [selectedFile, setSelectedFile] = useState({ selectedFile: null })
+  const imgPrewie = useRef(null)
+
+  const fileChangedHandler = event => {
+    setSelectedFile(event.target.files[0])
+  }
+
+  const uploadHandler = () => {
+    const fd = new FormData()
+    fd.append('image', selectedFile, selectedFile.name)
+    console.log(fd)
+
+    postPhoto('upload-image', fd, (res) => {setImgUrl(res)})
+  }
 
   return (
-    <EditPanel
-    // onBlur={() => {props.disableEditMode()}}
-    >
+    <EditPanel>
       <h3> {props.type} article</h3>
       <img onClick={() => { props.disableEditMode() }} src={cross} alt="" />
       <div className='wrapper'>
@@ -39,7 +54,14 @@ const EditArticle = (props) => {
         />
 
         <span>Img</span>
-        <input
+          <div>
+          <input type="file" onChange={fileChangedHandler}/>
+          <button onClick={uploadHandler}>Upload!</button>
+          <img src="" ref={imgPrewie} alt=""/>
+          </div>
+
+
+        {/* <input
           type="text"
           onChange={e => {
             setArticle({ ...article, imgUrl: e.currentTarget.value });
@@ -47,7 +69,7 @@ const EditArticle = (props) => {
           id="img"
           value={article ? article.imgUrl : ''}
           name="img"
-        />
+        /> */}
 
         <span>Category</span>
         <select

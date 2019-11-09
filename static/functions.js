@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const baseUrl = `https://cors-anywhere.herokuapp.com/geek-news-back.herokuapp.com/`
-// const baseUrl = `https://localhost:5000`
+const baseUrl = `https://cors-anywhere.herokuapp.com/geek-news-beta.herokuapp.com/`
+// const baseUrl = `http://localhost:5000/`
 
 export const get = (type, articleId, success, func2) => {
   (async () => {

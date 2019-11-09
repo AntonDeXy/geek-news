@@ -6,7 +6,7 @@ import edit from '../../static/icons/edit-solid.svg'
 import remove from '../../static/icons/trash-alt-regular.svg'
 
 const AdmPanelsCard = (props) => {
-  console.log(props)
+  // console.log(props)
   return (
     <AdmCardSt>
       <img className='thumbnail' src={props.imgUrl} alt="" />
