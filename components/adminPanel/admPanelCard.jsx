@@ -1,12 +1,11 @@
 import React from 'react'
 import Moment from 'react-moment'
-import { AdmCardSt } from './adminPanel-styled';
-import ReactHtmlParser from 'react-html-parser';
+import { AdmCardSt } from './adminPanel-styled'
+import ReactHtmlParser from 'react-html-parser'
 import edit from '../../static/icons/edit-solid.svg'
 import remove from '../../static/icons/trash-alt-regular.svg'
 
 const AdmPanelsCard = (props) => {
-  // console.log(props)
   return (
     <AdmCardSt>
       <img className='thumbnail' src={props.imgUrl} alt="" />

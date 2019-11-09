@@ -18,23 +18,6 @@ const AdminPanel = () => {
     get(
       'articles', '', (res) => { setArticles(res) }
     )
-    // const tempArt = [
-    //   {
-    //     id: 1,
-    //     title: "title",
-    //     author: "admin",
-    //     content: 'text',
-    //     imgUrl: tempImg
-    //   },
-    //   {
-    //     id: 2,
-    //     title: "title",
-    //     author: "admin",
-    //     content: 'text',
-    //     imgUrl: tempImg
-    //   }
-    // ]
-    // setArticles(tempArt)
   }, [])
   
   const createNewArticle = () => {

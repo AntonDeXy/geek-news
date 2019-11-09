@@ -22,6 +22,9 @@ export const AdmCardSt = styled.div`
     max-height: 100%;
     max-width: 100%;
   }
+  img {
+    max-width: 100%;
+  }
   .desc {
     max-height: 250px;
     width: 100%;

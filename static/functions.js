@@ -64,11 +64,20 @@ export const removeArt = (type, articleId, success) => {
     })
 }
 
-export const postPhoto = (type, file, success) => {
+export const postPhoto = (type, file, success, setUploadPercentage) => {
   const url = `${baseUrl}${type}`
   
   axios
-    .post(url, file)
+    .post(url, file, { onUploadProgress: progressEvent => {
+      setUploadPercentage(
+        parseInt(
+          Math.round((progressEvent.loaded * 100) / progressEvent.total)
+        )
+      );
+
+      // Clear percentage
+      setTimeout(() => setUploadPercentage(0), 10000);
+    }})
     .then(res => {
       debugger
       console.log(res)

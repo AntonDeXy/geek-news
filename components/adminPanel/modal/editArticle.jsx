@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Editor } from "@tinymce/tinymce-react"
 import Moment from 'react-moment'
-import { EditPanel } from '../adminPanel-styled';
+import { EditPanel } from '../adminPanel-styled'
 import cross from '../../../static/icons/times-solid.svg'
-import { postPhoto } from '../../../static/functions';
+import { postPhoto } from '../../../static/functions'
+import Progress from '../../common/Progress'
 
 const EditArticle = (props) => {
   const [article, setArticle] = useState(props.article)
@@ -12,18 +13,24 @@ const EditArticle = (props) => {
   const [articles, setArticles] = useState(undefined)
   const [imgUrl, setImgUrl] = useState(undefined)
   const [selectedFile, setSelectedFile] = useState({ selectedFile: null })
-  const imgPrewie = useRef(null)
+  const [uploadPercentage, setUploadPercentage] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const fileChangedHandler = event => {
+    setIsLoaded(false)
     setSelectedFile(event.target.files[0])
   }
-
+useEffect(() => {
+  if (article && article.imgUrl) {
+    setIsLoaded(true)
+    setImgUrl(article.imgUrl)
+  }
+})
   const uploadHandler = () => {
     const fd = new FormData()
     fd.append('image', selectedFile, selectedFile.name)
     console.log(fd)
-    // fd is undefined
-    postPhoto('upload-image', fd, (res) => {setImgUrl(res); setArticle({...article, imgUrl: res})})
+    postPhoto('upload-image', fd, (res) => { setImgUrl(res); setIsLoaded(true); setArticle({ ...article, imgUrl: res }) }, (data) => { setUploadPercentage(data) })
   }
 
   return (
@@ -53,23 +60,23 @@ const EditArticle = (props) => {
         />
 
         <span>Img</span>
-          <div>
-          <input type="file" onChange={fileChangedHandler}/>
+        <div>
+          {isLoaded &&
+            <>
+              <img style={{ width: '20%' }} src={imgUrl} alt="" />
+              <br />
+            </>
+          }
+          <input type="file" onChange={fileChangedHandler} />
           <button onClick={uploadHandler}>Upload!</button>
-          <img src="" ref={imgPrewie} alt=""/>
-          </div>
-
-
-        {/* <input
-          type="text"
-          onChange={e => {
-            setArticle({ ...article, imgUrl: e.currentTarget.value });
-          }}
-          id="img"
-          value={article ? article.imgUrl : ''}
-          name="img"
-        /> */}
-
+          <br />
+          {uploadPercentage != 0 &&
+            <Progress percentage={uploadPercentage} />
+          }
+          {
+            isLoaded && 'Loading complete'
+          }
+        </div>
         <span>Category</span>
         <select
           name=""
