@@ -4,7 +4,6 @@ import Moment from 'react-moment'
 import { EditPanel } from '../adminPanel-styled';
 import cross from '../../../static/icons/times-solid.svg'
 import { postPhoto } from '../../../static/functions';
-import ImgLoader from './temp';
 
 const EditArticle = (props) => {
   const [article, setArticle] = useState(props.article)
@@ -23,8 +22,8 @@ const EditArticle = (props) => {
     const fd = new FormData()
     fd.append('image', selectedFile, selectedFile.name)
     console.log(fd)
-
-    postPhoto('upload-image', fd, (res) => {setImgUrl(res)})
+    // fd is undefined
+    postPhoto('upload-image', fd, (res) => {setImgUrl(res); setArticle({...article, imgUrl: res})})
   }
 
   return (

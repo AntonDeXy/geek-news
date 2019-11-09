@@ -12,7 +12,7 @@ const GeneralPage = () => {
   ];
 
   useEffect(() => {
-    get('/articles', '', (res) => {setArticles(res)})
+    get('articles', '', (res) => {setArticles(res)})
   }, [])
 
   return (

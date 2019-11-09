@@ -1,9 +1,10 @@
 import axios from 'axios'
 
-const baseUrl = `https://cors-anywhere.herokuapp.com/geek-news-beta.herokuapp.com/`
+const baseUrl = `https://cors-anywhere.herokuapp.com/geek-news-back.herokuapp.com/`
 // const baseUrl = `http://localhost:5000/`
 
 export const get = (type, articleId, success, func2) => {
+  debugger
   (async () => {
     const url = `${baseUrl}${type}/${articleId}`
     console.log(url)
@@ -71,7 +72,7 @@ export const postPhoto = (type, file, success) => {
     .then(res => {
       debugger
       console.log(res)
-      success(res)
+      success(res.data.imageUrl)
     })
     
 }

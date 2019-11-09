@@ -4,8 +4,8 @@ import Footer from '../../components/Footer'
 import '../../static/style/style.scss'
 import Article from '../../components/Article'
 import { useRouter } from 'next/router'
-import axios from 'axios'
 import Head from './../../components/Head';
+import { get } from '../../static/functions'
 
 const ArticlePage = (props) => {
   const router = useRouter()
@@ -15,11 +15,10 @@ const ArticlePage = (props) => {
   useEffect(() => {
       (async () => {
         if (router.query._id) {
-          // console.log(router.query._id)
-          // const res = await axios.get(`http://localhost:3012/articles/${router.query._id}`)
-          const res = await axios.get(`https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles/${router.query._id}`)
-          console.log(res.data)
-          setArticle(res.data)
+          get('articles', router.query._id, (res) => {setArticle(res)} )
+          // const res = await axios.get(`https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles/${router.query._id}`)
+          // console.log(res.data)
+          // setArticle(res.data)
         }
       })()
   }, [router])
