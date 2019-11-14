@@ -5,6 +5,7 @@ import { EditPanel } from '../adminPanel-styled'
 import cross from '../../../static/icons/times-solid.svg'
 import { postPhoto } from '../../../static/functions'
 import Progress from '../../common/Progress'
+import CropDemo from './ImgCroper';
 
 const EditArticle = (props) => {
   const [article, setArticle] = useState(props.article)
@@ -61,12 +62,15 @@ useEffect(() => {
 
         <span>Img</span>
         <div>
-          {isLoaded &&
+          {imgUrl &&
+            <CropDemo src={imgUrl} />
+          }
+          {/* {isLoaded &&
             <>
               <img style={{ width: '20%' }} src={imgUrl} alt="" />
               <br />
             </>
-          }
+          } */}
           <input type="file" onChange={fileChangedHandler} />
           <button onClick={uploadHandler}>Upload!</button>
           <br />
