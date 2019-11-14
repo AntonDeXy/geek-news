@@ -7,7 +7,7 @@ const MoreNews = (props) => {
   return (
     <>
       <MoreNewsSt>
-        <h3>Больше новостей</h3>
+        <h3>News</h3>
         <hr className="more-news-line" />
       </MoreNewsSt>
       <GeneralNews>

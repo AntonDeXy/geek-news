@@ -17,9 +17,9 @@ const GeneralPage = () => {
 
   return (
     <MainGeneralPageSt>
-      <TopArticlesBlockSt>
+      {/* <TopArticlesBlockSt>
         {topArticles.map(topArticle => (<TopArticles key={topArticle.id} article={topArticle} />))}
-      </TopArticlesBlockSt>
+      </TopArticlesBlockSt> */}
       {articles
         ? <MoreNews articles={articles} />
         : <Loader />

@@ -4,7 +4,6 @@ const baseUrl = `https://cors-anywhere.herokuapp.com/geek-news-back.herokuapp.co
 // const baseUrl = `http://localhost:5000/`
 
 export const get = (type, articleId, success, func2) => {
-  debugger
   (async () => {
     const url = `${baseUrl}${type}/${articleId}`
     console.log(url)
@@ -15,8 +14,6 @@ export const get = (type, articleId, success, func2) => {
 }
 
 export const edit = (article, type, articleId, success) => {
-  debugger
-
   const url = `${baseUrl}${type}/${articleId}`
   axios
     .put(url, { article })
@@ -32,8 +29,6 @@ export const edit = (article, type, articleId, success) => {
 }
 
 export const create = (article, type, success) => {
-  debugger
-
   const url = `${baseUrl}${type}`
   axios
     .post(url, { article })
