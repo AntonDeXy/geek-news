@@ -16,16 +16,13 @@ const ArticlePage = (props) => {
       (async () => {
         if (router.query._id) {
           get('articles', router.query._id, (res) => {setArticle(res)} )
-          // const res = await axios.get(`https://cors-anywhere.herokuapp.com/geek-news-backend.herokuapp.com/articles/${router.query._id}`)
-          // console.log(res.data)
-          // setArticle(res.data)
         }
       })()
   }, [router])
   return (
     <>
       <Head
-      //  title={article.title} 
+       title={article ? article.title : 'Article'} 
        />
       <Header />
       <Article article={article} id={id} />

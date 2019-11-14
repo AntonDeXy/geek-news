@@ -76,12 +76,6 @@ export const GeneralNews = styled.div `
 `
 
 export const GeneralNewSt = styled.div `
-  :nth-child(even) {
-    grid-template-columns: auto 20%;
-    .img {
-      order: 2;
-    }
-  }
   display: grid;
   grid-template-columns: 25% auto;
   column-gap: 20px;
@@ -90,11 +84,16 @@ export const GeneralNewSt = styled.div `
     display: grid;
     background-color: #312f2f;
   }
+  @media (min-width: 540.01px) {
+    :nth-child(even) {
+    grid-template-columns: auto 25%;
+    .img {
+      order: 2;
+    }
+  }
+  }
   @media (max-width: 540px) {
     grid-template-columns: 100% !important;
-    :nth-child(even) .img{
-      order: 1 !important;
-    }
     button {
       width: 100%;
       justify-self: center;
@@ -132,11 +131,17 @@ export const Span = styled.span `
 `
 
 export const ArticleSt = styled.div `
+  @media(max-width: 540px) {
+    grid-template-columns: 100% !important;
+  }
   width: 90%;
   justify-self: center;
   display: grid;
   gap: 20px;
   grid-template-columns: 25% auto;
+  div img{
+    max-width: 100%;
+  }
 `
 
 export const ArticleInfo = styled.div `

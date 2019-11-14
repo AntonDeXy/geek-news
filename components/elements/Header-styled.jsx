@@ -21,7 +21,7 @@ export const WrapperSt = styled.div `
   width: 90vw;
   grid-template-columns: auto 20%;
   align-items: center;
-  a:hover {
+  h1:hover {
     cursor: pointer;
   }
 `

@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <FooterSt>
       <WrapperSt className="wrapper">
-        <div><A href="https://geek-news-zeit.antondexy.now.sh/">geek-news-zeit.antondexy.now.sh</A></div>
+        <div><A href="https://nbt-team.me/">nbt-team.me</A></div>
         <MadeWith><span>Made with <Img src={heart} alt="heart"/> & <Img src={coffee} alt=""/> </span></MadeWith>
       </WrapperSt>
     </FooterSt>

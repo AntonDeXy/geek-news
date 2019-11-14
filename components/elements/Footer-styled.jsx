@@ -18,6 +18,10 @@ export const WrapperSt = styled.div `
   width: 90vw;
   display: grid;
   grid-template-columns: 50% auto;
+  @media (max-width: 540px) {
+    text-align: center;
+    grid-template-columns: 100% !important;
+  }
 `
 
 export const Img = styled.img `
@@ -31,4 +35,7 @@ export const A = styled.a `
 export const MadeWith = styled.div `
   display: grid;
   justify-content: right;
+  @media (max-width: 540px) {
+    justify-content: center;
+  }
 `

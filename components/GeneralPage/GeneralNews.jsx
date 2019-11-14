@@ -21,7 +21,6 @@ const GeneralNew = ({ article }) => {
           <H2>{article.title}</H2>
           <HR />
           <Span>{ ReactHtmlParser(article.content) }</Span>
-
           <button href={`a/${article._id}`} type="button" class="btn btn-secondary">Read more</button>
         </ArticleDesc>
       </GeneralNewSt>
