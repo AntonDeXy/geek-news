@@ -1,7 +1,8 @@
 const withSass = require('@zeit/next-sass')
 const withImages = require('next-images')
+const withCSS = require('@zeit/next-css')
 
-module.exports = withImages(withSass({
+module.exports = withCSS(withImages(withSass({
   webpack: config => {
     config.node = {
       fs: 'empty'
@@ -12,4 +13,4 @@ module.exports = withImages(withSass({
   devIndicators: {
     autoPrerender: false,
   },
-}))
+})))
