@@ -76,19 +76,36 @@ export const GeneralNews = styled.div `
 `
 
 export const GeneralNewSt = styled.div `
+  :nth-child(even) {
+    grid-template-columns: auto 20%;
+    .img {
+      order: 2;
+    }
+  }
   display: grid;
   grid-template-columns: 25% auto;
   column-gap: 20px;
-  /* max-height: 200px; */
   overflow: hidden;
   .img {
     display: grid;
     background-color: #312f2f;
   }
+  @media (max-width: 540px) {
+    grid-template-columns: 100% !important;
+    :nth-child(even) .img{
+      order: 1 !important;
+    }
+    button {
+      width: 100%;
+      justify-self: center;
+    }
+  }
 `
 export const ArticleDesc = styled.div `
+  display: grid;
   background-color: #393939;
   padding: 10px;
+  gap: 10px;
   /* overflow-y: scroll; */
 `
 
@@ -102,6 +119,7 @@ export const H2 = styled.h2 `
 export const HR = styled.hr `
   height: 2px;
   background-color: white;
+  width: 100%;
 `
 export const Span = styled.span `
   color: white;

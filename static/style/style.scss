@@ -6,12 +6,6 @@ $headerFooterBG: #383838;
 body, h1 {
   margin: 0;
 }
-.GeneralNew:nth-child(even) {
-  grid-template-columns: auto 20%;
-  .img {
-    order: 2;
-  }
-}
 
 .panels {
   display: grid;
