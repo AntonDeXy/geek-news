@@ -11,13 +11,25 @@ export const HeaderSt = styled.header`
 export const WrapperSt = styled.div `
   .logo {
     font-family: 'Bree Serif', serif;
+    font-size: 2.5rem;
+  }
+  .logo:hover {
+    color: white !important;
   }
   display: grid;
   width: 90vw;
   grid-template-columns: auto 20%;
   align-items: center;
-  h1:hover {
-    cursor: pointer;
+  a {
+    align-self: center;
+    text-decoration: none;
+    color: white;
+    font-family: 'Bree Serif', serif;
+    transition: all.5s;
+    :hover {
+      cursor: pointer;
+      color: #8A5076 !important;
+    }
   }
   @media (max-width: 1500px) {
     grid-template-columns: auto 35%;
@@ -27,11 +39,4 @@ export const WrapperSt = styled.div `
       font-size: 25px;
     }
   }
-`
-
-export const A = styled.a `
-  align-self: center;
-  text-decoration: none;
-  color: white;
-  font-family: 'Bree Serif', serif;
 `

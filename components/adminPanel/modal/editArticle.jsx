@@ -72,9 +72,8 @@ const EditArticle = (props) => {
           <br />
 
           {
-            isLoaded && 'Loading complete'
+            isLoaded && <> <span> Loading complete</span> <br /> </>
           }
-          <br />
 
           <button className='upload-button' onClick={uploadHandler}>Upload!</button>
           <br />

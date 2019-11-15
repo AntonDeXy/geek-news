@@ -47,21 +47,20 @@ const Header = props => {
       <HeaderSt>
         <WrapperSt>
           <Link href="/">
-            <A className="logo">
-              <h1 className="logo">Geek News</h1>
-            </A>
+            <a className="logo">
+              Geek News
+            </a>
           </Link>
-
           <MenuIcon onClick={menuIsActive} src={menu} alt="" />
           <Links className="links">
-            <Link href="#">
-              <A>Новости</A>
+            <Link href="/">
+              <a>News</a>
             </Link>
-            <Link href="#">
-              <A>Личный кабинет</A>
+            <Link href="https://github.com/AntonDeXy/geek-news">
+              <a>GitHub Page</a>
             </Link>
-            <Link href="#">
-              <A>Вход</A>
+            <Link href="/login">
+              <a>Login</a>
             </Link>
           </Links>
         </WrapperSt>

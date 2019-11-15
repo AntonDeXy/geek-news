@@ -1,7 +1,6 @@
 import React from 'react'
 import { LoginPageSt } from './LoginStyled'
 import Link from 'next/link'
-import '../../static/style/bluePrints.scss'
 
 const RegisterPanel = () => {
   return (
