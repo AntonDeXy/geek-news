@@ -14,26 +14,27 @@ const EditArticle = (props) => {
   const [articles, setArticles] = useState(undefined)
   const [imgUrl, setImgUrl] = useState(undefined)
   const [selectedFile, setSelectedFile] = useState({ selectedFile: null })
-  const [uploadPercentage, setUploadPercentage] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [uploadPercentage, setUploadPercentage] = useState(0)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   const fileChangedHandler = event => {
     setIsLoaded(false)
-    setSelectedFile(event.target.files[0])
+    // setSelectedFile(event.target.files[0])
   }
-useEffect(() => {
-  if (article && article.imgUrl) {
-    setIsLoaded(true)
-    setImgUrl(article.imgUrl)
-  }
-})
-  const uploadHandler = () => {
+  useEffect(() => {
+    if (article && article.imgUrl) {
+      setIsLoaded(true)
+      setImgUrl(article.imgUrl)
+    }
+  })
+  const uploadHandler = (selectedFile) => {
+    debugger
     const fd = new FormData()
     fd.append('image', selectedFile, selectedFile.name)
     console.log(fd)
     postPhoto('upload-image', fd, (res) => { setImgUrl(res); setIsLoaded(true); setArticle({ ...article, imgUrl: res }) }, (data) => { setUploadPercentage(data) })
   }
-
+  
   return (
     <EditPanel>
       <h3> {props.type} article</h3>
@@ -62,15 +63,14 @@ useEffect(() => {
 
         <span>Img</span>
         <div>
-          {imgUrl &&
-            <CropDemo src={imgUrl} />
-          }
+          <span>{article && article.imgUrl && article.imgUrl}</span>
+          <CropDemo uploadHandler={uploadHandler} fileChangedHandler={fileChangedHandler}/>
           {/* {isLoaded &&
             <>
               <img style={{ width: '20%' }} src={imgUrl} alt="" />
               <br />
             </>
-          } */}
+          }
           <input type="file" onChange={fileChangedHandler} />
           <button onClick={uploadHandler}>Upload!</button>
           <br />
@@ -79,7 +79,7 @@ useEffect(() => {
           }
           {
             isLoaded && 'Loading complete'
-          }
+          } */}
         </div>
         <span>Category</span>
         <select

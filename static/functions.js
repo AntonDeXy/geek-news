@@ -78,5 +78,8 @@ export const postPhoto = (type, file, success, setUploadPercentage) => {
       console.log(res)
       success(res.data.imageUrl)
     })
+    .catch(error => {
+      console.log(error.response)
+    })
     
 }
