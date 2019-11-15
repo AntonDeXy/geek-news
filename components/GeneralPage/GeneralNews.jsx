@@ -14,9 +14,9 @@ const GeneralNew = (props) => {
   return (
     <Link href={`a/${props.article._id}`}>
       <GeneralNewSt className="GeneralNew">
-        <div className='img'>
-          <Img src={props.article.imgUrl} alt="img not found" />
-        </div>
+        {/* <div className='img'> */}
+        <Img className='thumbnail' src={props.article.imgUrl} alt="img not found" />
+        {/* </div> */}
         <div className='ArticleDesc'>
           <H2>{props.article.title}</H2>
           <HR />

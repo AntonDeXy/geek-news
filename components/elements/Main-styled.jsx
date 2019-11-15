@@ -35,7 +35,8 @@ export const TopArticlesBlockSt = styled.div`
   gap: 10px;
 `
 export const Img = styled.img`
-  width: 100%;
+  /* max-width: 100%; */
+  height: 100%;
   color: white;
   display: grid;
   align-content: center;
@@ -77,40 +78,45 @@ export const GeneralNews = styled.div`
 
 export const GeneralNewSt = styled.div`
   display: grid;
-  grid-template-columns: 35% auto;
+  grid-template-columns: auto minmax(40%, 60%);
   column-gap: 20px;
   overflow: hidden;
+  max-height: 350px;
+  .thumbnail {
+    grid-column: 1;
+    grid-row: 1;
+    display: grid;
+    height: 350px;
+    width: auto;
+    background-color: #312f2f;
+  }
   .ArticleDesc {
     display: grid;
     background-color: #393939;
     padding: 10px;
     gap: 10px;
     grid-row: 1;
-  }
-  .img {
-    grid-column: 1;
-    grid-row: 1;
-    display: grid;
-    background-color: #312f2f;
+    img {
+      max-width: 100%;
+    }
   }
   :nth-child(even) {
-    grid-template-columns: auto 35% !important;
+    grid-template-columns: minmax(40%, 60%) auto;
     .ArticleDesc {
-      grid-column: 1;
+      grid-column: 1 !important;
     }
-    .img {
-      grid-column: 2;
+    .thumbnail {
+      grid-column: 2 !important;
     }
   }
   
   @media (max-width: 768px) {
     :nth-child(even) {
       grid-template-columns: 100% !important;
-      .img {
+      .thumbnail {
         grid-row: 1;
         grid-column: 1;
       }
-      
     }
     .ArticleDesc {
         grid-column: 1 !important;
@@ -119,11 +125,42 @@ export const GeneralNewSt = styled.div`
   }
   @media (max-width: 992px) {
     grid-template-columns: 100% !important;
+    max-height: unset !important;
+    grid-template-rows: auto auto;
+    :nth-child(even) {
+      .thumbnail {
+        grid-column: 1 !important;
+      }
+    }
+    .thumbnail {
+      width: 100%;
+      height: 100% !important;
+      max-height: unset !important;
+      grid-column: 1 !important;
+    }
+    .ArticleDesc {
+      grid-row: 2;
+      span {
+        max-height: 250px !important;
+      }
+    }
     button {
       width: 100%;
       justify-self: center;
     }
   }
+  @media (max-width: 1200px) {
+    max-height: 240px;
+    .thumbnail {
+      height: 240px;
+    }
+    .ArticleDesc {
+      span {
+        max-height: 90px;
+      }
+    }
+  }
+  
 `
 export const ArticleDesc = styled.div`
   display: grid;
@@ -138,6 +175,11 @@ export const H2 = styled.h2`
   font-family: 'Bree Serif', serif;
   color: white;
   margin-left: 10px;
+  max-height: 40px;
+  overflow: hidden;
+  @media (max-width: 992px) {
+    max-height: unset;
+  }
 `
 
 export const HR = styled.hr`
