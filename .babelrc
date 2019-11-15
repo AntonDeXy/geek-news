@@ -1,4 +1,4 @@
 {
   "presets": ["next/babel"],
-  "plugins": [["emotion", { "ssr": true }]],
+  "plugins": [["emotion", { "ssr": true }], "transform-flow-strip-types"]
 }

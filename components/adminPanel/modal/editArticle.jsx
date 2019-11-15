@@ -72,7 +72,7 @@ const EditArticle = (props) => {
           <br />
 
           {
-            isLoaded && <> <span> Loading complete</span> <br /> </>
+            isLoaded && <> <span>Loading complete</span> <br /> </>
           }
 
           <button className='upload-button' onClick={uploadHandler}>Upload!</button>
