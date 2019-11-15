@@ -15,12 +15,17 @@ export const AdmCardSt = styled.div`
   background-color: #383838;
   max-width: 100%;
   display: grid;
-  grid-template-columns: auto 17% 10% 10% auto 5%;
+  grid-template-columns: auto 17% 7% 10% auto 5%;
   gap: 15px;
   max-height: 250px;
   .thumbnail {
     max-height: 100%;
     max-width: 100%;
+    overflow: hidden;
+    img {
+      width: auto;
+      height: 250px;
+    }
   }
   img {
     width: auto;

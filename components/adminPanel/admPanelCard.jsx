@@ -9,7 +9,9 @@ import { PropTypes } from 'prop-types'
 const AdmPanelsCard = (props) => {
   return (
     <AdmCardSt>
-      <img className='thumbnail' src={props.imgUrl} alt="" />
+      <div className="thumbnail">
+        <img src={props.imgUrl} alt="" />
+      </div>
       <h2>{props.title}</h2>
       <Moment format="dddd HH:mm DD-MM-YYYY">{props.date}</Moment>
       <span className="author">{props.author}</span>
