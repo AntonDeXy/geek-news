@@ -61,7 +61,6 @@ export const removeArt = (type, articleId, success) => {
 
 export const postPhoto = (type, file, success, setUploadPercentage) => {
   const url = `${baseUrl}${type}`
-  
   axios
     .post(url, file, { onUploadProgress: progressEvent => {
       setUploadPercentage(
@@ -74,7 +73,6 @@ export const postPhoto = (type, file, success, setUploadPercentage) => {
       setTimeout(() => setUploadPercentage(0), 10000);
     }})
     .then(res => {
-      debugger
       console.log(res)
       success(res.data.imageUrl)
     })

@@ -8,7 +8,7 @@ import Head from "./../components/Head"
 const App = () => {
   return (
     <>
-      <Head title="General page" />
+      <Head title="General Page" />
       <Header />
       <GeneralPage />
       <Footer />

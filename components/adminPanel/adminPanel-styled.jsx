@@ -25,6 +25,9 @@ export const AdmCardSt = styled.div`
   img {
     max-width: 100%;
   }
+  .author {
+    text-align: center;
+  }
   .desc {
     max-height: 250px;
     width: 100%;
@@ -34,19 +37,19 @@ export const AdmCardSt = styled.div`
     margin: 0;
   }
   .buttons {
+    align-content: center;
     justify-content: left;
     display: grid;
-    width: 100%;
+    width: 90%;
     gap: 15px;
     grid-template-columns: 100%;
     grid-template-rows: repeat(2, 40px);
     img {
-      /* width: 50%; */
       max-height: 100%;
       max-width: 100%;
-      /* width: 50%; */
     }
     svg {
+      height: 100%;
       transition: all.5s;
       font-size: 35px;
     }
@@ -80,8 +83,9 @@ export const EditPanel = styled.div`
   justify-self: center;
   align-self: center;
   width: 80%;
-  max-height: 70%;
+  max-height: 70vh;
   grid-template-columns: auto 30px;
+  grid-template-rows: 50px auto 40px;
   background-color: rgba(53, 53, 53, 1);
   color: white;
   border-radius: 10px;
@@ -91,9 +95,16 @@ export const EditPanel = styled.div`
   }
   .wrapper {
     display: grid;
+    overflow-y: scroll;
+    max-height: calc(70vh - 110px);
     grid-template-columns: auto 1fr;
     gap: 10px;
+    padding-right: 10px;
     grid-column: 1/3;
+    .upload-button {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
     span {
       align-items: center;
       display: grid;
@@ -107,5 +118,14 @@ export const EditPanel = styled.div`
       height: 30px;
       grid-column: 2;
     }
+  }
+  button {
+    justify-self: center;
+    width: 100%;
+    grid-column: 1/3;
+    margin-top: 5px;
+    border: 2px solid black;
+    background-color: black;
+    color: white;
   }
 `

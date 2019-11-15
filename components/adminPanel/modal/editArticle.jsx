@@ -20,12 +20,12 @@ const EditArticle = (props) => {
     setIsLoaded(false)
     setSelectedFile(event.target.files[0])
   }
-useEffect(() => {
-  if (article && article.imgUrl) {
-    setIsLoaded(true)
-    setImgUrl(article.imgUrl)
-  }
-})
+  useEffect(() => {
+    if (article && article.imgUrl) {
+      setIsLoaded(true)
+      setImgUrl(article.imgUrl)
+    }
+  })
   const uploadHandler = () => {
     const fd = new FormData()
     fd.append('image', selectedFile, selectedFile.name)
@@ -65,17 +65,23 @@ useEffect(() => {
             <>
               <img style={{ width: '20%' }} src={imgUrl} alt="" />
               <br />
+              <br />
             </>
           }
           <input type="file" onChange={fileChangedHandler} />
-          <button onClick={uploadHandler}>Upload!</button>
+          <br />
+
+          {
+            isLoaded && 'Loading complete'
+          }
+          <br />
+
+          <button className='upload-button' onClick={uploadHandler}>Upload!</button>
           <br />
           {uploadPercentage != 0 &&
             <Progress percentage={uploadPercentage} />
           }
-          {
-            isLoaded && 'Loading complete'
-          }
+          
         </div>
         <span>Category</span>
         <select
@@ -110,10 +116,11 @@ useEffect(() => {
             setArticle({ ...article, content: e.target.getContent() });
           }}
         />
-        <button onClick={() => { setArticle(delete article._id); props.setEditedArticleData(article) }} type="button">
+        
+      </div>
+      <button onClick={() => { setArticle(delete article._id); props.setEditedArticleData(article) }} type="button">
           Submit
         </button>
-      </div>
     </EditPanel>
   )
 }

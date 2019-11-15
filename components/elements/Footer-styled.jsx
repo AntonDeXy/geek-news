@@ -1,8 +1,6 @@
 import styled from '@emotion/styled'
 
 export const FooterSt = styled.footer `
-  /* position: relative; */
-  /* top: 0px; */
   width: 100%;
   font-size: 20px;
   height: 10vh;
@@ -31,6 +29,11 @@ export const Img = styled.img `
 export const A = styled.a `
   color: white;
   text-decoration: none;
+  transition: all.5s;
+  :hover {
+    text-decoration: none;
+    color: #8A5076;
+  }
 `
 export const MadeWith = styled.div `
   display: grid;

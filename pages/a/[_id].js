@@ -21,9 +21,7 @@ const ArticlePage = (props) => {
   }, [router])
   return (
     <>
-      <Head
-       title={article ? article.title : 'Article'} 
-       />
+      <Head title={article ? article.title : 'Article'} />
       <Header />
       <Article article={article} id={id} />
       <Footer />
