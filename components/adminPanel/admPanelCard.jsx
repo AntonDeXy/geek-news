@@ -2,9 +2,8 @@ import React from 'react'
 import Moment from 'react-moment'
 import { AdmCardSt } from './adminPanel-styled'
 import ReactHtmlParser from 'react-html-parser'
-import edit from '../../static/icons/edit-solid.svg'
-import remove from '../../static/icons/trash-alt-regular.svg'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faEdit, faTrashAlt} from '@fortawesome/free-solid-svg-icons'
 const AdmPanelsCard = (props) => {
   return (
     <AdmCardSt>
@@ -16,8 +15,8 @@ const AdmPanelsCard = (props) => {
         {ReactHtmlParser(props.content)}
       </span>
       <div className='buttons'>
-        <img onClick={() => { props.activeEditMode(props._id) }} src={edit} alt=""/>
-        <img onClick={() => { props.deleteArticle(props._id) }} src={remove} alt=""/>
+        <FontAwesomeIcon onClick={() => { props.activeEditMode(props._id) }} icon={faEdit} />
+        <FontAwesomeIcon onClick={() => { props.deleteArticle(props._id) }} icon={faTrashAlt} />
       </div>
     </AdmCardSt>
   )
