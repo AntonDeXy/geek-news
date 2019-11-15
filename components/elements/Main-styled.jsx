@@ -110,7 +110,7 @@ export const ArticleDesc = styled.div `
 
 export const H2 = styled.h2 `
   margin: 0;
-  font-family: 'Squada One', cursive;
+  font-family: 'Bree Serif', serif;
   color: white;
   margin-left: 10px;
 `
@@ -146,7 +146,8 @@ export const ArticleSt = styled.div `
 
 export const ArticleInfo = styled.div `
   color: white;
-  font-family: 'Fira Sans Condensed', sans-serif;
+
+  font-family: 'Bree Serif', serif;
   div {
     /* height: 100%; */
   }
@@ -163,7 +164,7 @@ export const AddArticleSt = styled.div `
   justify-self: center;
   text-align: right;
   color: white;
-  font-family: 'Fira Sans Condensed', sans-serif;
+  font-family: 'Bree Serif', serif;
   span {
     transition: all.6s ease;
   }
