@@ -15,6 +15,16 @@ export const MainGeneralPageSt = styled.main`
   width: 100%;
   background-color: #1E1E1E;
   min-height: 80vh;
+  .page-link {
+    background-color: #131415;
+    color: white;
+  }
+  nav {
+    margin-top: 10px;
+    display: grid;
+    color: white;
+    justify-content: center;
+  }
 `
 
 export const TopArticlesBlockSt = styled.div`
