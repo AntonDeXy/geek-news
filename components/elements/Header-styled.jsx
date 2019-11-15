@@ -33,5 +33,5 @@ export const A = styled.a `
   align-self: center;
   text-decoration: none;
   color: white;
-  font-family: 'Squada One', cursive;
+  font-family: 'Bree Serif', serif;
 `
