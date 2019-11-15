@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 export const AdminPanelSt = styled.div`
   display: grid;
   color: white;
-  width: 90%;
+  width: 95%;
   min-height: 10vh;
   justify-content: center;
   justify-self: center;
@@ -15,7 +15,7 @@ export const AdmCardSt = styled.div`
   background-color: #383838;
   max-width: 100%;
   display: grid;
-  grid-template-columns: 23% 17% 10% 10% 25% 15%;
+  grid-template-columns: auto 17% 10% 10% auto 5%;
   gap: 15px;
   max-height: 250px;
   .thumbnail {
@@ -23,7 +23,9 @@ export const AdmCardSt = styled.div`
     max-width: 100%;
   }
   img {
-    max-width: 100%;
+    width: auto;
+    height: 100%;
+    /* max-width: 100%; */
   }
   .author {
     text-align: center;
@@ -37,8 +39,8 @@ export const AdmCardSt = styled.div`
     margin: 0;
   }
   .buttons {
-    align-content: center;
-    justify-content: left;
+    align-content: space-evenly;
+    justify-items: center;
     display: grid;
     width: 90%;
     gap: 15px;
@@ -57,7 +59,7 @@ export const AdmCardSt = styled.div`
       color: #8A5076;
     }
   }
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     max-height: none !important;
     grid-template-columns: 100% !important;
     padding: 5px;
@@ -69,6 +71,7 @@ export const AdmCardSt = styled.div`
       max-height: none;
     }
     .buttons {
+      justify-self: center;
       grid-template-columns: 50% 50%;
       justify-items: center;
     }
@@ -138,7 +141,28 @@ export const EditPanel = styled.div`
     background-color: black;
     color: white;
   }
-  .tox-split-button {
-    background-color: rgb(53, 53, 53);
+  .tox-toolbar {
+    button {
+      background-color: rgb(53, 53, 53);
+      border: unset;
+      svg {
+        fill: white;
+
+      }
+    }
+  }
+
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    .wrapper {
+      grid-template-columns: 100%;
+    }
+    .fileLoader {
+      height: 30px;
+    }
+    #category {
+      height: 30px;
+    }
   }
 `

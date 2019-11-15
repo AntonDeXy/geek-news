@@ -66,7 +66,7 @@ const EditArticle = (props) => {
               <br />
             </>
             }
-            <input type="file" onChange={fileChangedHandler} />
+            <input className='fileLoader' type="file" onChange={fileChangedHandler} />
             <br />
             {
               isLoaded && <> <span>Loading complete</span> <br /> </>

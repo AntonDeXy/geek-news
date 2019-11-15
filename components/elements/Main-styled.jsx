@@ -186,6 +186,9 @@ export const HR = styled.hr`
   height: 2px;
   background-color: white;
   width: 100%;
+  @media (max-width: 1200px) {
+    margin: 0;
+  }
 `
 export const Span = styled.span`
   color: white;
