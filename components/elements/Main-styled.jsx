@@ -80,17 +80,42 @@ export const GeneralNewSt = styled.div`
   grid-template-columns: 35% auto;
   column-gap: 20px;
   overflow: hidden;
+  .ArticleDesc {
+    display: grid;
+    background-color: #393939;
+    padding: 10px;
+    gap: 10px;
+    grid-row: 1;
+  }
   .img {
+    grid-column: 1;
+    grid-row: 1;
     display: grid;
     background-color: #312f2f;
   }
-  @media (min-width: 768px) {
-    :nth-child(even) {
-    grid-template-columns: auto 35%;
+  :nth-child(even) {
+    grid-template-columns: auto 35% !important;
+    .ArticleDesc {
+      grid-column: 1;
+    }
     .img {
-      order: 2;
+      grid-column: 2;
     }
   }
+  
+  @media (max-width: 768px) {
+    :nth-child(even) {
+      grid-template-columns: 100% !important;
+      .img {
+        grid-row: 1;
+        grid-column: 1;
+      }
+      
+    }
+    .ArticleDesc {
+        grid-column: 1 !important;
+        grid-row: 2 !important;
+      }
   }
   @media (max-width: 992px) {
     grid-template-columns: 100% !important;
@@ -105,7 +130,7 @@ export const ArticleDesc = styled.div`
   background-color: #393939;
   padding: 10px;
   gap: 10px;
-  /* overflow-y: scroll; */
+  grid-row: 1;
 `
 
 export const H2 = styled.h2`
@@ -146,7 +171,6 @@ export const ArticleSt = styled.div`
 
 export const ArticleInfo = styled.div`
   color: white;
-
   font-family: 'Bree Serif', serif;
   div {
     /* height: 100%; */

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
-import { EditPanel } from '../adminPanel-styled'
+import { EditPanel, EditPanelBack } from '../adminPanel-styled'
 import cross from '../../../static/icons/times-solid.svg'
 import { postPhoto } from '../../../static/functions'
 import Progress from '../../common/Progress'
@@ -31,12 +31,13 @@ const EditArticle = (props) => {
   }
 
   return (
-    <EditPanel>
-      <h3> {props.type} article</h3>
-      <img onClick={() => { props.disableEditMode() }} src={cross} alt="" />
-      <div className='wrapper'>
+    <EditPanelBack>
+      <EditPanel>
+        <h3> {props.type} article</h3>
+        <img onClick={() => { props.disableEditMode() }} src={cross} alt="" />
+        <div className='wrapper'>
 
-        {article && article._id &&
+          {article && article._id &&
           <>
             <span>Article id</span>
             <input
@@ -44,80 +45,80 @@ const EditArticle = (props) => {
               value={article._id}
             />
           </>
-        }
-        <span>Title</span>
-        <input
-          type="text"
-          onChange={e => {
-            setArticle({ ...article, title: e.target.value })
-          }}
-          id="name"
-          value={article ? article.title : ''}
-          name="title"
-        />
+          }
+          <span>Title</span>
+          <input
+            type="text"
+            onChange={e => {
+              setArticle({ ...article, title: e.target.value })
+            }}
+            id="name"
+            value={article ? article.title : ''}
+            name="title"
+          />
 
-        <span>Img</span>
-        <div>
-          {isLoaded &&
+          <span>Img</span>
+          <div>
+            {isLoaded &&
             <>
               <img style={{ width: '20%' }} src={imgUrl} alt="" />
               <br />
               <br />
             </>
-          }
-          <input type="file" onChange={fileChangedHandler} />
-          <br />
+            }
+            <input type="file" onChange={fileChangedHandler} />
+            <br />
+            {
+              isLoaded && <> <span>Loading complete</span> <br /> </>
+            }
 
-          {
-            isLoaded && <> <span>Loading complete</span> <br /> </>
-          }
-
-          <button className='upload-button' onClick={uploadHandler}>Upload!</button>
-          <br />
-          {uploadPercentage !== 0 &&
+            <button className='upload-button' onClick={uploadHandler}>Upload!</button>
+            <br />
+            {uploadPercentage !== 0 &&
             <Progress percentage={uploadPercentage} />
-          }
+            }
 
-        </div>
-        <span>Category</span>
-        <select
-          name=""
-          onChange={e => {
-            setArticle({ ...article, category: e.currentTarget.value })
-          }}
-          value={article && article.category}
-          id="category"
-        >
-          <option value="it">It</option>
-          <option value="game">Games</option>
-        </select>
+          </div>
+          <span>Category</span>
+          <select
+            name=""
+            onChange={e => {
+              setArticle({ ...article, category: e.currentTarget.value })
+            }}
+            value={article && article.category}
+            id="category"
+          >
+            <option value="it">It</option>
+            <option value="game">Games</option>
+          </select>
 
-        <span>Description</span>
-        <Editor
-          initialValue={article ? article.content : ''}
-          init={{
-            height: 400,
-            menubar: false,
-            plugins: [
-              'advlist autolink lists link image charmap print preview anchor',
-              'searchreplace visualblocks code fullscreen',
-              'insertdatetime media table paste code help wordcount'
-            ],
-            toolbar:
+          <span>Description</span>
+          <Editor
+            initialValue={article ? article.content : ''}
+            init={{
+              height: 400,
+              menubar: false,
+              plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount'
+              ],
+              toolbar:
               'undo redo | formatselect | bold italic backcolor | \n' +
               'alignleft aligncenter alignright alignjustify | \n' +
               'bullist numlist outdent indent | removeformat | help'
-          }}
-          onChange={e => {
-            setArticle({ ...article, content: e.target.getContent() })
-          }}
-        />
+            }}
+            onChange={e => {
+              setArticle({ ...article, content: e.target.getContent() })
+            }}
+          />
 
-      </div>
-      <button onClick={() => { setArticle(delete article._id); props.setEditedArticleData(article) }} type="button">
+        </div>
+        <button onClick={() => { setArticle(delete article._id); props.setEditedArticleData(article) }} type="button">
           Submit
-      </button>
-    </EditPanel>
+        </button>
+      </EditPanel>
+    </EditPanelBack>
   )
 }
 

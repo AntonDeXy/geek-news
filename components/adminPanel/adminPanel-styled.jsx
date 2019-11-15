@@ -74,14 +74,24 @@ export const AdmCardSt = styled.div`
     }
   }
 `
-
+export const EditPanelBack = styled.div`
+  position: fixed;
+  display: grid;
+  height: 100%;
+  top: 0;
+  width: 100vw;
+  justify-content: center;
+  background-color: rgba(53, 53, 53, 0.7);
+`
 export const EditPanel = styled.div`
+  margin-top: 15vh;
+  box-shadow: 0px 0px 20px white;
   padding: 15px;
   display: grid;
   background-color: grey;
   position: absolute;
   justify-self: center;
-  align-self: center;
+  align-self: start;
   width: 80%;
   max-height: 70vh;
   grid-template-columns: auto 30px;
@@ -127,5 +137,8 @@ export const EditPanel = styled.div`
     border: 2px solid black;
     background-color: black;
     color: white;
+  }
+  .tox-split-button {
+    background-color: rgb(53, 53, 53);
   }
 `
