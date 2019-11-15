@@ -10,7 +10,7 @@ const AdmPanelsCard = (props) => {
       <img className='thumbnail' src={props.imgUrl} alt="" />
       <h2>{props.title}</h2>
       <Moment format="dddd HH:mm DD-MM-YYYY">{props.date}</Moment>
-      <span>{props.author}</span>
+      <span className="author">{props.author}</span>
       <span className='desc'>
         {ReactHtmlParser(props.content)}
       </span>

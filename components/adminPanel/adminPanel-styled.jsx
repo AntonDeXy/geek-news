@@ -46,6 +46,29 @@ export const AdmCardSt = styled.div`
       max-width: 100%;
       /* width: 50%; */
     }
+    svg {
+      transition: all.5s;
+      font-size: 35px;
+    }
+    svg:hover {
+      color: #8A5076;
+    }
+  }
+  @media (max-width: 768px) {
+    max-height: none !important;
+    grid-template-columns: 100% !important;
+    padding: 5px;
+    h2, .author, time {
+      text-align: center;
+    }
+    img {
+      width: 100%;
+      max-height: none;
+    }
+    .buttons {
+      grid-template-columns: 50% 50%;
+      justify-items: center;
+    }
   }
 ` 
 

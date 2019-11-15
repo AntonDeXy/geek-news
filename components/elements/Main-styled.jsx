@@ -77,22 +77,22 @@ export const GeneralNews = styled.div `
 
 export const GeneralNewSt = styled.div `
   display: grid;
-  grid-template-columns: 25% auto;
+  grid-template-columns: 35% auto;
   column-gap: 20px;
   overflow: hidden;
   .img {
     display: grid;
     background-color: #312f2f;
   }
-  @media (min-width: 540.01px) {
+  @media (min-width: 768px) {
     :nth-child(even) {
-    grid-template-columns: auto 25%;
+    grid-template-columns: auto 35%;
     .img {
       order: 2;
     }
   }
   }
-  @media (max-width: 540px) {
+  @media (max-width: 992px) {
     grid-template-columns: 100% !important;
     button {
       width: 100%;
