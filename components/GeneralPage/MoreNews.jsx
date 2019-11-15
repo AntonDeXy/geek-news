@@ -1,7 +1,7 @@
-import React from "react"
-import GeneralNew from './GeneralNews';
-import Link from "next/link";
-import { MoreNewsSt, GeneralNews } from '../elements/Main-styled';
+import React from 'react'
+import GeneralNew from './GeneralNews'
+import { MoreNewsSt, GeneralNews } from '../elements/Main-styled'
+import { PropTypes } from 'prop-types'
 
 const MoreNews = (props) => {
   return (
@@ -17,6 +17,10 @@ const MoreNews = (props) => {
       </GeneralNews>
     </>
   )
+}
+
+MoreNews.propTypes = {
+  articles: PropTypes.object
 }
 
 export default MoreNews

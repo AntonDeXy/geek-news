@@ -1,7 +1,7 @@
-import React from "react";
-import img from "../../static/code.jpg";
-import Link from "next/link";
-import { Img, ArticleLink } from '../elements/Main-styled';
+import React from 'react'
+import img from '../../static/code.jpg'
+import Link from 'next/link'
+import { Img, ArticleLink } from '../elements/Main-styled'
 
 const TopArticles = () => {
   return (
@@ -10,7 +10,7 @@ const TopArticles = () => {
         <Img className="article" src={img} alt="" />
       </ArticleLink>
     </Link>
-  );
-};
+  )
+}
 
-export default TopArticles;
+export default TopArticles

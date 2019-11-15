@@ -4,8 +4,7 @@ import { AdminPanelSt } from './adminPanel-styled'
 import { get, edit, create, removeArt } from '../../static/functions'
 import AdmPanelsCard from './admPanelCard'
 import EditArticle from './modal/editArticle'
-
-import tempImg from '../../static/code.jpg'
+import { PropTypes } from 'prop-types'
 
 const AdminPanel = () => {
   const [articles, setArticles] = useState([])
@@ -19,58 +18,58 @@ const AdminPanel = () => {
       'articles', '', (res) => { setArticles(res) }
     )
   }, [])
-  
+
   const createNewArticle = () => {
-    setEditMode(true) 
+    setEditMode(true)
   }
 
   const activeEditMode = (id) => {
     setActiveArticleId(id)
     setType('Update')
-    setEditMode(true) 
+    setEditMode(true)
     setActiveArticle(articles.filter(e => e._id === id))
   }
 
   const disableEditMode = () => {
     setActiveArticle(undefined)
-    setEditMode(false) 
+    setEditMode(false)
     setActiveArticleId(undefined)
   }
 
   const newArticleData = (data) => {
     edit(data, 'articles', activeArticleId,
-    () => {
-      setActiveArticle(undefined)
-      setEditMode(false) 
-      setActiveArticleId(undefined)
-      get(
-        'articles', '', (res) => { setArticles(res) }
-      )
-    })
+      () => {
+        setActiveArticle(undefined)
+        setEditMode(false)
+        setActiveArticleId(undefined)
+        get(
+          'articles', '', (res) => { setArticles(res) }
+        )
+      })
   }
 
   const deleteArticle = (id) => {
     removeArt('articles', id,
-    () => {
-      get(
-        'articles', '', (res) => { setArticles(res) }
-      )
-    })
+      () => {
+        get(
+          'articles', '', (res) => { setArticles(res) }
+        )
+      })
   }
   const createArticle = (data) => {
     create(data, 'articles',
-    () => {
-      setActiveArticle(undefined)
-      setEditMode(false) 
-      setActiveArticleId(undefined)
-      get(
-        'articles', '', (res) => { setArticles(res) }
-      )
-    })
+      () => {
+        setActiveArticle(undefined)
+        setEditMode(false)
+        setActiveArticleId(undefined)
+        get(
+          'articles', '', (res) => { setArticles(res) }
+        )
+      })
   }
 
   const setEditedArticleData = (data) => {
-    if (type == 'Create') {
+    if (type === 'Create') {
       createArticle(data)
     } else {
       newArticleData(data)
@@ -81,10 +80,10 @@ const AdminPanel = () => {
     <MainSt>
       <AddArticle setType={setType} createNewArticle={createNewArticle} />
       {editMode && <EditArticle disableEditMode={disableEditMode} type={type} setEditedArticleData={setEditedArticleData} article={activeArticle && activeArticle[0]} />}
-      {articles ?
-        <AdminPanelSt>
+      {articles
+        ? <AdminPanelSt>
           {articles.map((e) =>
-            <AdmPanelsCard deleteArticle={deleteArticle} activeEditMode={activeEditMode}  {...e} />
+            <AdmPanelsCard deleteArticle={deleteArticle} activeEditMode={activeEditMode} key={e._id} {...e} />
           )}
         </AdminPanelSt>
         : 'loading'
@@ -96,9 +95,14 @@ const AdminPanel = () => {
 const AddArticle = (props) => {
   return (
     <AddArticleSt>
-      <span onClick={ () => {props.createNewArticle(); props.setType('Create')}}>Add article</span>
+      <span onClick={ () => { props.createNewArticle(); props.setType('Create') }}>Add article</span>
     </AddArticleSt>
   )
+}
+
+AddArticle.propTypes = {
+  createNewArticle: PropTypes.func,
+  setType: PropTypes.func
 }
 
 export default AdminPanel

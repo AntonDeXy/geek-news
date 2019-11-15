@@ -28,7 +28,7 @@ const RegisterPanel = () => {
         <div className="buttons">
           <div className='button_div'>
             <button className="button button--itzel button--size-l button--border-thin button--text-thin">
-              <i class="button__icon icon icon-envelope"><i class="fas fa-user-alt"></i></i>
+              <i className="button__icon icon icon-envelope"><i className="fas fa-user-alt"></i></i>
               <span>Зарегистрироваться</span>
             </button>
           </div>

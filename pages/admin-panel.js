@@ -3,7 +3,7 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import AdminPanel from '../components/adminPanel/adminPanel'
 import '../static/style/style.scss'
-import Head from "./../components/Head"
+import Head from './../components/Head'
 
 const adminPanel = () => {
   return (

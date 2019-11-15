@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-export const MainSt = styled.main `
+export const MainSt = styled.main`
   display: grid;
   padding: 15px 0;
   width: 100%;
@@ -8,7 +8,7 @@ export const MainSt = styled.main `
   min-height: 80vh;
 `
 
-export const MainGeneralPageSt = styled.main `
+export const MainGeneralPageSt = styled.main`
   display: grid;
   padding: 15px 0;
   grid-template-rows: auto auto;
@@ -17,7 +17,7 @@ export const MainGeneralPageSt = styled.main `
   min-height: 80vh;
 `
 
-export const TopArticlesBlockSt = styled.div `
+export const TopArticlesBlockSt = styled.div`
   @media(max-width: 1200px) {
     grid-template-columns: repeat(3, auto) !important;
   }
@@ -34,19 +34,19 @@ export const TopArticlesBlockSt = styled.div `
   grid-template-columns: repeat(6, auto);
   gap: 10px;
 `
-export const Img = styled.img `
+export const Img = styled.img`
   width: 100%;
   color: white;
   display: grid;
   align-content: center;
   justify-content: center;
 `
-export const ArticleLink = styled.a `
+export const ArticleLink = styled.a`
   color: white;
   text-decoration: none;
 `
 
-export const MoreNewsSt = styled.div `
+export const MoreNewsSt = styled.div`
   justify-self: center;
   display: inline-block;
   width: auto;
@@ -54,7 +54,7 @@ export const MoreNewsSt = styled.div `
   color: white;
   font-family: 'Squada One', cursive;
 `
-export const GeneralNews = styled.div `
+export const GeneralNews = styled.div`
   justify-self: center;
   width: 85%;
   display: grid;
@@ -75,7 +75,7 @@ export const GeneralNews = styled.div `
   }
 `
 
-export const GeneralNewSt = styled.div `
+export const GeneralNewSt = styled.div`
   display: grid;
   grid-template-columns: 35% auto;
   column-gap: 20px;
@@ -100,7 +100,7 @@ export const GeneralNewSt = styled.div `
     }
   }
 `
-export const ArticleDesc = styled.div `
+export const ArticleDesc = styled.div`
   display: grid;
   background-color: #393939;
   padding: 10px;
@@ -108,19 +108,19 @@ export const ArticleDesc = styled.div `
   /* overflow-y: scroll; */
 `
 
-export const H2 = styled.h2 `
+export const H2 = styled.h2`
   margin: 0;
   font-family: 'Bree Serif', serif;
   color: white;
   margin-left: 10px;
 `
 
-export const HR = styled.hr `
+export const HR = styled.hr`
   height: 2px;
   background-color: white;
   width: 100%;
 `
-export const Span = styled.span `
+export const Span = styled.span`
   color: white;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
@@ -130,7 +130,7 @@ export const Span = styled.span `
   max-height: 180px;
 `
 
-export const ArticleSt = styled.div `
+export const ArticleSt = styled.div`
   @media(max-width: 540px) {
     grid-template-columns: 100% !important;
   }
@@ -144,7 +144,7 @@ export const ArticleSt = styled.div `
   }
 `
 
-export const ArticleInfo = styled.div `
+export const ArticleInfo = styled.div`
   color: white;
 
   font-family: 'Bree Serif', serif;
@@ -153,13 +153,13 @@ export const ArticleInfo = styled.div `
   }
 `
 
-export const OtherInf = styled.div `
+export const OtherInf = styled.div`
   margin-bottom: 10px;
   span {
     display: block
   }
 `
-export const AddArticleSt = styled.div `
+export const AddArticleSt = styled.div`
   width: 90%;
   justify-self: center;
   text-align: right;

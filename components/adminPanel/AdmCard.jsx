@@ -1,6 +1,6 @@
 import React from 'react'
 import { AdmCardSt } from './adminPanel-styled'
-import { Moment } from 'react-moment';
+import { PropTypes } from 'prop-types'
 
 const AdmCard = (props) => (
   <AdmCardSt>
@@ -16,5 +16,11 @@ const AdmCard = (props) => (
     </div>
   </AdmCardSt>
 )
+
+AdmCard.propTypes = {
+  img: PropTypes.string,
+  title: PropTypes.string,
+  author: PropTypes.string
+}
 
 export default AdmCard

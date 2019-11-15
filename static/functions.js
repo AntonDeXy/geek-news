@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = `https://cors-anywhere.herokuapp.com/geek-news-back.herokuapp.com/`
+const baseUrl = 'https://cors-anywhere.herokuapp.com/geek-news-back.herokuapp.com/'
 // const baseUrl = `http://localhost:5000/`
 
 export const get = (type, articleId, success, func2) => {
@@ -19,7 +19,7 @@ export const edit = (article, type, articleId, success) => {
     .put(url, { article })
     .then(response => {
       console.log(response)
-      if (response.status == 200) {
+      if (response.status === 200) {
         success()
       }
     })
@@ -34,7 +34,7 @@ export const create = (article, type, success) => {
     .post(url, { article })
     .then(response => {
       console.log(response)
-      if (response.status == 200) {
+      if (response.status === 200) {
         success()
       }
     })
@@ -50,7 +50,7 @@ export const removeArt = (type, articleId, success) => {
     .delete(url)
     .then(response => {
       console.log(response)
-      if (response.status == 200) {
+      if (response.status === 200) {
         success()
       }
     })
@@ -62,19 +62,20 @@ export const removeArt = (type, articleId, success) => {
 export const postPhoto = (type, file, success, setUploadPercentage) => {
   const url = `${baseUrl}${type}`
   axios
-    .post(url, file, { onUploadProgress: progressEvent => {
-      setUploadPercentage(
-        parseInt(
-          Math.round((progressEvent.loaded * 100) / progressEvent.total)
+    .post(url, file, {
+      onUploadProgress: progressEvent => {
+        setUploadPercentage(
+          parseInt(
+            Math.round((progressEvent.loaded * 100) / progressEvent.total)
+          )
         )
-      );
 
-      // Clear percentage
-      setTimeout(() => setUploadPercentage(0), 10000);
-    }})
+        // Clear percentage
+        setTimeout(() => setUploadPercentage(0), 10000)
+      }
+    })
     .then(res => {
       console.log(res)
       success(res.data.imageUrl)
     })
-    
 }

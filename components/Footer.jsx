@@ -1,7 +1,7 @@
 import React from 'react'
 import heart from '../static/icons/heart-solid.svg'
 import coffee from '../static/icons/coffee-solid.svg'
-import {FooterSt, WrapperSt, Img, A, MadeWith} from './elements/Footer-styled';
+import { FooterSt, WrapperSt, Img, A, MadeWith } from './elements/Footer-styled'
 
 const Footer = () => {
   return (

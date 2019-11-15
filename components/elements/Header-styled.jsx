@@ -8,7 +8,7 @@ export const HeaderSt = styled.header`
   min-height: 10vh;
   justify-content: center;
 `
-export const WrapperSt = styled.div `
+export const WrapperSt = styled.div`
   .logo {
     font-family: 'Bree Serif', serif;
     font-size: 2.5rem;

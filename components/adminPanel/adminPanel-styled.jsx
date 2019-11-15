@@ -73,7 +73,7 @@ export const AdmCardSt = styled.div`
       justify-items: center;
     }
   }
-` 
+`
 
 export const EditPanel = styled.div`
   padding: 15px;

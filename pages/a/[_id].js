@@ -4,7 +4,7 @@ import Footer from '../../components/Footer'
 import '../../static/style/style.scss'
 import Article from '../../components/Article'
 import { useRouter } from 'next/router'
-import Head from './../../components/Head';
+import Head from './../../components/Head'
 import { get } from '../../static/functions'
 
 const ArticlePage = (props) => {
@@ -13,11 +13,11 @@ const ArticlePage = (props) => {
   const [article, setArticle] = useState(null)
 
   useEffect(() => {
-      (async () => {
-        if (router.query._id) {
-          get('articles', router.query._id, (res) => {setArticle(res)} )
-        }
-      })()
+    (async () => {
+      if (router.query._id) {
+        get('articles', router.query._id, (res) => { setArticle(res) })
+      }
+    })()
   }, [router])
   return (
     <>

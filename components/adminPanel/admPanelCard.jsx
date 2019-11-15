@@ -3,7 +3,9 @@ import Moment from 'react-moment'
 import { AdmCardSt } from './adminPanel-styled'
 import ReactHtmlParser from 'react-html-parser'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faEdit, faTrashAlt} from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { PropTypes } from 'prop-types'
+
 const AdmPanelsCard = (props) => {
   return (
     <AdmCardSt>
@@ -22,4 +24,14 @@ const AdmPanelsCard = (props) => {
   )
 }
 
+AdmPanelsCard.propTypes = {
+  imgUrl: PropTypes.string,
+  title: PropTypes.string,
+  date: PropTypes.string,
+  author: PropTypes.string,
+  content: PropTypes.string,
+  _id: PropTypes.string,
+  deleteArticle: PropTypes.func,
+  activeEditMode: PropTypes.func
+}
 export default AdmPanelsCard

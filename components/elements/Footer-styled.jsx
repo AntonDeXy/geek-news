@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-export const FooterSt = styled.footer `
+export const FooterSt = styled.footer`
   width: 100%;
   font-size: 20px;
   height: 10vh;
@@ -9,7 +9,7 @@ export const FooterSt = styled.footer `
   font-family: 'Squada One', cursive;
 `
 
-export const WrapperSt = styled.div `
+export const WrapperSt = styled.div`
   justify-self: center;
   align-items: center;
   color: white;
@@ -22,11 +22,11 @@ export const WrapperSt = styled.div `
   }
 `
 
-export const Img = styled.img `
+export const Img = styled.img`
   height: 20px;
 `
 
-export const A = styled.a `
+export const A = styled.a`
   color: white;
   text-decoration: none;
   transition: all.5s;
@@ -35,7 +35,7 @@ export const A = styled.a `
     color: #8A5076;
   }
 `
-export const MadeWith = styled.div `
+export const MadeWith = styled.div`
   display: grid;
   justify-content: right;
   @media (max-width: 540px) {

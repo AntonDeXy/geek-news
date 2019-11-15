@@ -1,31 +1,32 @@
 import React from 'react'
 import ReactHtmlParser from 'react-html-parser'
 import Moment from 'react-moment'
-import Loader from './common/Loader';
-import { ArticleSt, Img, ArticleInfo, OtherInf, MainSt } from './elements/Main-styled';
+import Loader from './common/Loader'
+import { ArticleSt, Img, ArticleInfo, OtherInf, MainSt } from './elements/Main-styled'
+import { PropTypes } from 'prop-types'
 
-const Article = ({ article }) => {
-  if (article) {
+const Article = (props) => {
+  if (props.article) {
     return (
       <MainSt>
         <ArticleSt>
           <div className="img">
-            <Img src={article.imgUrl} alt="" />
+            <Img src={props.article.imgUrl} alt="" />
           </div>
           <ArticleInfo>
-            <h1>{article.title}</h1>
+            <h1>{props.article.title}</h1>
             <OtherInf>
               <span>
-                author: {article.author}
+                author: {props.article.author}
               </span>
               <span>
-                date: <Moment format="dddd HH:mm DD-MM-YYYY">{article.date}</Moment>
+                date: <Moment format="dddd HH:mm DD-MM-YYYY">{props.article.date}</Moment>
               </span>
               <span>
-                category: {article.category}
+                category: {props.article.category}
               </span>
             </OtherInf>
-            <div>{ReactHtmlParser(article.content)}</div>
+            <div>{ReactHtmlParser(props.article.content)}</div>
           </ArticleInfo>
         </ArticleSt>
       </MainSt>
@@ -36,6 +37,10 @@ const Article = ({ article }) => {
       <Loader />
     </MainSt>
   )
+}
+
+Article.propTypes = {
+  article: PropTypes.object
 }
 
 export default Article

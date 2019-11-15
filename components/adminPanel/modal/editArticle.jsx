@@ -1,20 +1,17 @@
-import React, { useState, useEffect, useRef } from "react"
-import { Editor } from "@tinymce/tinymce-react"
-import Moment from 'react-moment'
+import React, { useState, useEffect } from 'react'
+import { Editor } from '@tinymce/tinymce-react'
 import { EditPanel } from '../adminPanel-styled'
 import cross from '../../../static/icons/times-solid.svg'
 import { postPhoto } from '../../../static/functions'
 import Progress from '../../common/Progress'
+import { PropTypes } from 'prop-types'
 
 const EditArticle = (props) => {
   const [article, setArticle] = useState(props.article)
-  const [articleId, setArticleId] = useState(undefined)
-  const [articleForUpdate, setArticleForUpdate] = useState(undefined)
-  const [articles, setArticles] = useState(undefined)
   const [imgUrl, setImgUrl] = useState(undefined)
   const [selectedFile, setSelectedFile] = useState({ selectedFile: null })
-  const [uploadPercentage, setUploadPercentage] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [uploadPercentage, setUploadPercentage] = useState(0)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   const fileChangedHandler = event => {
     setIsLoaded(false)
@@ -52,7 +49,7 @@ const EditArticle = (props) => {
         <input
           type="text"
           onChange={e => {
-            setArticle({ ...article, title: e.target.value });
+            setArticle({ ...article, title: e.target.value })
           }}
           id="name"
           value={article ? article.title : ''}
@@ -77,10 +74,10 @@ const EditArticle = (props) => {
 
           <button className='upload-button' onClick={uploadHandler}>Upload!</button>
           <br />
-          {uploadPercentage != 0 &&
+          {uploadPercentage !== 0 &&
             <Progress percentage={uploadPercentage} />
           }
-          
+
         </div>
         <span>Category</span>
         <select
@@ -102,26 +99,32 @@ const EditArticle = (props) => {
             height: 400,
             menubar: false,
             plugins: [
-              "advlist autolink lists link image charmap print preview anchor",
-              "searchreplace visualblocks code fullscreen",
-              "insertdatetime media table paste code help wordcount"
+              'advlist autolink lists link image charmap print preview anchor',
+              'searchreplace visualblocks code fullscreen',
+              'insertdatetime media table paste code help wordcount'
             ],
             toolbar:
-              "undo redo | formatselect | bold italic backcolor | \
-              alignleft aligncenter alignright alignjustify | \
-              bullist numlist outdent indent | removeformat | help"
+              'undo redo | formatselect | bold italic backcolor | \n' +
+              'alignleft aligncenter alignright alignjustify | \n' +
+              'bullist numlist outdent indent | removeformat | help'
           }}
           onChange={e => {
-            setArticle({ ...article, content: e.target.getContent() });
+            setArticle({ ...article, content: e.target.getContent() })
           }}
         />
-        
+
       </div>
       <button onClick={() => { setArticle(delete article._id); props.setEditedArticleData(article) }} type="button">
           Submit
-        </button>
+      </button>
     </EditPanel>
   )
 }
 
+EditArticle.propTypes = {
+  type: PropTypes.string,
+  article: PropTypes.object,
+  setEditedArticleData: PropTypes.func,
+  disableEditMode: PropTypes.func
+}
 export default EditArticle

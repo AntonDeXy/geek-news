@@ -1,13 +1,13 @@
-import React, { useState } from "react"
-import Link from "next/link"
-import { WrapperSt, HeaderSt, A } from "./elements/Header-styled"
+import React, { useState } from 'react'
+import Link from 'next/link'
+import { WrapperSt, HeaderSt } from './elements/Header-styled'
 import menu from '../static/icons/menu.svg'
 import styled from '@emotion/styled'
 
 const Header = props => {
   const [menuStatus, setMenuStatus] = useState(false)
-  
-  const Links = styled.div `
+
+  const Links = styled.div`
   @media (max-width: 768px) {
     display: ${menuStatus ? 'grid' : 'none'} !important;
     grid-template-columns: 100%;
