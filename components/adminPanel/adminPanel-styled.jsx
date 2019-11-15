@@ -85,7 +85,7 @@ export const EditPanel = styled.div`
   background-color: rgba(53, 53, 53, 1);
   color: white;
   border-radius: 10px;
-  font-family: 'Fira Sans Condensed', sans-serif; 
+  font-family: 'Bree Serif', serif;
   img {
     width: 100%;
   }
