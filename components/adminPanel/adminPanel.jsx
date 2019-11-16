@@ -37,35 +37,50 @@ const AdminPanel = () => {
   }
 
   const newArticleData = (data) => {
-    edit(data, 'articles', activeArticleId,
-      () => {
-        setActiveArticle(undefined)
-        setEditMode(false)
-        setActiveArticleId(undefined)
-        get(
-          'articles', '', (res) => { setArticles(res) }
-        )
-      })
+    const pass = prompt('Enter Password:', '')
+    if (pass === '1234qwerty') {
+      edit(data, 'articles', activeArticleId,
+        () => {
+          setActiveArticle(undefined)
+          setEditMode(false)
+          setActiveArticleId(undefined)
+          get(
+            'articles', '', (res) => { setArticles(res) }
+          )
+        })
+    } else {
+      alert('Password Is Wrong')
+    }
   }
 
   const deleteArticle = (id) => {
-    removeArt('articles', id,
-      () => {
-        get(
-          'articles', '', (res) => { setArticles(res) }
-        )
-      })
+    const pass = prompt('Enter Password:', '')
+    if (pass === '1234qwerty') {
+      removeArt('articles', id,
+        () => {
+          get(
+            'articles', '', (res) => { setArticles(res) }
+          )
+        })
+    } else {
+      alert('Password Is Wrong')
+    }
   }
   const createArticle = (data) => {
-    create(data, 'articles',
-      () => {
-        setActiveArticle(undefined)
-        setEditMode(false)
-        setActiveArticleId(undefined)
-        get(
-          'articles', '', (res) => { setArticles(res) }
-        )
-      })
+    const pass = prompt('Enter Password:', '')
+    if (pass === '1234qwerty') {
+      create(data, 'articles',
+        () => {
+          setActiveArticle(undefined)
+          setEditMode(false)
+          setActiveArticleId(undefined)
+          get(
+            'articles', '', (res) => { setArticles(res) }
+          )
+        })
+    } else {
+      alert('Password Is Wrong')
+    }
   }
 
   const setEditedArticleData = (data) => {

@@ -56,6 +56,9 @@ const Header = props => {
             <Link href="/">
               <a>News</a>
             </Link>
+            <Link href="/admin-panel">
+              <a>Admin Panel</a>
+            </Link>
             <Link href="https://github.com/AntonDeXy/geek-news">
               <a>GitHub Page</a>
             </Link>

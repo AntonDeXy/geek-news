@@ -5,6 +5,8 @@ import cross from '../../../static/icons/times-solid.svg'
 import { postPhoto } from '../../../static/functions'
 import Progress from '../../common/Progress'
 import { PropTypes } from 'prop-types'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 const EditArticle = (props) => {
   const [article, setArticle] = useState(props.article)
@@ -34,17 +36,18 @@ const EditArticle = (props) => {
     <EditPanelBack>
       <EditPanel>
         <h3> {props.type} article</h3>
-        <img onClick={() => { props.disableEditMode() }} src={cross} alt="" />
+        <FontAwesomeIcon onClick={() => { props.disableEditMode() }} icon={faTimes} />
+        {/* <img onClick={() => { props.disableEditMode() }} src={cross} alt="" /> */}
         <div className='wrapper'>
 
           {article && article._id &&
-          <>
-            <span>Article id</span>
-            <input
-              type="text"
-              value={article._id}
-            />
-          </>
+            <>
+              <span>Article id</span>
+              <input
+                type="text"
+                value={article._id}
+              />
+            </>
           }
           <span>Title</span>
           <input
@@ -60,22 +63,22 @@ const EditArticle = (props) => {
           <span>Img</span>
           <div>
             {isLoaded &&
-            <>
-              <img style={{ width: '20%' }} src={imgUrl} alt="" />
-              <br />
-              <br />
-            </>
+              <>
+                <img style={{ width: '20%' }} src={imgUrl} alt="" />
+                <br />
+                <br />
+              </>
             }
             <input className='fileLoader' type="file" onChange={fileChangedHandler} />
             <br />
             {
-              isLoaded && <> <span>Loading complete</span> <br /> </>
+              isLoaded && <> <span>Loading complete</span></>
             }
 
             <button className='upload-button' onClick={uploadHandler}>Upload!</button>
             <br />
             {uploadPercentage !== 0 &&
-            <Progress percentage={uploadPercentage} />
+              <Progress percentage={uploadPercentage} />
             }
 
           </div>
@@ -104,9 +107,9 @@ const EditArticle = (props) => {
                 'insertdatetime media table paste code help wordcount'
               ],
               toolbar:
-              'undo redo | formatselect | bold italic backcolor | \n' +
-              'alignleft aligncenter alignright alignjustify | \n' +
-              'bullist numlist outdent indent | removeformat | help'
+                'undo redo | formatselect | bold italic backcolor | \n' +
+                'alignleft aligncenter alignright alignjustify | \n' +
+                'bullist numlist outdent indent | removeformat | help'
             }}
             onChange={e => {
               setArticle({ ...article, content: e.target.getContent() })

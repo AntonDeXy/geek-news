@@ -108,6 +108,12 @@ export const EditPanel = styled.div`
   color: white;
   border-radius: 10px;
   font-family: 'Bree Serif', serif;
+  svg path {
+    transition: all.5s;
+  }
+  svg path:hover {
+    fill: red;
+  }
   img {
     width: 100%;
   }
@@ -152,7 +158,6 @@ export const EditPanel = styled.div`
       border: unset;
       svg {
         fill: white;
-
       }
     }
   }
