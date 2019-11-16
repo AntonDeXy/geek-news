@@ -144,7 +144,7 @@ export const GeneralNewSt = styled.div`
     }
     .thumbnail {
       width: 100%;
-      height: 100% !important;
+      height: auto !important;
       max-height: unset !important;
       grid-column: 1 !important;
     }
