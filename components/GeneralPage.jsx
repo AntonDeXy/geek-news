@@ -8,7 +8,7 @@ import Pagination from './Pagination'
 const GeneralPage = () => {
   const [articles, setArticles] = useState(null)
   const [currentPage, setCurrentPage] = useState(1)
-  const [postsPerPage] = useState(2)
+  const [postsPerPage] = useState(10)
 
   useEffect(() => {
     get('articles', '', (res) => { setArticles(res) })
