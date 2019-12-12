@@ -16,14 +16,7 @@ const LoginPanel = (props) => {
     if (data) {
       history.pushState(null, null, '/user')
       window.location.reload()
-
       return null
-      // debugger
-      // return <Router>
-      //   <Route>
-      //     <Redirect to='/user' />
-      //   </Route>
-      // </Router>
     }
   }
 

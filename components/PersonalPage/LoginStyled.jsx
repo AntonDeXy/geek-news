@@ -40,7 +40,9 @@ export const LoginPageSt = styled.div`
       grid-row-gap: 10px;
       grid-template-columns: 100%;
       .error {
+        width: 100%;
         color: red;
+        text-align: center;
       }
       div{
         column-gap: 20px;
