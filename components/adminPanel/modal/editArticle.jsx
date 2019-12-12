@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 import { EditPanel, EditPanelBack } from '../adminPanel-styled'
-import cross from '../../../static/icons/times-solid.svg'
 import { postPhoto } from '../../../static/functions'
 import Progress from '../../common/Progress'
 import { PropTypes } from 'prop-types'
@@ -37,7 +36,6 @@ const EditArticle = (props) => {
       <EditPanel>
         <h3> {props.type} article</h3>
         <FontAwesomeIcon onClick={() => { props.disableEditMode() }} icon={faTimes} />
-        {/* <img onClick={() => { props.disableEditMode() }} src={cross} alt="" /> */}
         <div className='wrapper'>
 
           {article && article._id &&

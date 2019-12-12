@@ -6,24 +6,25 @@ import styled from '@emotion/styled'
 
 const Header = props => {
   const [menuStatus, setMenuStatus] = useState(false)
-
-  const Links = styled.div`
-  @media (max-width: 768px) {
-    display: ${menuStatus ? 'grid' : 'none'} !important;
-    grid-template-columns: 100%;
-    background-color: #383838;
-    justify-self: right;
-    grid-column: 1/3;
-    margin-right: 25px;
-    a {
-      display: block;
-    }
-
+  const LogOut = () => {
+    localStorage.removeItem('user')
   }
-  display: grid;
-  text-align: right;
-  grid-template-columns: repeat(4, auto);
-  text-align: right;
+  const Links = styled.div`
+    @media (max-width: 768px) {
+      display: ${menuStatus ? 'grid' : 'none'} !important;
+      grid-template-columns: 100%;
+      background-color: #383838;
+      justify-self: right;
+      grid-column: 1/3;
+      margin-right: 25px;
+      a {
+        display: block;
+      }
+    }
+    display: grid;
+    text-align: right;
+    grid-template-columns: repeat(4, auto);
+    text-align: right;
   `
 
   const MenuIcon = styled.img`
@@ -47,9 +48,7 @@ const Header = props => {
       <HeaderSt>
         <WrapperSt>
           <Link href="/">
-            <a className="logo">
-              Geek News
-            </a>
+            <a className="logo">Geek News</a>
           </Link>
           <MenuIcon onClick={menuIsActive} src={menu} alt="" />
           <Links className="links">
@@ -62,9 +61,16 @@ const Header = props => {
             <Link href="https://github.com/AntonDeXy/geek-news">
               <a>GitHub Page</a>
             </Link>
-            <Link href="/login">
-              <a>Login</a>
-            </Link>
+            { typeof window !== 'undefined' &&
+            localStorage.getItem('user') ? (
+                <Link href="/login">
+                  <a onClick={LogOut}>LogOut</a>
+                </Link>
+              ) : (
+                <Link href="/login">
+                  <a>Login</a>
+                </Link>
+              )}
           </Links>
         </WrapperSt>
       </HeaderSt>

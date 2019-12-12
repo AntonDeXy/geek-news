@@ -39,6 +39,9 @@ export const LoginPageSt = styled.div`
       grid-auto-rows: auto;
       grid-row-gap: 10px;
       grid-template-columns: 100%;
+      .error {
+        color: red;
+      }
       div{
         column-gap: 20px;
         font-size: 17px;

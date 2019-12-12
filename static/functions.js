@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const baseUrl = 'https://cors-anywhere.herokuapp.com/geek-news-back.herokuapp.com/'
-// const baseUrl = `http://localhost:5000/`
+// const baseUrl = 'https://cors-anywhere.herokuapp.com/geek-news-back.herokuapp.com/'
+const baseUrl = 'http://localhost:5001/'
 
 export const get = (type, articleId, success, func2) => {
   (async () => {
@@ -77,5 +77,22 @@ export const postPhoto = (type, file, success, setUploadPercentage) => {
     .then(res => {
       console.log(res)
       success(res.data.imageUrl)
+    })
+}
+
+export const auth = (data, type, success) => {
+  const url = `${baseUrl}${type}`
+  axios
+    .post(url, data)
+    .then(response => {
+      // console.log(response)
+      if (response.status === 200) {
+        success(response.data)
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+      success(error)
+      // success(error.response.data.message)
     })
 }
