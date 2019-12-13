@@ -3,10 +3,22 @@ import axios from 'axios'
 // const baseUrl = 'https://cors-anywhere.herokuapp.com/geek-news-back.herokuapp.com/'
 const baseUrl = 'http://localhost:5001/'
 
+export const checkToken = (token, success) => {
+  (async () => {
+    const url = baseUrl + 'checktoken'
+    console.log(url)
+    const headers = {
+      Authorization: 'Bearer ' + token
+    }
+    axios.get(url, { headers })
+      .then(res => success(res))
+    // success(res.data)
+  })()
+}
+
 export const get = (type, articleId, success, func2) => {
   (async () => {
     const url = `${baseUrl}${type}/${articleId}`
-    console.log(url)
     const res = await axios.get(url)
     success(res.data)
     func2 && func2(res.data)

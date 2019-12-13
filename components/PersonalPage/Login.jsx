@@ -31,21 +31,20 @@ const LoginPanel = (props) => {
       res => {
         console.log(res)
         if (res.token) {
-          setToken(res.token)
+          setToken()
           setUser(res.user)
           localStorage.setItem('user', JSON.stringify(res.user))
+          localStorage.setItem('token', res.token)
           history.pushState(null, '/user')
           window.location.reload()
         } else if (res.message) {
-          setError(res.message)
+          setError(res.response.data.message.message)
         }
       }
     )
-    // }
   }
 
   return (
-
     <LoginPageSt>
       {
         user && <Router>
@@ -58,7 +57,9 @@ const LoginPanel = (props) => {
       <div className="wrapper" id="panels">
         <h1 className="title">Логин</h1>
         <form action="/" id="register">
-          {error && <span className='error'>{error}</span>}
+          {error &&
+            <span className='error'>{error}</span>
+          }
           <div>
             <label htmlFor="email">Email</label>
             <input

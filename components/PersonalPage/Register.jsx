@@ -32,7 +32,7 @@ const RegisterPanel = () => {
           history.pushState(null, '/user')
           window.location.reload()
         } else if (res.message) {
-          setError(res.response.data.message)
+          setError(res.response.data.message.message)
         }
       }
     )

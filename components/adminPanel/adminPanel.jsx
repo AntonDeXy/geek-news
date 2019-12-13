@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { MainSt, AddArticleSt } from '../elements/Main-styled'
 import { AdminPanelSt } from './adminPanel-styled'
-import { get, edit, create, removeArt } from '../../static/functions'
+import { get, edit, create, removeArt, checkToken } from '../../static/functions'
 import AdmPanelsCard from './admPanelCard'
 import EditArticle from './modal/editArticle'
 import { PropTypes } from 'prop-types'
@@ -12,11 +12,24 @@ const AdminPanel = () => {
   const [activeArticleId, setActiveArticleId] = useState('')
   const [activeArticle, setActiveArticle] = useState(undefined)
   const [type, setType] = useState('')
+  const [res, setRes] = useState(null)
 
   useEffect(() => {
-    get(
-      'articles', '', (res) => { setArticles(res) }
-    )
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('token')
+      const user = JSON.parse(localStorage.getItem('user'))
+      checkToken(token, res => {
+        setRes(res)
+        if (res.status === 200 && user.isAdmin) {
+          get(
+            'articles', '', (res) => { setArticles(res) }
+          )
+        } else {
+          history.pushState(null, null, '/')
+          window.location.reload()
+        }
+      })
+    }
   }, [])
 
   const createNewArticle = () => {
@@ -37,8 +50,11 @@ const AdminPanel = () => {
   }
 
   const newArticleData = (data) => {
-    const pass = prompt('Enter Password:', '')
-    if (pass === '1234qwerty') {
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('token')
+      checkToken(token, res => setRes(res))
+    }
+    if (res.status) {
       edit(data, 'articles', activeArticleId,
         () => {
           setActiveArticle(undefined)
@@ -49,13 +65,16 @@ const AdminPanel = () => {
           )
         })
     } else {
-      alert('Password Is Wrong')
+      history.pushState(null, '/')
     }
   }
 
   const deleteArticle = (id) => {
-    const pass = prompt('Enter Password:', '')
-    if (pass === '1234qwerty') {
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('token')
+      checkToken(token, res => setRes(res))
+    }
+    if (res.status) {
       removeArt('articles', id,
         () => {
           get(
@@ -63,12 +82,15 @@ const AdminPanel = () => {
           )
         })
     } else {
-      alert('Password Is Wrong')
+      history.pushState(null, '/')
     }
   }
   const createArticle = (data) => {
-    const pass = prompt('Enter Password:', '')
-    if (pass === '1234qwerty') {
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('token')
+      checkToken(token, res => setRes(res))
+    }
+    if (res.status) {
       create(data, 'articles',
         () => {
           setActiveArticle(undefined)
@@ -79,7 +101,7 @@ const AdminPanel = () => {
           )
         })
     } else {
-      alert('Password Is Wrong')
+      history.pushState(null, '/')
     }
   }
 

@@ -18,7 +18,7 @@ export const WrapperSt = styled.div`
   }
   display: grid;
   width: 90vw;
-  grid-template-columns: auto 20%;
+  grid-template-columns: 1fr auto;
   align-items: center;
   a {
     align-self: center;
@@ -40,3 +40,12 @@ export const WrapperSt = styled.div`
     }
   }
 `
+
+export const MenuIcon = styled.img`
+    @media (max-width: 768px) {
+      display: block !important;
+    }
+    justify-self: right;
+    display: none;
+    width: 40px;
+  `
