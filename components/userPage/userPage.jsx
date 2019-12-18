@@ -2,30 +2,64 @@ import React, { useState } from 'react'
 import { UserPageSt } from './userPageStyled'
 import Moment from 'react-moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit, faCalendarDay, faEye } from '@fortawesome/free-solid-svg-icons'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import UserCard from './userCard'
+import { get, checkToken, edit, getUserData } from '../../static/functions'
 
 const UserPage = (props) => {
   const [user, setUser] = useState(undefined)
+  const [userId, setUserId] = useState(undefined)
   const [editMode, setEditMode] = useState(false)
   const [email, setEmail] = useState(null)
   const [nickname, setNickname] = useState(null)
   const [isSave, setIsSave] = useState(false)
+  const [articles, setArticles] = useState(null)
 
   if (typeof window !== 'undefined' && user === undefined) {
     setUser(null)
     const tempData = JSON.parse(localStorage.getItem('user'))
     setUser(tempData)
+    setUserId(tempData._id)
     if (!tempData) {
       history.pushState(null, null, '/')
       window.location.reload()
     }
+    get('articlesByAuthor', tempData.nickname, (res) => { setArticles(res) })
   }
+
   if (user && !email) {
     setEmail(user.email)
     setNickname(user.nickname)
   }
 
   const saveChanges = () => {
+    const token = localStorage.getItem('token')
+    checkToken(token, res => {
+      if (res.status === 200) {
+        edit(
+          {
+            nickname: nickname
+            // email: user.email,
+            // password: user.password
+          },
+          'changeUserInfo',
+          userId,
+          (res) => {
+            setEditMode(false)
+            getUserData(token, (res) => {
+              setUser(res.data)
+              localStorage.setItem('user', JSON.stringify(res.data))
+            })
+          })
+      } else {
+        // alert something went wrong
+        // history.pushState(null, null, '/')
+        // window.location.reload()
+      }
+    })
+
+    // }
+
     // if token is avalible or password is correct do this
 
     // send new pass to db
@@ -37,18 +71,19 @@ const UserPage = (props) => {
     //   }
     // })
   }
+
   return (
     <UserPageSt>
       {user && (
         <>
           <div className="userInfo">
-            {isSave && (email !== user.email || nickname !== user.nickname) &&
+            {/* {isSave && (email !== user.email || nickname !== user.nickname) &&
               <div className='saveChanges'>
                 <h3>Do you want save changes?</h3>
                 <label>Enter password <input type="password"/></label>
                 <button onClick={saveChanges}>Save</button>
               </div>
-            }
+            } */}
             <div className="wrapper">
               {!editMode ? (
                 <div>
@@ -67,7 +102,7 @@ const UserPage = (props) => {
                   <input value={nickname} onChange={e => setNickname(e.target.value)} type="text" />
                 </div>
               )}
-              {!editMode ? (
+              {/* {!editMode ? (
                 <div>
                   <h4>Email:</h4>
                   <span>
@@ -83,7 +118,13 @@ const UserPage = (props) => {
                   <h4>Email:</h4>
                   <input value={email} onChange={e => setEmail(e.target.value)} type="text" />
                 </div>
-              )}
+              )} */}
+              <div>
+                <h4>Email:</h4>
+                <span>
+                  {user.email && user.email}
+                </span>
+              </div>
               <div>
                 <h4>Account created in:</h4>
                 {user.dateOfRegitration && (
@@ -102,6 +143,11 @@ const UserPage = (props) => {
                 <h4>ID:</h4>
                 <span>{user.userId}</span>
               </div>
+              {editMode &&
+              <div className='saveChanges'>
+                <button onClick={saveChanges}>Save</button>
+              </div>
+              }
             </div>
 
             <div className="editMode">
@@ -121,21 +167,7 @@ const UserPage = (props) => {
             </div>
           </div>
           <div className="articles">
-            <div className="userCard">
-              <div>Img</div>
-              <h5>Title</h5>
-              <div>
-                <span>
-                  <FontAwesomeIcon icon={faCalendarDay} />
-                  date of creation
-                </span>
-                <span>
-                  <FontAwesomeIcon icon={faEye} />
-                  viewers count
-                </span>
-              </div>
-
-            </div>
+            {articles && articles.map(el => <UserCard key={el._id} article={el} />)}
           </div>
         </>
       )

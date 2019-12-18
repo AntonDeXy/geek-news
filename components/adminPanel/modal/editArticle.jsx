@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 const EditArticle = (props) => {
-  const [article, setArticle] = useState(props.article)
+  const [article, setArticle] = useState(props.article || undefined)
   const [imgUrl, setImgUrl] = useState(undefined)
   const [selectedFile, setSelectedFile] = useState({ selectedFile: null })
   const [uploadPercentage, setUploadPercentage] = useState(0)
@@ -18,12 +18,18 @@ const EditArticle = (props) => {
     setIsLoaded(false)
     setSelectedFile(event.target.files[0])
   }
+
   useEffect(() => {
     if (article && article.imgUrl) {
       setIsLoaded(true)
       setImgUrl(article.imgUrl)
     }
+    if (props.type === 'Create') {
+      debugger
+      setArticle({ ...article, authorId: props.user.userId, nickname: props.user.nickname ? props.user.nickname : props.user.email })
+    }
   })
+
   const uploadHandler = () => {
     const fd = new FormData()
     fd.append('image', selectedFile, selectedFile.name)

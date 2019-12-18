@@ -13,14 +13,16 @@ const AdminPanel = () => {
   const [activeArticle, setActiveArticle] = useState(undefined)
   const [type, setType] = useState('')
   const [res, setRes] = useState(null)
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const token = localStorage.getItem('token')
-      const user = JSON.parse(localStorage.getItem('user'))
+      const tempUser = JSON.parse(localStorage.getItem('user'))
+      setUser(tempUser)
       checkToken(token, res => {
         setRes(res)
-        if (res.status === 200 && user.isAdmin) {
+        if (res.status === 200 && tempUser.isAdmin) {
           get(
             'articles', '', (res) => { setArticles(res) }
           )
@@ -50,23 +52,15 @@ const AdminPanel = () => {
   }
 
   const newArticleData = (data) => {
-    if (typeof window !== 'undefined') {
-      const token = localStorage.getItem('token')
-      checkToken(token, res => setRes(res))
-    }
-    if (res.status) {
-      edit(data, 'articles', activeArticleId,
-        () => {
-          setActiveArticle(undefined)
-          setEditMode(false)
-          setActiveArticleId(undefined)
-          get(
-            'articles', '', (res) => { setArticles(res) }
-          )
-        })
-    } else {
-      history.pushState(null, '/')
-    }
+    edit(data, 'articles', activeArticleId,
+      () => {
+        setActiveArticle(undefined)
+        setEditMode(false)
+        setActiveArticleId(undefined)
+        get(
+          'articles', '', (res) => { setArticles(res) }
+        )
+      })
   }
 
   const deleteArticle = (id) => {
@@ -86,10 +80,6 @@ const AdminPanel = () => {
     }
   }
   const createArticle = (data) => {
-    if (typeof window !== 'undefined') {
-      const token = localStorage.getItem('token')
-      checkToken(token, res => setRes(res))
-    }
     if (res.status) {
       create(data, 'articles',
         () => {
@@ -100,8 +90,6 @@ const AdminPanel = () => {
             'articles', '', (res) => { setArticles(res) }
           )
         })
-    } else {
-      history.pushState(null, '/')
     }
   }
 
@@ -116,7 +104,7 @@ const AdminPanel = () => {
   return (
     <MainSt>
       <AddArticle setType={setType} createNewArticle={createNewArticle} />
-      {editMode && <EditArticle disableEditMode={disableEditMode} type={type} setEditedArticleData={setEditedArticleData} article={activeArticle && activeArticle[0]} />}
+      {editMode && <EditArticle user={user} disableEditMode={disableEditMode} type={type} setEditedArticleData={setEditedArticleData} article={activeArticle && activeArticle[0]} />}
       {articles
         ? <AdminPanelSt>
           {articles.map((e) =>

@@ -1,30 +1,34 @@
 import axios from 'axios'
 
-const baseUrl = 'https://cors-anywhere.herokuapp.com/geek-news-back.herokuapp.com/'
-// const baseUrl = 'http://localhost:5001/'
+// const baseUrl = 'https://cors-anywhere.herokuapp.com/geek-news-back.herokuapp.com/'
+const baseUrl = 'http://localhost:5001/'
 
 export const checkToken = (token, success) => {
   (async () => {
     const url = baseUrl + 'checktoken'
-    console.log(url)
     const headers = {
       Authorization: 'Bearer ' + token
     }
     axios.get(url, { headers })
       .then(res => success(res))
-    // success(res.data)
   })()
 }
 
-export const get = (type, articleId, success, func2) => {
+export const get = (type, param, success, func2) => {
   (async () => {
-    const url = `${baseUrl}${type}/${articleId}`
+    const url = `${baseUrl}${type}/${param}`
     const res = await axios.get(url)
     success(res.data)
     func2 && func2(res.data)
   })()
 }
-
+export const getByAuthor = (type, author, success) => {
+  (async () => {
+    const url = `${baseUrl}${type}/${author}`
+    const res = await axios.get(url)
+    success(res.data)
+  })()
+}
 export const edit = (article, type, articleId, success) => {
   const url = `${baseUrl}${type}/${articleId}`
   axios
@@ -107,4 +111,14 @@ export const auth = (data, type, success) => {
       success(error)
       // success(error.response.data.message)
     })
+}
+
+export const getUserData = (token, success) => {
+  const url = `${baseUrl}api/me`
+  const headers = {
+    Authorization: 'Bearer ' + token
+  }
+  axios
+    .get(url, { headers })
+    .then(res => success(res))
 }

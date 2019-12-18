@@ -61,9 +61,39 @@ export const UserPageSt = styled.main`
     background-color: rgba(0, 0, 0, 0.7);
     padding: 10px;
     display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-auto-flow: row;
+    gap: 15px;
     .userCard {
+      display: grid;
+      grid-template-rows: auto 1fr 1fr;
+      border-radius: 10px;
+      background-color: #383838;
+      transition: all 0.5s;
+      .title {
+        font-size: 15px;
+        padding: 0 5px;
+      }
+      img {
+        transition: all 0.5s;
+
+        border-radius: 10px 10px 0 0;
+        width: 100%;
+        box-shadow: 0 5px 5px black;
+      }
       svg {
         width: 15px;
+        margin-right: 5px;
+      }
+      .otherInfo {
+        padding: 0 5px;
+      }
+    }
+    .userCard:hover {
+      box-shadow: 0 0 10px white;
+      img {
+        box-shadow: 0 0 0 black;
       }
     }
   }
