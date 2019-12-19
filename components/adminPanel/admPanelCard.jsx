@@ -15,6 +15,7 @@ const AdmPanelsCard = (props) => {
       <h2>{props.title}</h2>
       <Moment format="dddd HH:mm DD-MM-YYYY">{props.date}</Moment>
       <span className="author">{props.author}</span>
+      <span style={{ color: props.isChecked ? 'green' : 'red' }} className='IsModerated'>{props.isChecked ? 'Moderated' : 'It isn`t moderated'}</span>
       <span className='desc'>
         {ReactHtmlParser(props.content)}
       </span>

@@ -67,9 +67,7 @@ const Header = props => {
               </Link>
             )}
             {user && <Link href="/user">Personal Cabinet</Link>}
-            {/* <Link > */}
             <a href="https://github.com/AntonDeXy/geek-news">GitHub Page</a>
-            {/* </Link> */}
             {user ? (
               <Link href="/login">
                 <a onClick={LogOut}>LogOut</a>

@@ -1,33 +1,51 @@
 import React, { useState, useEffect } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
-import { EditPanel, EditPanelBack } from '../adminPanel-styled'
-import { postPhoto } from '../../../static/functions'
-import Progress from '../../common/Progress'
+import { EditPanel, EditPanelBack } from '../adminPanel/adminPanel-styled'
+import { postPhoto, create } from '../../static/functions'
+import Progress from '../common/Progress'
 import { PropTypes } from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
-const EditArticle = (props) => {
-  const [article, setArticle] = useState(props.article || null)
+const CreateArticleModal = (props) => {
+  const [article, setArticle] = useState(undefined)
   const [imgUrl, setImgUrl] = useState(undefined)
   const [selectedFile, setSelectedFile] = useState({ selectedFile: null })
   const [uploadPercentage, setUploadPercentage] = useState(0)
   const [isLoaded, setIsLoaded] = useState(false)
+  const [user, setUser] = useState(undefined)
+
+  if (typeof window !== 'undefined' && user === undefined) {
+    setUser(null)
+    const tempData = JSON.parse(localStorage.getItem('user'))
+    setUser(tempData)
+    debugger
+    if (!tempData) {
+      debugger
+      history.pushState(null, null, '/login')
+      window.location.reload()
+    }
+    setArticle({ ...article, authorId: tempData._id, author: tempData.nickname ? tempData.nickname : tempData.email })
+  }
 
   const fileChangedHandler = event => {
     setIsLoaded(false)
     setSelectedFile(event.target.files[0])
   }
 
-  useEffect(() => {
-    if (article && article.imgUrl) {
-      setIsLoaded(true)
-      setImgUrl(article.imgUrl)
-    }
-    if (props.type === 'Create') {
-      setArticle({ ...article, authorId: props.user.userId, nickname: props.user.nickname ? props.user.nickname : props.user.email })
-    }
-  })
+  const uploadArticle = () => {
+    create(article, 'articles', (res) => {
+      history.pushState(null, null, '/user')
+      window.location.reload()
+    })
+  }
+
+  // useEffect(() => {
+  //   if (article && article.imgUrl) {
+  //     setIsLoaded(true)
+  //     setImgUrl(article.imgUrl)
+  //   }
+  // })
 
   const uploadHandler = () => {
     const fd = new FormData()
@@ -39,19 +57,9 @@ const EditArticle = (props) => {
   return (
     <EditPanelBack>
       <EditPanel>
-        <h3> {props.type} article</h3>
-        <FontAwesomeIcon onClick={() => { props.disableEditMode() }} icon={faTimes} />
+        <h3>Create article</h3>
+        <FontAwesomeIcon onClick={() => { window.location.reload() }} icon={faTimes} />
         <div className='wrapper'>
-
-          {article && article._id &&
-            <>
-              <span>Article id</span>
-              <input
-                type="text"
-                value={article._id}
-              />
-            </>
-          }
           <span>Title</span>
           <input
             type="text"
@@ -62,6 +70,7 @@ const EditArticle = (props) => {
             value={article ? article.title : ''}
             name="title"
           />
+
           <span>Img</span>
           <div>
             {isLoaded &&
@@ -117,42 +126,9 @@ const EditArticle = (props) => {
               setArticle({ ...article, content: e.target.getContent() })
             }}
           />
-          {
-            article && article.isChecked !== undefined &&
-            <>
-              <span>
-                Is Moderated
-              </span>
-              <div>
-                <label>
-                True
-                  <input
-                    type="radio"
-                    name='isChecked'
-                    onChange={ e =>
-                      setArticle({ ...article, isChecked: true })
-                    }
-                    checked={article.isChecked}
-                    value='true'/>
-                </label>
-                <br/>
-                <label>
-                False
-                  <input
-                    type="radio"
-                    name='isChecked'
-                    value='false'
-                    onChange={ e =>
-                      setArticle({ ...article, isChecked: false })
-                    }
-                    checked={!article.isChecked}
-                  />
-                </label>
-              </div>
-            </>
-          }
+
         </div>
-        <button onClick={() => { setArticle(delete article._id); props.setEditedArticleData(article) }} type="button">
+        <button onClick={() => { uploadArticle() }} type="button">
           Submit
         </button>
       </EditPanel>
@@ -160,10 +136,10 @@ const EditArticle = (props) => {
   )
 }
 
-EditArticle.propTypes = {
+CreateArticleModal.propTypes = {
   type: PropTypes.string,
   article: PropTypes.object,
   setEditedArticleData: PropTypes.func,
   disableEditMode: PropTypes.func
 }
-export default EditArticle
+export default CreateArticleModal

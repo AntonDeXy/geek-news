@@ -59,17 +59,6 @@ const UserPage = (props) => {
     })
 
     // }
-
-    // if token is avalible or password is correct do this
-
-    // send new pass to db
-
-    // .then (res => {
-    //   if (res.status === 200) {
-    //     setIsSave(false)
-    //     // send new query for new profile info
-    //   }
-    // })
   }
 
   return (

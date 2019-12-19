@@ -15,7 +15,7 @@ export const AdmCardSt = styled.div`
   background-color: #383838;
   max-width: 100%;
   display: grid;
-  grid-template-columns: auto 17% 7% 10% auto 5%;
+  grid-template-columns: auto 17% 7% 10% 5% auto 5%;
   gap: 15px;
   max-height: 250px;
   .thumbnail {
@@ -34,6 +34,9 @@ export const AdmCardSt = styled.div`
   }
   .author {
     text-align: center;
+  }
+  .IsModerated {
+    
   }
   .desc {
     max-height: 250px;

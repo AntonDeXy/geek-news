@@ -77,7 +77,6 @@ export const UserPageSt = styled.main`
       }
       img {
         transition: all 0.5s;
-
         border-radius: 10px 10px 0 0;
         width: 100%;
         box-shadow: 0 5px 5px black;
@@ -87,6 +86,12 @@ export const UserPageSt = styled.main`
         margin-right: 5px;
       }
       .otherInfo {
+        padding: 0 5px;
+      }
+      .onModeration {
+        background-color: yellow;
+        color: black;
+        border-radius: 0 0 10px 10px;
         padding: 0 5px;
       }
     }

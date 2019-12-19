@@ -4,10 +4,11 @@ import { GeneralNews } from '../elements/Main-styled'
 import { PropTypes } from 'prop-types'
 
 const MoreNews = (props) => {
+  const articlesForRender = props.articles.filter(el => el.isChecked === true)
   return (
     <>
       <GeneralNews>
-        {props.articles.map(article =>
+        {articlesForRender.map(article =>
           <GeneralNew key={article._id} article={article} />
         )}
       </GeneralNews>

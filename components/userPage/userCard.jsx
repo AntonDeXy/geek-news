@@ -21,6 +21,11 @@ const UserCard = ({ article }) => {
           {article.viewers || 'undefined'}
         </span>
       </div>
+      {!article.isChecked &&
+        <div className="onModeration">
+          Your article on moderation
+        </div>
+      }
 
     </div>
   )

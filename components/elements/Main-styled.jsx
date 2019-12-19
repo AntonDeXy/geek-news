@@ -6,6 +6,25 @@ export const MainSt = styled.main`
   width: 100%;
   background-color: #1E1E1E;
   min-height: 80vh;
+  .tools {
+    display: grid;
+    width: 90%;
+    grid-template-columns: auto auto;
+    justify-self: center;
+    .displayArticles {
+      color: white;
+      span {
+        margin-right: 10px;
+      }
+      label {
+        margin-right: 10px;
+      }
+    }
+  }
+  .artLoadingStatus {
+    text-align: center;
+    color: white;
+  }
 `
 
 export const MainGeneralPageSt = styled.main`
@@ -221,6 +240,7 @@ export const ArticleSt = styled.div`
   grid-template-columns: 25% auto;
   div img{
     max-width: 100%;
+    height: auto;
   }
 `
 
@@ -239,8 +259,8 @@ export const OtherInf = styled.div`
   }
 `
 export const AddArticleSt = styled.div`
-  width: 90%;
-  justify-self: center;
+  /* width: 90%; */
+  justify-self: right;
   text-align: right;
   color: white;
   font-family: 'Bree Serif', serif;
