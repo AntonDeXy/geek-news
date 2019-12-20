@@ -138,7 +138,6 @@ const UserPage = (props) => {
               </div>
               }
             </div>
-
             <div className="editMode">
               <FontAwesomeIcon
                 onClick={() => { setEditMode(!editMode); setIsSave(true) }}

@@ -238,9 +238,80 @@ export const ArticleSt = styled.div`
   display: grid;
   gap: 20px;
   grid-template-columns: 25% auto;
-  div img{
-    max-width: 100%;
-    height: auto;
+  .inf {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 15px;
+    img{
+      max-width: 100%;
+      height: auto;
+    }
+    .comments {
+      display: grid;
+      grid-template-columns: 100%;
+      gap: 10px;
+      padding: 10px;
+      background-color: #5c5c5c;
+      max-height: 462px;
+      grid-template-rows: auto 1fr;
+      box-shadow: inset 0 0 10px black;
+      .wrapper {
+        display: grid;
+        max-height: 350px;
+        overflow-y: auto;
+        grid-auto-rows: auto;
+        grid-auto-flow: row;
+        gap: 10px;
+        overflow-x: hidden;
+      }
+      .comment {
+        padding: 5px;
+        display: grid;
+        grid-template-columns: 20% auto 15px;
+        gap: 5px;
+        background-color: #1e1e1e;
+        align-self: start;
+        svg {
+          color: white;
+          height: 15px;
+          transition: all.5s;
+        }
+        svg:hover {
+          color: red;
+        }
+        .avatar {
+        }
+        img {
+          width: 100%;
+          height: auto;
+        }
+        .inf {
+          display: block;
+          color: white;
+          div {
+            max-width: 90%;
+          }
+          h3 {
+            margin: 0;
+          }
+          span {
+
+          }
+        }
+      }
+      .enterComment {
+        grid-template-columns: 100%;
+        display: grid;
+        gap: 10px;
+        align-self: end;
+        textarea {
+        resize: none;
+        }
+        button {
+          height: 40px;
+        }
+      }
+    }
   }
 `
 
