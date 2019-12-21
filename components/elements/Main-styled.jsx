@@ -6,6 +6,7 @@ export const MainSt = styled.main`
   width: 100%;
   background-color: #1E1E1E;
   min-height: 80vh;
+  gap: 10px;
   .tools {
     display: grid;
     width: 90%;
@@ -128,6 +129,9 @@ export const GeneralNewSt = styled.div`
     img {
       max-width: 100%;
     }
+    button {
+      height: 40px;
+    }
   }
   :nth-child(even) {
     grid-template-columns: minmax(40%, 60%) auto;
@@ -225,13 +229,21 @@ export const Span = styled.span`
   font-size: 14px;
   margin-left: 10px; 
   display: block;
-  overflow-y: scroll;
-  max-height: 180px;
+  overflow-y: auto;
+  height: 190px;
 `
 
 export const ArticleSt = styled.div`
   @media(max-width: 540px) {
     grid-template-columns: 100% !important;
+    .inf .comments {
+      .wrapper {
+        display: none !important;
+      } 
+      .wrapperForMobile {
+        display: grid !important;
+      }
+    }
   }
   width: 90%;
   justify-self: center;
@@ -246,6 +258,27 @@ export const ArticleSt = styled.div`
       max-width: 100%;
       height: auto;
     }
+    .commentButton {
+      background-color: #383838;
+      color: white;
+      padding: 5px;
+      height: 40px;
+      font-size: 25px;
+      display: grid;
+      align-content: center;
+      grid-template-columns: auto 1fr;
+      border-radius: 2px;
+      svg {
+        max-height: 100%;
+        /* height: 30px; */
+        justify-self: right;
+        /* transform */
+        path {
+          height: 30px;
+
+        }
+      }
+    }
     .comments {
       display: grid;
       grid-template-columns: 100%;
@@ -257,6 +290,15 @@ export const ArticleSt = styled.div`
       box-shadow: inset 0 0 10px black;
       .wrapper {
         display: grid;
+        max-height: 350px;
+        overflow-y: auto;
+        grid-auto-rows: auto;
+        grid-auto-flow: row;
+        gap: 10px;
+        overflow-x: hidden;
+      }
+      .wrapperForMobile {
+        display: none;
         max-height: 350px;
         overflow-y: auto;
         grid-auto-rows: auto;
@@ -305,10 +347,16 @@ export const ArticleSt = styled.div`
         gap: 10px;
         align-self: end;
         textarea {
-        resize: none;
+          padding: 5px;
+          resize: none;
         }
         button {
           height: 40px;
+        }
+        textarea, button {
+          border: unset;
+          background-color: black;
+          color: white;
         }
       }
     }

@@ -34,12 +34,14 @@ const GeneralPage = () => {
       {currentArticles
         ? <>
           <Pagination
+            currentPage={currentPage}
             postsPerPage={postsPerPage}
             totalPosts={articles.length}
             paginate={paginate}
           />
           <MoreNews articles={currentArticles} />
           <Pagination
+            currentPage={currentPage}
             postsPerPage={postsPerPage}
             totalPosts={articles.length}
             paginate={paginate}

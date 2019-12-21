@@ -15,7 +15,6 @@ export const checkToken = (token, success) => {
 }
 
 export const get = (type, param, success, func2) => {
-  debugger
   (async () => {
     const url = `${baseUrl}${type}/${param}`
     const res = await axios.get(url)
@@ -47,8 +46,6 @@ export const edit = (article, type, articleId, success) => {
 
 export const create = (article, type, success) => {
   const url = `${baseUrl}${type}`
-  debugger
-
   axios
     .post(url, { article })
     .then(response => {
