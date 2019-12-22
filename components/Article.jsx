@@ -189,7 +189,17 @@ const Comment = props => {
 }
 
 Article.propTypes = {
-  article: PropTypes.object
+  article: PropTypes.object,
+  id: PropTypes.string
+}
+
+Comment.propTypes = {
+  success: PropTypes.func,
+  articleId: PropTypes.string,
+  author: PropTypes.object,
+  user: PropTypes.object,
+  content: PropTypes.string,
+  _id: PropTypes.string
 }
 
 export default Article

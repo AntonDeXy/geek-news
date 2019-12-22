@@ -12,7 +12,8 @@ const UserPage = (props) => {
   const [editMode, setEditMode] = useState(false)
   const [email, setEmail] = useState(null)
   const [nickname, setNickname] = useState(null)
-  const [isSave, setIsSave] = useState(false)
+  // while user save changes isSave = True, else false and nothing to do
+  // const [isSave, setIsSave] = useState(false)
   const [articles, setArticles] = useState(null)
 
   if (typeof window !== 'undefined' && user === undefined) {
@@ -140,7 +141,7 @@ const UserPage = (props) => {
             </div>
             <div className="editMode">
               <FontAwesomeIcon
-                onClick={() => { setEditMode(!editMode); setIsSave(true) }}
+                onClick={() => setEditMode(!editMode)}
                 icon={faEdit}
               />
             </div>

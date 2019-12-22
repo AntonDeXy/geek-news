@@ -2,6 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarDay, faEye } from '@fortawesome/free-solid-svg-icons'
 import Moment from 'react-moment'
+import { PropTypes } from 'prop-types'
 
 const UserCard = ({ article }) => {
   return (
@@ -29,5 +30,9 @@ const UserCard = ({ article }) => {
 
     </div>
   )
+}
+
+UserCard.propTypes = {
+  article: PropTypes.object
 }
 export default UserCard

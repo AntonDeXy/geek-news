@@ -164,6 +164,7 @@ EditArticle.propTypes = {
   type: PropTypes.string,
   article: PropTypes.object,
   setEditedArticleData: PropTypes.func,
-  disableEditMode: PropTypes.func
+  disableEditMode: PropTypes.func,
+  user: PropTypes.object
 }
 export default EditArticle

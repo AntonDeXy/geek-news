@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 import { EditPanel, EditPanelBack } from '../adminPanel/adminPanel-styled'
 import { postPhoto, create } from '../../static/functions'
@@ -19,9 +19,7 @@ const CreateArticleModal = (props) => {
     setUser(null)
     const tempData = JSON.parse(localStorage.getItem('user'))
     setUser(tempData)
-    debugger
     if (!tempData) {
-      debugger
       history.pushState(null, null, '/login')
       window.location.reload()
     }
@@ -39,13 +37,6 @@ const CreateArticleModal = (props) => {
       window.location.reload()
     })
   }
-
-  // useEffect(() => {
-  //   if (article && article.imgUrl) {
-  //     setIsLoaded(true)
-  //     setImgUrl(article.imgUrl)
-  //   }
-  // })
 
   const uploadHandler = () => {
     const fd = new FormData()

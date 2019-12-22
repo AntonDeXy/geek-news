@@ -7,7 +7,6 @@ import { auth } from '../../static/functions'
 const LoginPanel = (props) => {
   const emailInput = useRef(null)
   const passwordInput = useRef(null)
-  const [token, setToken] = useState(null)
   const [user, setUser] = useState(null)
   const [error, setError] = useState(null)
 
@@ -31,7 +30,6 @@ const LoginPanel = (props) => {
       res => {
         console.log(res)
         if (res.token) {
-          setToken()
           setUser(res.user)
           localStorage.setItem('user', JSON.stringify(res.user))
           localStorage.setItem('token', res.token)

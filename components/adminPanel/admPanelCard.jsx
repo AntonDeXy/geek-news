@@ -35,6 +35,7 @@ AdmPanelsCard.propTypes = {
   content: PropTypes.string,
   _id: PropTypes.string,
   deleteArticle: PropTypes.func,
-  activeEditMode: PropTypes.func
+  activeEditMode: PropTypes.func,
+  isChecked: PropTypes.bool
 }
 export default AdmPanelsCard
