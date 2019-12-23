@@ -7,19 +7,26 @@ import Pagination from './Pagination'
 
 const GeneralPage = () => {
   const [articles, setArticles] = useState(null)
+  const [articlesForRender, setArticlesForRender] = useState(null)
+  const [currentArticles, setCurrentArticles] = useState(null)
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(10)
 
   useEffect(() => {
-    get('articles', '', (res) => { setArticles(res) })
-  }, [])
+    if (!articles) get('articles', '', (res) => { setArticles(res) })
+
+    if (articles && articlesForRender === null) {
+      setArticlesForRender(articles.filter(e => e.isChecked === true))
+    }
+
+    if (articlesForRender) {
+      setCurrentArticles(articlesForRender.slice(indexOfFirstPost, indexOfLastPost))
+    }
+  }, [articles, articlesForRender, currentPage])
 
   const indexOfLastPost = currentPage * postsPerPage
   const indexOfFirstPost = indexOfLastPost - postsPerPage
-  let currentArticles
-  if (articles) {
-    currentArticles = articles.slice(indexOfFirstPost, indexOfLastPost)
-  }
+
   const paginate = pageNumber => setCurrentPage(pageNumber)
 
   return (
@@ -36,14 +43,14 @@ const GeneralPage = () => {
           <Pagination
             currentPage={currentPage}
             postsPerPage={postsPerPage}
-            totalPosts={articles.length}
+            totalPosts={articlesForRender.length}
             paginate={paginate}
           />
           <MoreNews articles={currentArticles} />
           <Pagination
             currentPage={currentPage}
             postsPerPage={postsPerPage}
-            totalPosts={articles.length}
+            totalPosts={articlesForRender.length}
             paginate={paginate}
           />
         </>
