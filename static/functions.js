@@ -47,7 +47,7 @@ export const edit = (article, type, articleId, success) => {
 export const create = (article, type, success) => {
   const url = `${baseUrl}${type}`
   axios
-    .post(url, { article })
+    .post(url, article)
     .then(response => {
       console.log(response)
       if (response.status === 200) {

@@ -79,8 +79,58 @@ const Article = props => {
                 }
 
               </div>
+              <div className="comments desktop">
+                <div className="wrapper">
+                  {comments && comments.length > 0 ? (
+                    comments.map(e => (
+                      <Comment
+                        key={e._id}
+                        success={id => {
+                          success(id)
+                        }}
+                        user={user}
+                        {...e}
+                      />
+                    ))
+                  ) : (
+                    <span style={{ color: 'white' }}>
+                        There are no comments, u can be first
+                    </span>
+                  )}
+                </div>
+
+                <div className="wrapperForMobile">
+                  {comments && comments.length > 0 ? (
+                    comments.map(e => (
+                      <Comment
+                        key={e._id}
+                        success={id => {
+                          success(id)
+                        }}
+                        user={user}
+                        {...e}
+                      />
+                    ))
+                  ) : (
+                    <span style={{ color: 'white' }}>
+                        There are no comments, u can be first
+                    </span>
+                  )}
+                </div>
+                <div className="enterComment">
+                  <textarea
+                    maxLength="150"
+                    ref={inputRef}
+                    rows="2"
+                    placeholder="Enter ur comment"
+                  ></textarea>
+                  <button onClick={sendArticle} type="button">
+                      Send
+                  </button>
+                </div>
+              </div>
               {isCommentVisible && (
-                <div className="comments">
+                <div className="comments mobile">
                   <div className="wrapper">
                     {comments && comments.length > 0 ? (
                       comments.map(e => (

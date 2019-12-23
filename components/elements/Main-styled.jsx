@@ -236,12 +236,23 @@ export const Span = styled.span`
 export const ArticleSt = styled.div`
   @media(max-width: 540px) {
     grid-template-columns: 100% !important;
-    .inf .comments {
-      .wrapper {
-        display: none !important;
-      } 
-      .wrapperForMobile {
+    .inf {
+      .commentButton {
         display: grid !important;
+      }
+      .comments {
+        .wrapper {
+          display: none !important;
+        } 
+        .wrapperForMobile {
+          display: grid !important;
+        }
+      }
+      .mobile {
+        display: grid !important;
+      }
+      .desktop {
+        display: none !important;
       }
     }
   }
@@ -264,7 +275,7 @@ export const ArticleSt = styled.div`
       padding: 5px;
       height: 40px;
       font-size: 25px;
-      display: grid;
+      display: none;
       align-content: center;
       grid-template-columns: auto 1fr;
       border-radius: 2px;
@@ -279,8 +290,13 @@ export const ArticleSt = styled.div`
         }
       }
     }
-    .comments {
+    .mobile {
+      display: none;
+    }
+    .desktop {
       display: grid;
+    }
+    .comments {
       grid-template-columns: 100%;
       gap: 10px;
       padding: 10px;
@@ -366,8 +382,13 @@ export const ArticleSt = styled.div`
 export const ArticleInfo = styled.div`
   color: white;
   font-family: 'Bree Serif', serif;
+  max-width: 100vw;
   div {
     /* height: 100%; */
+  }
+  img {
+    width: 100%;
+    margin-top: 10px;
   }
 `
 
