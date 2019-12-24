@@ -48,8 +48,9 @@ const UserPage = (props) => {
           (res) => {
             setEditMode(false)
             getUserData(token, (res) => {
-              setUser(res.data)
-              localStorage.setItem('user', JSON.stringify(res.data))
+              debugger
+              setUser(res.data.user)
+              localStorage.setItem('user', JSON.stringify(res.data.user))
             })
           })
       } else {
