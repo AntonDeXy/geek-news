@@ -62,7 +62,7 @@ const LoginPanel = (props) => {
             <label htmlFor="email">Email</label>
             <input
               ref={emailInput}
-              type="text"
+              type="email"
               name="email"
               placeholder="Email"
               required

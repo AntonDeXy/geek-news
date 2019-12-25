@@ -22,6 +22,7 @@ export const get = (type, param, success, func2) => {
     func2 && func2(res.data)
   })()
 }
+
 export const getByAuthor = (type, author, success) => {
   (async () => {
     const url = `${baseUrl}${type}/${author}`
@@ -29,6 +30,7 @@ export const getByAuthor = (type, author, success) => {
     success(res.data)
   })()
 }
+
 export const edit = (article, type, articleId, success) => {
   const url = `${baseUrl}${type}/${articleId}`
   axios

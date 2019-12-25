@@ -6,6 +6,7 @@ import { auth } from '../../static/functions'
 const RegisterPanel = () => {
   const emailInput = useRef(null)
   const passwordInput = useRef(null)
+  const nicknameInput = useRef(null)
   const [error, setError] = useState(null)
 
   if (typeof window !== 'undefined') {
@@ -21,6 +22,7 @@ const RegisterPanel = () => {
     setError(null)
     auth(
       {
+        nickname: nicknameInput.current.value,
         email: emailInput.current.value,
         password: passwordInput.current.value
       },
@@ -37,12 +39,17 @@ const RegisterPanel = () => {
       }
     )
   }
+
   return (
     <LoginPageSt>
       <div className="wrapper">
         <h1 className='title'>Регистрация</h1>
         <form action="/" id='register'>
           {error && <span className='error'>{error}</span>}
+          <div>
+            <label htmlFor="nickname">Nickname</label>
+            <input ref={nicknameInput} type="text" name="nickname" placeholder='Nickname' required />
+          </div>
           <div>
             <label htmlFor="email">E-mail</label>
             <input ref={emailInput} type="email" name="email" placeholder='E-mail' required />
