@@ -64,6 +64,7 @@ const Article = props => {
       )
     }
   }
+
   if (props.article) {
     return (
       <MainSt>
@@ -195,7 +196,14 @@ const Article = props => {
               </span>
               <span>category: {props.article.category}</span>
             </OtherInf>
-            <div>{ReactHtmlParser(props.article.content)}</div>
+            <div>
+              {ReactHtmlParser(props.article.content)}
+              {props.article.source.length > 0 && props.article.source.map(e =>
+                <a key={e.id} target="_blank" rel='noreferrer noopener' href={e}>Source</a>
+              )}
+
+            </div>
+
           </ArticleInfo>
         </ArticleSt>
       </MainSt>

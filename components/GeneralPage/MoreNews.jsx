@@ -4,7 +4,6 @@ import { GeneralNews } from '../elements/Main-styled'
 import { PropTypes } from 'prop-types'
 
 const MoreNews = (props) => {
-  debugger
   const articlesForRender = props.articles.filter(el => el.isChecked === true)
   return (
     <>

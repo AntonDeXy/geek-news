@@ -108,7 +108,7 @@ export const GeneralNews = styled.div`
 
 export const GeneralNewSt = styled.div`
   display: grid;
-  grid-template-columns: auto minmax(40%, 60%);
+  grid-template-columns: auto auto;
   column-gap: 20px;
   overflow: hidden;
   max-height: 350px;
@@ -128,13 +128,14 @@ export const GeneralNewSt = styled.div`
     grid-row: 1;
     img {
       max-width: 100%;
+      display: block;
     }
     button {
       height: 40px;
     }
   }
   :nth-child(even) {
-    grid-template-columns: minmax(40%, 60%) auto;
+    grid-template-columns: auto auto;
     .ArticleDesc {
       grid-column: 1 !important;
     }
@@ -231,6 +232,9 @@ export const Span = styled.span`
   display: block;
   overflow-y: auto;
   height: 190px;
+  img {
+    margin-top: 10px;
+  }
 `
 
 export const ArticleSt = styled.div`

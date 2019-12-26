@@ -42,9 +42,14 @@ export const AdmCardSt = styled.div`
     max-height: 250px;
     width: 100%;
     overflow-y: scroll;
+    img {
+      max-width: 100%;
+      margin-top: 5px;
+    }
   }
   h2 {
     margin: 0;
+    font-size: 1.5rem;
   }
   .buttons {
     align-content: space-evenly;
