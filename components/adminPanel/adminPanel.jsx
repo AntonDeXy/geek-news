@@ -16,6 +16,7 @@ const AdminPanel = () => {
   const [user, setUser] = useState(null)
   const [dspArticles, setDspArticles] = useState('all')
   const [articlesForDisplay, setArticlesForDisplay] = useState([])
+  const [isSorted, setIsSorted] = useState(false)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -38,6 +39,13 @@ const AdminPanel = () => {
 
   useEffect(() => {
     if (articles.length > 0) {
+      const temp = articles.sort((a, b) => {
+        return a.editDate > b.editDate ? -1 : a.editDate < b.editDate ? 1 : 0
+      })
+      setArticles(temp)
+      setIsSorted(true)
+    }
+    if (articles.length > 0 && isSorted) {
       let temp
       if (dspArticles === 'all') {
         temp = articles
@@ -46,7 +54,7 @@ const AdminPanel = () => {
       }
       setArticlesForDisplay(temp)
     }
-  }, [articles, dspArticles])
+  }, [articles, dspArticles, isSorted])
 
   const createNewArticle = () => {
     setEditMode(true)

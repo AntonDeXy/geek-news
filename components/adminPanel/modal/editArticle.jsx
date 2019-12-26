@@ -27,7 +27,7 @@ const EditArticle = (props) => {
     if (props.type === 'Create') {
       setArticle({ ...article, authorId: props.user.userId, nickname: props.user.nickname ? props.user.nickname : props.user.email })
     }
-  })
+  }, [])
 
   const uploadHandler = () => {
     const fd = new FormData()
@@ -55,9 +55,7 @@ const EditArticle = (props) => {
           <span>Title</span>
           <input
             type="text"
-            onChange={e => {
-              setArticle({ ...article, title: e.target.value })
-            }}
+            onChange={e => setArticle({ ...article, title: e.target.value })}
             id="name"
             value={article ? article.title : ''}
             name="title"
@@ -129,8 +127,9 @@ const EditArticle = (props) => {
                   <input
                     type="radio"
                     name='isChecked'
-                    onChange={ e =>
-                      setArticle({ ...article, isChecked: true })
+                    onChange={ e => {
+                      setArticle({ ...article, isChecked: true, editDate: Date() })
+                    }
                     }
                     checked={article.isChecked}
                     value='true'/>

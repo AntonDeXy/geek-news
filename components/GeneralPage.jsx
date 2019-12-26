@@ -11,6 +11,7 @@ const GeneralPage = () => {
   const [currentArticles, setCurrentArticles] = useState(null)
   const [currentPage, setCurrentPage] = useState(0)
   const [postsPerPage] = useState(10)
+  const [isSorted, setIsSorted] = useState(false)
 
   useEffect(() => {
     if (!articles) {
@@ -18,8 +19,14 @@ const GeneralPage = () => {
         setArticles(res)
       })
     }
-
-    if (articles && articlesForRender === null) {
+    if (articles) {
+      const temp = articles.sort((a, b) => {
+        return a.editDate > b.editDate ? -1 : a.editDate < b.editDate ? 1 : 0
+      })
+      setArticles(temp)
+      setIsSorted(true)
+    }
+    if (isSorted && articles && articlesForRender === null) {
       setArticlesForRender(articles.filter(e => e.isChecked === true))
     }
 
@@ -28,7 +35,7 @@ const GeneralPage = () => {
         articlesForRender.slice(indexOfFirstPost, indexOfLastPost)
       )
     }
-  }, [articles, articlesForRender, currentPage])
+  }, [articles, articlesForRender, currentPage, isSorted])
 
   const indexOfLastPost = currentPage * postsPerPage + 10
   const indexOfFirstPost = indexOfLastPost - postsPerPage

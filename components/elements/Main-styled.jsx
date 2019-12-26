@@ -40,6 +40,7 @@ export const MainGeneralPageSt = styled.main`
     grid-auto-flow: column;
     list-style: none;
     justify-content: center;
+    margin-top: 25px;
     .selected a{
       background-color: green;
     }

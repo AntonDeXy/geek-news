@@ -13,7 +13,21 @@ const AdmPanelsCard = (props) => {
         <img src={props.imgUrl} alt="" />
       </div>
       <h2>{props.title}</h2>
-      <Moment format="dddd HH:mm DD-MM-YYYY">{props.date}</Moment>
+      <div>
+        Date of Creation
+        <br/>
+        <Moment format="dddd HH:mm DD-MM-YYYY">{props.date}</Moment>
+        {props.editDate &&
+          <>
+            <br/>
+            <br/>
+            Edit Date
+            <br/>
+            <Moment format="dddd HH:mm DD-MM-YYYY">{props.editDate}</Moment>
+          </>
+        }
+
+      </div>
       <span className="author">{props.author}</span>
       <span style={{ color: props.isChecked ? 'green' : 'red' }} className='IsModerated'>{props.isChecked ? 'Moderated' : 'It isn`t moderated'}</span>
       <span className='desc'>
@@ -31,6 +45,7 @@ AdmPanelsCard.propTypes = {
   imgUrl: PropTypes.string,
   title: PropTypes.string,
   date: PropTypes.string,
+  editDate: PropTypes.string,
   author: PropTypes.string,
   content: PropTypes.string,
   _id: PropTypes.string,
