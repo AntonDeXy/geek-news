@@ -3,32 +3,35 @@ import MoreNews from './GeneralPage/MoreNews'
 import Loader from './common/Loader'
 import { MainGeneralPageSt, MoreNewsSt } from './elements/Main-styled'
 import { get } from '../static/functions'
-import Pagination from './Pagination'
+import ReactPaginate from 'react-paginate'
 
 const GeneralPage = () => {
   const [articles, setArticles] = useState(null)
   const [articlesForRender, setArticlesForRender] = useState(null)
   const [currentArticles, setCurrentArticles] = useState(null)
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(0)
   const [postsPerPage] = useState(10)
-  // const [postsPerPage] = useState(10)
 
   useEffect(() => {
-    if (!articles) get('articles', '', (res) => { setArticles(res) })
+    if (!articles) {
+      get('articles', '', res => {
+        setArticles(res)
+      })
+    }
 
     if (articles && articlesForRender === null) {
       setArticlesForRender(articles.filter(e => e.isChecked === true))
     }
 
     if (articlesForRender) {
-      setCurrentArticles(articlesForRender.slice(indexOfFirstPost, indexOfLastPost))
+      setCurrentArticles(
+        articlesForRender.slice(indexOfFirstPost, indexOfLastPost)
+      )
     }
   }, [articles, articlesForRender, currentPage])
 
-  const indexOfLastPost = currentPage * postsPerPage
+  const indexOfLastPost = currentPage * postsPerPage + 10
   const indexOfFirstPost = indexOfLastPost - postsPerPage
-
-  const paginate = pageNumber => setCurrentPage(pageNumber)
 
   return (
     <MainGeneralPageSt>
@@ -39,24 +42,25 @@ const GeneralPage = () => {
         <h3>News</h3>
         <hr className="more-news-line" />
       </MoreNewsSt>
-      {currentArticles
-        ? <>
-          <Pagination
-            currentPage={currentPage}
-            postsPerPage={postsPerPage}
-            totalPosts={articlesForRender.length}
-            paginate={paginate}
+      {currentArticles ? (
+        <>
+          <ReactPaginate
+            onPageChange={e => setCurrentPage(e.selected)}
+            pageCount={articlesForRender.length / postsPerPage}
+            pageRangeDisplayed={3}
+            marginPagesDisplayed={3}
           />
           <MoreNews articles={currentArticles} />
-          <Pagination
-            currentPage={currentPage}
-            postsPerPage={postsPerPage}
-            totalPosts={articlesForRender.length}
-            paginate={paginate}
+          <ReactPaginate
+            onPageChange={e => setCurrentPage(e.selected)}
+            pageCount={articlesForRender.length / postsPerPage}
+            pageRangeDisplayed={3}
+            marginPagesDisplayed={3}
           />
         </>
-        : <Loader />
-      }
+      ) : (
+        <Loader />
+      )}
     </MainGeneralPageSt>
   )
 }

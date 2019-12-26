@@ -18,6 +18,7 @@ export const AdmCardSt = styled.div`
   grid-template-columns: auto 17% 7% 10% 5% auto 5%;
   gap: 15px;
   max-height: 250px;
+  overflow: hidden;
   .thumbnail {
     max-height: 100%;
     max-width: 100%;

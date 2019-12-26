@@ -35,6 +35,38 @@ export const MainGeneralPageSt = styled.main`
   width: 100%;
   background-color: #1E1E1E;
   min-height: 80vh;
+  ul {
+    display: grid;
+    grid-auto-flow: column;
+    list-style: none;
+    justify-content: center;
+    .selected a{
+      background-color: green;
+    }
+    li {
+      a {
+        color: white;
+        padding: .5rem .75rem;
+        border: 1px solid #dee2e6;
+        line-height: 1.25;
+        margin-left: -1;
+      }
+      a:hover {
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+    li:first-child a{
+      border-top-left-radius: .25rem;
+      border-bottom-left-radius: .25rem;
+    }
+    li:last-child a {
+      border-top-right-radius: .25rem;
+      border-bottom-right-radius: .25rem;  
+    }
+    .previous, .next {
+    }
+  }
   .page-link {
     background-color: #131415;
     color: white;
@@ -103,6 +135,9 @@ export const GeneralNews = styled.div`
   }
   .readMore:hover {
     cursor: pointer;
+  }
+  .viqeo-embed {
+    max-width: 100%
   }
 `
 

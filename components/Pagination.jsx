@@ -10,10 +10,8 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
   let pages = pageNumbers
   let pageCount = pageNumbers.length
   if (pageNumbers.length > 7) {
-    debugger
     pageCount--
     pages = [1, currentPage - 3, currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2, currentPage + 3, pageNumbers[pageCount]]
-    debugger
   }
 
   return (
