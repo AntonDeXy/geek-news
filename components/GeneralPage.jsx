@@ -12,6 +12,7 @@ const GeneralPage = () => {
   const [currentPage, setCurrentPage] = useState(0)
   const [postsPerPage] = useState(10)
   const [isSorted, setIsSorted] = useState(false)
+  const [width, setWidth] = useState(undefined)
 
   useEffect(() => {
     if (!articles) {
@@ -35,10 +36,18 @@ const GeneralPage = () => {
         articlesForRender.slice(indexOfFirstPost, indexOfLastPost)
       )
     }
+    setWidth(window.innerWidth)
+
   }, [articles, articlesForRender, currentPage, isSorted])
 
   const indexOfLastPost = currentPage * postsPerPage + 10
   const indexOfFirstPost = indexOfLastPost - postsPerPage
+
+
+  if (typeof window !== 'undefined') {
+    window.onresize = () => setWidth(window.innerWidth)
+  }
+
 
   return (
     <MainGeneralPageSt>
@@ -47,22 +56,31 @@ const GeneralPage = () => {
       </TopArticlesBlockSt> */}
       <MoreNewsSt>
         <h3>News</h3>
-        <hr className="more-news-line" />
       </MoreNewsSt>
       {currentArticles ? (
         <>
           <ReactPaginate
-            onPageChange={e => setCurrentPage(e.selected)}
+            previousLabel={'<'}
+            nextLabel={'>'}
+            onPageChange={e => {
+              window.scroll(0, 0)
+              setCurrentPage(e.selected)
+            }}
             pageCount={articlesForRender.length / postsPerPage}
-            pageRangeDisplayed={3}
-            marginPagesDisplayed={3}
+            pageRangeDisplayed={width < 768 ? 1 : 3}
+            marginPagesDisplayed={width < 768 ? 1 : 3}
           />
           <MoreNews articles={currentArticles} />
           <ReactPaginate
-            onPageChange={e => setCurrentPage(e.selected)}
+            previousLabel={'<'}
+            nextLabel={'>'}
+            onPageChange={e => {
+              window.scroll(0, 0)
+              setCurrentPage(e.selected)
+            }}
             pageCount={articlesForRender.length / postsPerPage}
-            pageRangeDisplayed={3}
-            marginPagesDisplayed={3}
+            pageRangeDisplayed={width < 768 ? 1 : 3}
+            marginPagesDisplayed={width < 768 ? 1 : 3}
           />
         </>
       ) : (

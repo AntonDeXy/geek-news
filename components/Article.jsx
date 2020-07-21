@@ -27,10 +27,11 @@ const Article = props => {
       const data = JSON.parse(localStorage.getItem('user'))
       if (data) {
         setUser(data)
-      } else {
-        history.pushState(null, '/login')
-        window.location.reload()
       }
+      //  else {
+        // history.pushState(null, '/login')
+        // window.location.reload()
+      // }
     }
     if (props.id) {
       success(props.id)
@@ -118,17 +119,22 @@ const Article = props => {
                     </span>
                   )}
                 </div>
-                <div className="enterComment">
-                  <textarea
-                    maxLength="150"
-                    ref={inputRef}
-                    rows="2"
-                    placeholder="Enter ur comment"
-                  ></textarea>
-                  <button onClick={sendArticle} type="button">
-                      Send
-                  </button>
-                </div>
+                {
+                  user && (
+                    <div className="enterComment">
+                      <textarea
+                        maxLength="150"
+                        ref={inputRef}
+                        rows="2"
+                        placeholder="Enter ur comment"
+                      ></textarea>
+                      <button onClick={sendArticle} type="button">
+                          Send
+                      </button>
+                    </div>
+                  )
+                }
+                
               </div>
               {isCommentVisible && (
                 <div className="comments mobile">
@@ -169,17 +175,21 @@ const Article = props => {
                       </span>
                     )}
                   </div>
-                  <div className="enterComment">
-                    <textarea
-                      maxLength="150"
-                      ref={inputRef}
-                      rows="2"
-                      placeholder="Enter ur comment"
-                    ></textarea>
-                    <button onClick={sendArticle} type="button">
-                      Send
-                    </button>
-                  </div>
+                  {
+                    user && (
+                      <div className="enterComment">
+                        <textarea
+                          maxLength="150"
+                          ref={inputRef}
+                          rows="2"
+                          placeholder="Enter ur comment"
+                        ></textarea>
+                        <button onClick={sendArticle} type="button">
+                          Send
+                        </button>
+                      </div>
+                    )
+                  }
                 </div>
               )}
             </>

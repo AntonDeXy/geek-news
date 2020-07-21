@@ -1,7 +1,8 @@
 import axios from 'axios'
 
-// const baseUrl = 'https://cors-anywhere.herokuapp.com/geek-news-back.herokuapp.com/'
-const baseUrl = 'http://localhost:5001/'
+const baseUrl = 'https://cors-anywhere.herokuapp.com/geek-news-back.herokuapp.com/'
+// const baseUrl = 'http://192.168.0.100:5001/'
+// const baseUrl = 'http://localhost:5001/'
 
 export const checkToken = (token, success) => {
   (async () => {

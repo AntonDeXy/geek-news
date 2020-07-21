@@ -36,11 +36,15 @@ export const MainGeneralPageSt = styled.main`
   background-color: #1E1E1E;
   min-height: 80vh;
   ul {
+    /* max-width: 100%; */
+    /* overflow-y: hidden; */
     display: grid;
     grid-auto-flow: column;
     list-style: none;
     justify-content: center;
-    margin-top: 25px;
+    padding: 0;
+    margin: 0;
+    padding: 25px 0 25px 0;
     .selected a{
       background-color: green;
     }
@@ -117,6 +121,9 @@ export const MoreNewsSt = styled.div`
   text-align: center;
   color: white;
   font-family: 'Squada One', cursive;
+  h3 {
+    margin: 0;
+  }
 `
 export const GeneralNews = styled.div`
   justify-self: center;
