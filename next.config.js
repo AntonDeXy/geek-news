@@ -11,6 +11,6 @@ module.exports = withCSS(withImages(withSass({
     return config
   },
   devIndicators: {
-    autoPrerender: false,
-  },
+    autoPrerender: false
+  }
 })))
